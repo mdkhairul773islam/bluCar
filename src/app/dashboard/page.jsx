@@ -19,6 +19,7 @@ const DashboardPage = () => {
         <DashBoxItems />
 
         {/* Installment List Table */}
+
         <div className="mt-10">
           <Table>
             <Thead>
