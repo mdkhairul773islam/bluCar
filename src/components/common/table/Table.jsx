@@ -1,7 +1,9 @@
-const Table = () => {
+const Table = ({ children }) => {
   return (
-    <div class="relative overflow-x-auto shadow-md sm:rounded-lg">
-      <table class="w-full text-sm text-left rtl:text-right text-gray-500 "></table>
+    <div className="relative overflow-x-auto shadow-md sm:rounded-lg bg-white">
+      <table className="w-full text-sm text-left rtl:text-right text-gray-700 ">
+        {children}
+      </table>
     </div>
   );
 };
