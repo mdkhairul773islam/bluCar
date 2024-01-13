@@ -3,6 +3,7 @@ import { Dropdown } from "flowbite-react";
 import { HiCog, HiCurrencyDollar, HiLogout, HiViewGrid } from "react-icons/hi";
 import Image from "next/image";
 import { AiOutlineFundView } from "react-icons/ai";
+import { IoCaretDown } from "react-icons/io5";
 
 const HeaderProfile = ({ image }) => {
   return (
@@ -10,18 +11,18 @@ const HeaderProfile = ({ image }) => {
       <Dropdown
         label=""
         renderTrigger={() => (
-          <div className="h-12 w-12 bg-white text-primary rounded-full flex items-center justify-center cursor-pointer">
-            {image ? (
-              <Image
-                height={48}
-                width={48}
-                src={`${image}`}
-                alt="User"
-                className="h-full w-full rounded-full object-contain border shadow-sm"
-              />
-            ) : (
-              "M"
-            )}
+          <div className="h-12 w-12 p-1 pr-3 md:w-fit bg-primary rounded-[10px] flex items-center gap-2  shadow-sm justify-center cursor-pointer">
+            <Image
+              height={48}
+              width={48}
+              src="/images/mehedi.jpg"
+              alt="User"
+              className="h-full w-full rounded-md object-contain "
+            />
+            <span className="font-medium text-white whitespace-nowrap hidden tracking-wider md:block">
+              Mehedi Hasan
+            </span>
+            <IoCaretDown />
           </div>
         )}
       >
