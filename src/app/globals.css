@@ -2,6 +2,34 @@
 @tailwind components;
 @tailwind utilities;
 
+.inputForm {
+  @apply flex flex-col gap-3;
+}
+
+.inputLabel {
+  @apply text-slate-700 font-medium;
+}
+
+.inputLabel.required {
+  @apply relative inline-block after:absolute after:-right-3 after:top-0 after:content-['*'] after:text-red-600 after:text-lg after:font-bold;
+}
+
+.inputGroup {
+  @apply flex flex-col items-start gap-2;
+}
+
+.inputField {
+  @apply w-full rounded bg-white border border-gray-300 focus:!shadow-none focus:border-primary focus:ring-0;
+}
+
+.inputBtn {
+  @apply inline-block px-3 py-2 rounded bg-primary text-white duration-300 hover:bg-dark-purple cursor-pointer;
+}
+
+.inputBtn.cancel {
+  @apply bg-red-700 hover:bg-dark-purple;
+}
+
 ::-webkit-scrollbar {
   display: none;
 }

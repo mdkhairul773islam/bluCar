@@ -5,7 +5,7 @@ const Panel = ({ title, children }) => {
         <h4 className="font-medium text-2xl">{title}</h4>
       </div>
 
-      <div className="p-5 bg-gray-50">{children}</div>
+      <div className="px-5 py-10">{children}</div>
     </div>
   );
 };

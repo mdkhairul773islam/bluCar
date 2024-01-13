@@ -5,7 +5,7 @@ import { IoSettingsOutline } from "react-icons/io5";
 
 const Header = () => {
   return (
-    <div className="bg-dark-purple text-white h-[65px] flex items-center justify-between pr-5">
+    <div className=" bg-dark-purple text-white h-[65px] flex items-center justify-between pr-5">
       <div className="bg-white text-primary p-2 rounded-sm text-xl cursor-pointer">
         <FaBarsStaggered />
       </div>

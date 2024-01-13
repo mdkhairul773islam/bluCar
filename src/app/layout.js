@@ -7,8 +7,11 @@ import ProgressProvider from "./providers/ProgressProvider";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata = {
-  title: "Green Pos",
-  description: "Green Pos is an POS Application create by NEXT JS",
+  title: {
+    default: "Blue Car",
+    template: "%s - Blue Car",
+  },
+  description: "Blue Car is an POS Application create by NEXT JS",
 };
 
 export default function RootLayout({ children }) {
