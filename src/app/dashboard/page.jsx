@@ -1,9 +1,11 @@
+// Import Dependencies
 import Panel from "@/components/common/Panel";
 import DashBoxItems from "@/components/dashboard/DashBoxItems";
 import InstallmentTable from "@/components/dashboard/InstallmentTable";
 
+// Meta Data
 export const metadata = {
-  title: "Dashboard - Green Pos",
+  title: "Dashboard",
 };
 
 const DashboardPage = () => {
