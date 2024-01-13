@@ -3,6 +3,7 @@ import "./globals.css";
 import SideBar from "@/components/layouts/sidebar/Sidebar";
 import Header from "@/components/layouts/header/Header";
 import ProgressProvider from "./providers/ProgressProvider";
+import Footer from "@/components/layouts/footer/Footer";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -22,11 +23,17 @@ export default function RootLayout({ children }) {
           {/* Sidebar Area */}
           <SideBar />
 
-          <div className="ml-72 h-screen  ">
+          <div className="p-5 ml-72 ">
+            {/* Header Area */}
             <Header />
-            <main className="p-7">
+
+            {/* Main Area */}
+            <main>
               <ProgressProvider>{children}</ProgressProvider>
             </main>
+
+            {/* Footer Area */}
+            <Footer />
           </div>
         </div>
       </body>

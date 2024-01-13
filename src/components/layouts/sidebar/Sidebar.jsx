@@ -6,6 +6,7 @@ import sidebarData from "./sidebarData";
 import { IoLogoModelS } from "react-icons/io";
 import { IoMdArrowDropright } from "react-icons/io";
 import { RiArrowDownSLine } from "react-icons/ri";
+import { FaBarsStaggered } from "react-icons/fa6";
 
 const Sidebar = () => {
   const [open, setOpen] = useState(true);
@@ -24,23 +25,25 @@ const Sidebar = () => {
     <div
       className={` ${
         open ? "w-72" : ""
-      } bg-dark-purple h-screen fixed p-5  duration-300 overflow-y-auto`}
+      } bg-white h-screen fixed p-5  duration-300 overflow-y-auto`}
     >
-      <Link
-        href={"/dashboard"}
-        className="flex gap-x-4 items-center border-b border-b-primary/30 pb-3"
-      >
-        <div
-          className={`bg-primary p-2 rounded text-white ${
-            open && "rotate-[360deg]"
-          }`}
-        >
-          <IoLogoModelS />
+      <div className="flex items-center justify-between pb-3 border-b border-b-[#f6f6f6]">
+        <Link href={"/dashboard"} className="flex gap-x-4 items-center  ">
+          <div
+            className={`bg-primary p-2 rounded-sm text-white ${
+              open && "rotate-[360deg]"
+            }`}
+          >
+            <IoLogoModelS />
+          </div>
+          <span className={`text-black font-bold text-xl duration-200`}>
+            BlueCar
+          </span>
+        </Link>
+        <div className="text-primary rounded-sm text-xl cursor-pointer">
+          <FaBarsStaggered />
         </div>
-        <span className={`text-white font-bold text-xl duration-200`}>
-          BlueCar
-        </span>
-      </Link>
+      </div>
 
       <ul className="mt-4 space-y-1">
         {sidebarData.map((menu, index) => (
@@ -48,8 +51,12 @@ const Sidebar = () => {
             <Link
               onClick={() => showSubnav(index)}
               href={`${menu.submenu ? "#" : menu.slug} `}
-              className={`flex relative rounded-md p-2 cursor-pointer hover:bg-primary text-white items-center gap-x-4
-               ${subnav.open && subnav.index === index && "bg-primary"} `}
+              className={`flex relative rounded-md p-2 cursor-pointer font-medium text-dark-700 hover:bg-primary hover:text-white items-center gap-x-2
+               ${
+                 subnav.open &&
+                 subnav.index === index &&
+                 "bg-primary !text-white"
+               } `}
             >
               {menu.icon}
               <span className={`${!open && "hidden"} origin-left duration-200`}>
@@ -64,7 +71,7 @@ const Sidebar = () => {
               )}
             </Link>
 
-            <ul className={`duration-500 ml-2 text-gray-200`}>
+            <ul className={`duration-500 ml-2 text-dark-700`}>
               {subnav.open &&
                 subnav.index === index &&
                 menu.submenu?.map((smenu, index) => (

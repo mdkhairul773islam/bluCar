@@ -1,5 +1,4 @@
 // Import Dependencies
-import Panel from "@/components/common/Panel";
 import DashBoxItems from "@/components/dashboard/DashBoxItems";
 import InstallmentTable from "@/components/dashboard/InstallmentTable";
 
@@ -11,15 +10,16 @@ export const metadata = {
 const DashboardPage = () => {
   return (
     <div>
-      <Panel title="Welcome to Blue Car Dashboard">
-        {/* Dahboard Box Items */}
-        <DashBoxItems />
+      {/* Dashboard Item  */}
+      <DashBoxItems />
 
-        {/* Installment List Table */}
-        <div className="mt-10">
-          <InstallmentTable />
-        </div>
-      </Panel>
+      {/* Installment Table  */}
+      <div className="bg-white shadow-md rounded my-5 p-5">
+        <h3 className="text-xl font-semibold tracking-wider text-dark-800 mb-5">
+          Installment List
+        </h3>
+        <InstallmentTable />
+      </div>
     </div>
   );
 };

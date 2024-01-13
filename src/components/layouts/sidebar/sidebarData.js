@@ -29,13 +29,25 @@ import { AiFillBank, AiOutlineCluster } from "react-icons/ai";
 const sidebarData = [
   { title: "Dashboard", icon: <RiDashboardFill />, slug: "/dashboard" },
   {
-    title: "Brand",
-    icon: <TbBrandAirtable />,
+    title: "Product",
+    icon: <FaBoxOpen />,
     submenu: [
-      { title: "Add Brand", slug: "/brand/add" },
-      { title: "All Brand", slug: "/brand" },
+      { title: "Add Product", slug: "/product/add" },
+      { title: "All Product", slug: "/product" },
+      { title: "Add Category", slug: "/product/category/add" },
+      { title: "All Category", slug: "/product/category" },
+      { title: "Add Brand", slug: "/product/brand/add" },
+      { title: "All Brand", slug: "/product/brand" },
     ],
   },
+  // {
+  //   title: "Brand",
+  //   icon: <TbBrandAirtable />,
+  //   submenu: [
+  //     { title: "Add Brand", slug: "/product/brand/add" },
+  //     { title: "All Brand", slug: "/product/brand" },
+  //   ],
+  // },
   {
     title: "Barcode",
     icon: <FaBarcode />,
@@ -47,14 +59,14 @@ const sidebarData = [
     ],
   },
 
-  {
-    title: "Category",
-    icon: <MdCategory />,
-    submenu: [
-      { title: "Add Category", slug: "/category/add" },
-      { title: "All Category", slug: "/category" },
-    ],
-  },
+  // {
+  //   title: "Category",
+  //   icon: <MdCategory />,
+  //   submenu: [
+  //     { title: "Add Category", slug: "/category/add" },
+  //     { title: "All Category", slug: "/category" },
+  //   ],
+  // },
   {
     title: "Reference",
     icon: <FaUserCheck />,
@@ -82,14 +94,7 @@ const sidebarData = [
       { title: "Delete Transaction", slug: "/supplier/transaction/delete" },
     ],
   },
-  {
-    title: "Product",
-    icon: <FaBoxOpen />,
-    submenu: [
-      { title: "Add Product", slug: "/product/add" },
-      { title: "All Product", slug: "/product" },
-    ],
-  },
+
   {
     title: "Orders",
     icon: <GiBoxUnpacking />,
@@ -142,9 +147,12 @@ const sidebarData = [
     title: "Damage Product",
     icon: <GiBoxTrap />,
     submenu: [
-      { title: "Add Purchase", slug: "/damage_product/add" },
-      { title: "All Purchase", slug: "/damage_product" },
-      { title: "Delete History", slug: "/damage_product/delete_history" },
+      { title: "Add Damage Product", slug: "/damage_product/add" },
+      { title: "All Damage Product", slug: "/damage_product" },
+      {
+        title: "Delete Damage Product",
+        slug: "/damage_product/delete_history",
+      },
     ],
   },
   {

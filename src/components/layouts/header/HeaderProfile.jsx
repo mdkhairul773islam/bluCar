@@ -1,9 +1,9 @@
 "use client";
 import { Dropdown } from "flowbite-react";
-import { HiCog, HiCurrencyDollar, HiLogout, HiViewGrid } from "react-icons/hi";
+import { HiCog, HiLogout, HiViewGrid } from "react-icons/hi";
 import Image from "next/image";
 import { AiOutlineFundView } from "react-icons/ai";
-import { IoCaretDown } from "react-icons/io5";
+import { RiArrowDownSLine } from "react-icons/ri";
 
 const HeaderProfile = ({ image }) => {
   return (
@@ -11,18 +11,21 @@ const HeaderProfile = ({ image }) => {
       <Dropdown
         label=""
         renderTrigger={() => (
-          <div className="h-12 w-12 p-1 pr-3 md:w-fit bg-primary rounded-[10px] flex items-center gap-2  shadow-sm justify-center cursor-pointer">
+          <div className="flex items-center gap-3  justify-center cursor-pointer">
             <Image
-              height={48}
-              width={48}
+              height={40}
+              width={40}
               src="/images/mehedi.jpg"
               alt="User"
-              className="h-full w-full rounded-md object-contain "
+              className="aspect-square h-full rounded-full object-cover "
             />
-            <span className="font-medium text-white whitespace-nowrap hidden tracking-wider md:block">
+            <h5 className="font-medium text-dark-700 whitespace-nowrap hidden tracking-wider md:block">
               Mehedi Hasan
-            </span>
-            <IoCaretDown />
+              <span className="text-xs text-dark-500 block font-medium">
+                Super Admin
+              </span>
+            </h5>
+            <RiArrowDownSLine className="text-dark-500" />
           </div>
         )}
       >

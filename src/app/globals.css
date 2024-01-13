@@ -2,6 +2,10 @@
 @tailwind components;
 @tailwind utilities;
 
+body {
+  @apply bg-[#F6F6F6];
+}
+
 .inputForm {
   @apply flex flex-col gap-3;
 }
@@ -19,7 +23,7 @@
 }
 
 .inputField {
-  @apply w-full rounded bg-white border border-gray-300 focus:!shadow-none focus:border-primary focus:ring-0;
+  @apply w-full rounded bg-[#F6F6F6] border border-transparent focus:!shadow-none focus:border-primary focus:ring-0;
 }
 
 .inputBtn {
