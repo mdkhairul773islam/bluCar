@@ -10,7 +10,6 @@ const ReferencePage = () => {
   return (
     <>
       <Panel title="All Reference">
-        <ReferenceFilter />
         <ReferenceTable />
       </Panel>
     </>

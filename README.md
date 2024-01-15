@@ -42,3 +42,11 @@ git remote set-url origin https://github.com/mhhasanmehedi/blue-car.git
 git remote set-url origin https://github.com/mdkhairul773islam/bluCar.git
 
 ```
+
+## Technologies
+
+-- React Table
+-- Mockaroo JOSN Data
+-- Tailwind css
+-- Redux
+-- React icons

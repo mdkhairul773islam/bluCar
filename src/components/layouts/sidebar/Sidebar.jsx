@@ -23,7 +23,7 @@ const Sidebar = () => {
 
   return (
     <div
-      className={` ${
+      className={`sideBar ${
         open ? "w-72" : ""
       } bg-white h-screen fixed p-5  duration-300 overflow-y-auto`}
     >
