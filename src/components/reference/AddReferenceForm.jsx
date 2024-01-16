@@ -43,7 +43,6 @@ const AddReferenceForm = () => {
           id="name"
           className="inputField"
           {...register("name")}
-          placeholder="Name"
         />
         <ErrorMessage
           errors={errors}
@@ -61,7 +60,6 @@ const AddReferenceForm = () => {
           id="mobile"
           className="inputField"
           {...register("mobile", { valueAsNumber: true })}
-          placeholder="Mobile"
         />
         <ErrorMessage
           errors={errors}
@@ -79,7 +77,6 @@ const AddReferenceForm = () => {
           id="address"
           className="inputField"
           {...register("address")}
-          placeholder="Address"
         />
       </div>
 
@@ -92,7 +89,6 @@ const AddReferenceForm = () => {
           id="area"
           className="inputField"
           {...register("area")}
-          placeholder="Area"
         />
       </div>
 

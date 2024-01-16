@@ -5,10 +5,16 @@ import { Tooltip } from "flowbite-react";
 import { LiaEdit } from "react-icons/lia";
 import referenceData from "./referenceData.json";
 import React, { useMemo, useState } from "react";
-import { useGlobalFilter, useSortBy, useTable } from "react-table";
-import ReferenceEditModal from "./ReferenceEditModal";
-import { GoSortAsc, GoSortDesc, GoTrash } from "react-icons/go";
+import {
+  useGlobalFilter,
+  useSortBy,
+  useTable,
+  usePagination,
+} from "react-table";
 import ReferenceFilter from "./ReferenceFilter";
+import ReferenceEditModal from "./ReferenceEditModal";
+import ReferencePagination from "./ReferencePagination";
+import { GoSortAsc, GoSortDesc, GoTrash } from "react-icons/go";
 
 const ReferenceTable = () => {
   const columns = useMemo(() => COLUMNS, []);
@@ -19,7 +25,15 @@ const ReferenceTable = () => {
     getTableProps,
     getTableBodyProps,
     headerGroups,
-    rows,
+    page,
+    nextPage,
+    previousPage,
+    canNextPage,
+    canPreviousPage,
+    pageOptions,
+    gotoPage,
+    setPageSize,
+    pageCount,
     prepareRow,
     state,
     setGlobalFilter,
@@ -29,52 +43,58 @@ const ReferenceTable = () => {
       data,
     },
     useGlobalFilter,
-    useSortBy
+    useSortBy,
+    usePagination
   );
 
-  const { globalFilter } = state;
+  const { globalFilter, pageIndex, pageSize } = state;
 
   return (
     <>
+      {/* Reference Filter */}
       <ReferenceFilter filter={globalFilter} setFilter={setGlobalFilter} />
+
+      {/* Reference Table */}
       <div className="overflow-x-auto">
         <table {...getTableProps()}>
           <thead>
-            {headerGroups.map((headerGroup, index) => (
-              <tr key={index.toString()} {...headerGroup.getHeaderGroupProps()}>
-                {headerGroup.headers.map((column, index) => (
-                  <th
-                    key={index.toString()}
-                    {...column.getHeaderProps(column.getSortByToggleProps())}
-                  >
-                    <div className="flex items-center gap-1">
-                      <span className="text-2xl">
-                        {column.isSorted ? (
-                          column.isSortedDesc ? (
-                            <GoSortAsc />
+            {headerGroups.map((headerGroup, index) => {
+              return (
+                <tr key={index} {...headerGroup.getHeaderGroupProps()}>
+                  {headerGroup.headers.map((column, index) => (
+                    <th
+                      key={index}
+                      {...column.getHeaderProps(column.getSortByToggleProps())}
+                    >
+                      <div className="flex items-center gap-1">
+                        <span className="text-2xl">
+                          {column.isSorted ? (
+                            column.isSortedDesc ? (
+                              <GoSortAsc />
+                            ) : (
+                              <GoSortDesc />
+                            )
                           ) : (
-                            <GoSortDesc />
-                          )
-                        ) : (
-                          ""
-                        )}
-                      </span>
-                      {column.render("Header")}
-                    </div>
-                  </th>
-                ))}
-                <th className="text-right">Action</th>
-              </tr>
-            ))}
+                            ""
+                          )}
+                        </span>
+                        {column.render("Header")}
+                      </div>
+                    </th>
+                  ))}
+                  <th className="text-right">Action</th>
+                </tr>
+              );
+            })}
           </thead>
           <tbody {...getTableBodyProps()}>
-            {rows.map((row, index) => {
+            {page.map((row, index) => {
               prepareRow(row);
               return (
-                <tr key={index.toString} {...row.getRowProps()}>
+                <tr key={index} {...row.getRowProps()}>
                   {row.cells.map((cell, index) => {
                     return (
-                      <td key={index.toString()} {...cell.getCellProps()}>
+                      <td key={index} {...cell.getCellProps()}>
                         {cell.render("Cell")}
                       </td>
                     );
@@ -84,7 +104,10 @@ const ReferenceTable = () => {
                     <div className="flex items-center justify-end gap-2">
                       <Tooltip content="Update" animation="duration-500">
                         <div
-                          onClick={() => setOpenModal(true)}
+                          onClick={() => {
+                            console.log(row.original.id);
+                            setOpenModal(true);
+                          }}
                           className="h-7 w-7 bg-emerald-600/20 text-emerald-600 hover:bg-emerald-600 hover:text-white rounded text-xs flex items-center justify-center cursor-pointer"
                         >
                           <LiaEdit />
@@ -107,6 +130,20 @@ const ReferenceTable = () => {
         {/* Edit Reference Modal */}
         <ReferenceEditModal openModal={openModal} setOpenModal={setOpenModal} />
       </div>
+
+      {/* Reference Pagination */}
+      <ReferencePagination
+        canPreviousPage={canPreviousPage}
+        previousPage={previousPage}
+        canNextPage={canNextPage}
+        nextPage={nextPage}
+        pageIndex={pageIndex}
+        pageOptions={pageOptions}
+        pageCount={pageCount}
+        gotoPage={gotoPage}
+        pageSize={pageSize}
+        setPageSize={setPageSize}
+      />
     </>
   );
 };
