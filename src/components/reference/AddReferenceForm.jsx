@@ -19,11 +19,7 @@ const AddReferenceForm = () => {
   };
 
   return (
-    <form
-      action=""
-      onSubmit={handleSubmit(handleOnSubmit)}
-      className="inputForm"
-    >
+    <form onSubmit={handleSubmit(handleOnSubmit)} className="inputForm">
       <div className="inputGroup">
         <label htmlFor="name" className="inputLabel required">
           Name
@@ -46,7 +42,7 @@ const AddReferenceForm = () => {
           Mobile
         </label>
         <input
-          type="text"
+          type="number"
           id="mobile"
           className="inputField"
           {...register("mobile", { valueAsNumber: true })}

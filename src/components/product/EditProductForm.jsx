@@ -59,7 +59,7 @@ const AddProductForm = () => {
             Product Code
           </label>
           <input
-            type="text"
+            type="number"
             id="code"
             className="inputField"
             {...register("code", { valueAsNumber: true })}
@@ -161,7 +161,7 @@ const AddProductForm = () => {
             Purchase Price
           </label>
           <input
-            type="text"
+            type="number"
             id="purchase_price"
             className="inputField"
             {...register("purchase_price", { valueAsNumber: true })}
@@ -178,7 +178,7 @@ const AddProductForm = () => {
             Sale Price
           </label>
           <input
-            type="text"
+            type="number"
             id="sale_price"
             className="inputField"
             {...register("sale_price", { valueAsNumber: true })}
@@ -218,7 +218,7 @@ const AddProductForm = () => {
             Low Lavel
           </label>
           <input
-            type="text"
+            type="number"
             id="low_lavel"
             className="inputField"
             {...register("low_lavel", { valueAsNumber: true })}

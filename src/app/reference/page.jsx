@@ -1,5 +1,4 @@
 import Panel from "@/components/common/Panel";
-import ReferenceFilter from "@/components/reference/ReferenceFilter";
 import ReferenceTable from "@/components/reference/ReferenceTable";
 
 export const metadata = {

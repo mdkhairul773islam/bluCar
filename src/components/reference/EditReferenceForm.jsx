@@ -50,7 +50,7 @@ const EditReferenceForm = ({ setOpenModal }) => {
           Mobile
         </label>
         <input
-          type="text"
+          type="number"
           id="mobile"
           className="inputField"
           {...register("mobile", { valueAsNumber: true })}
