@@ -1,5 +1,4 @@
 import Panel from "@/components/common/Panel";
-import CategoryFilter from "@/components/category/CategoryFilter";
 import CategoryTable from "@/components/category/CategoryTable";
 
 export const metadata = {
@@ -10,7 +9,6 @@ const CategoryPage = () => {
   return (
     <>
       <Panel title="All Category">
-        <CategoryFilter />
         <CategoryTable />
       </Panel>
     </>

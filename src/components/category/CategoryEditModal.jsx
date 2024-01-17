@@ -1,7 +1,7 @@
 // Import Dependencies
 import { Modal } from "flowbite-react";
 import { RxCross2 } from "react-icons/rx";
-import EditReferenceForm from "./EditCategoryForm";
+import EditCategoryForm from "./EditCategoryForm";
 
 const CategoryEditModal = ({ openModal, setOpenModal }) => {
   return (
@@ -25,7 +25,7 @@ const CategoryEditModal = ({ openModal, setOpenModal }) => {
         </div>
 
         {/* Edit Category Form */}
-        <EditReferenceForm setOpenModal={setOpenModal} />
+        <EditCategoryForm setOpenModal={setOpenModal} />
       </div>
     </Modal>
   );

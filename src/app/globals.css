@@ -15,15 +15,27 @@ body {
 }
 
 .inputLabel {
-  @apply inline-block text-dark-700 font-medium absolute left-2 -top-3 bg-white px-1;
+  @apply inline-block text-sm text-dark-600 font-medium absolute left-2 -top-3 bg-white px-1;
 }
 
 .inputLabel.required {
-  @apply pr-3 after:absolute after:right-0 after:top-0 after:content-['*'] after:text-red-600 after:text-lg after:font-bold;
+  @apply pr-3 after:absolute after:right-[2px] after:top-[0] after:content-['*'] after:text-red-600 after:text-sm after:font-bold;
 }
 
 .inputField {
   @apply w-full rounded text-dark-800  border border-gray-300 focus:!shadow-none focus:border-primary focus:ring-0;
+}
+
+.radioInput {
+  @apply hidden;
+}
+
+.radioInput:checked ~ .radioLabel::before {
+  @apply visible opacity-100;
+}
+
+.radioLabel {
+  @apply relative cursor-pointer pl-6 after:absolute after:left-0 after:top-1/2 after:-translate-y-1/2 after:h-4 after:w-4 after:rounded-full after:border after:border-gray-600 before:absolute before:content-["✔"] before:left-0 before:top-1/2 before:-translate-y-1/2 before:bg-primary before:invisible before:opacity-0 before:flex before:items-center before:justify-center before:h-4 before:w-4 before:rounded-full before:text-xs before:text-white;
 }
 
 .inputBtn {

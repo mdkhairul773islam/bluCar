@@ -33,7 +33,7 @@ export default function RootLayout({ children }) {
             </main>
 
             {/* Footer Area */}
-            <Footer />
+            {/* <Footer /> */}
           </div>
         </div>
       </body>

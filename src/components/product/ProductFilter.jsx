@@ -1,11 +1,10 @@
 "use client";
-// Import Dependencies
 import "regenerator-runtime/runtime";
 import { useState } from "react";
 import { IoSearchOutline } from "react-icons/io5";
 import { useAsyncDebounce } from "react-table";
 
-const CategoryFilter = ({ filter, setFilter }) => {
+const ProductFilter = ({ filter, setFilter }) => {
   const [value, setValue] = useState(filter);
 
   const onChange = useAsyncDebounce((value) => {
@@ -31,4 +30,4 @@ const CategoryFilter = ({ filter, setFilter }) => {
   );
 };
 
-export default CategoryFilter;
+export default ProductFilter;

@@ -1,22 +1,22 @@
 "use client";
 // Import Dependencies
 import { COLUMNS } from "./columns";
+import productData from "./productData.json";
 import React, { useMemo } from "react";
-import referenceData from "./referenceData.json";
 import {
   useGlobalFilter,
   useSortBy,
   useTable,
   usePagination,
 } from "react-table";
-import ReferenceFilter from "./ReferenceFilter";
-import ReferenceTableTr from "./ReferenceTableTr";
-import ReferencePagination from "./ReferencePagination";
+import ProductFilter from "./ProductFilter";
+import ProductPagination from "./ProductPagination";
 import { GoSortAsc, GoSortDesc, GoTrash } from "react-icons/go";
+import ProductTableTr from "./ProductTableTr";
 
-const ReferenceTable = () => {
+const ProductTable = () => {
   const columns = useMemo(() => COLUMNS, []);
-  const data = useMemo(() => referenceData, []);
+  const data = useMemo(() => productData, []);
 
   const {
     getTableProps,
@@ -48,10 +48,10 @@ const ReferenceTable = () => {
 
   return (
     <>
-      {/* Reference Filter */}
-      <ReferenceFilter filter={globalFilter} setFilter={setGlobalFilter} />
+      {/* Product Filter */}
+      <ProductFilter filter={globalFilter} setFilter={setGlobalFilter} />
 
-      {/* Reference Table */}
+      {/* Product Table */}
       <div className="overflow-x-auto">
         <table {...getTableProps()}>
           <thead>
@@ -60,6 +60,7 @@ const ReferenceTable = () => {
                 <tr key={index} {...headerGroup.getHeaderGroupProps()}>
                   {headerGroup.headers.map((column, index) => (
                     <th
+                      className="whitespace-nowrap"
                       key={index}
                       {...column.getHeaderProps(column.getSortByToggleProps())}
                     >
@@ -87,14 +88,14 @@ const ReferenceTable = () => {
           <tbody {...getTableBodyProps()}>
             {page.map((row, index) => {
               prepareRow(row);
-              return <ReferenceTableTr key={index} row={row} />;
+              return <ProductTableTr key={index} row={row} />;
             })}
           </tbody>
         </table>
       </div>
 
-      {/* Reference Pagination */}
-      <ReferencePagination
+      {/* Product Pagination */}
+      <ProductPagination
         canPreviousPage={canPreviousPage}
         previousPage={previousPage}
         canNextPage={canNextPage}
@@ -110,4 +111,4 @@ const ReferenceTable = () => {
   );
 };
 
-export default ReferenceTable;
+export default ProductTable;

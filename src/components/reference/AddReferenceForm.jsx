@@ -1,19 +1,9 @@
 "use client";
+// Import Dependencies
 import { useForm } from "react-hook-form";
-
+import validationSchema from "./validateionSchema";
 import { yupResolver } from "@hookform/resolvers/yup";
-import * as Yup from "yup";
 import { ErrorMessage } from "@hookform/error-message";
-
-const validationSchema = Yup.object().shape({
-  name: Yup.string().required().label("Name"),
-  mobile: Yup.number()
-    .typeError("Mobile must be a number")
-    .required()
-    .label("Mobile"),
-  address: Yup.string().label("Address"),
-  area: Yup.string().label("Area"),
-});
 
 const AddReferenceForm = () => {
   const {

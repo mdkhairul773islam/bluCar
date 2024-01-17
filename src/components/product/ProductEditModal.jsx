@@ -1,12 +1,12 @@
 // Import Dependencies
 import { Modal } from "flowbite-react";
 import { RxCross2 } from "react-icons/rx";
-import EditShowroomForm from "./EditShowroomForm";
+import EditProductForm from "./EditProductForm";
 
-const ShowroomEditModal = ({ openModal, setOpenModal }) => {
+const ProductEditModal = ({ openModal, setOpenModal }) => {
   return (
     <Modal
-      size="2xl"
+      size="lg"
       dismissible
       show={openModal}
       onClose={() => setOpenModal(false)}
@@ -14,7 +14,7 @@ const ShowroomEditModal = ({ openModal, setOpenModal }) => {
       <div className="p-5 flex bg-white rounded flex-col gap-5">
         <div className="flex items-center justify-between">
           <span className="text-tertiary text-lg font-medium">
-            Edit Showroom
+            Edit Product
           </span>
           <div
             onClick={() => setOpenModal(false)}
@@ -24,11 +24,11 @@ const ShowroomEditModal = ({ openModal, setOpenModal }) => {
           </div>
         </div>
 
-        {/* Edit Showroom Form */}
-        <EditShowroomForm setOpenModal={setOpenModal} />
+        {/* Edit Product Form */}
+        <EditProductForm setOpenModal={setOpenModal} />
       </div>
     </Modal>
   );
 };
 
-export default ShowroomEditModal;
+export default ProductEditModal;

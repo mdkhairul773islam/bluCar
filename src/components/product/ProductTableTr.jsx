@@ -1,14 +1,11 @@
 "use client";
 // Import Dependencies
-import { useState } from "react";
+import Link from "next/link";
 import { GoTrash } from "react-icons/go";
-import { Tooltip } from "flowbite-react";
 import { LiaEdit } from "react-icons/lia";
-import ReferenceEditModal from "./ReferenceEditModal";
+import { Tooltip } from "flowbite-react";
 
-const ReferenceTableTr = ({ row }) => {
-  const [openModal, setOpenModal] = useState(false);
-
+const ProductTableTr = ({ row }) => {
   return (
     <>
       <tr {...row.getRowProps()}>
@@ -23,15 +20,12 @@ const ReferenceTableTr = ({ row }) => {
         <td>
           <div className="flex items-center justify-end gap-2">
             <Tooltip content="Update" animation="duration-500">
-              <div
-                onClick={() => {
-                  console.log(row.original.id);
-                  setOpenModal(true);
-                }}
+              <Link
+                href="/product/edit"
                 className="h-7 w-7 bg-emerald-600/20 text-emerald-600 hover:bg-emerald-600 hover:text-white rounded text-xs flex items-center justify-center cursor-pointer"
               >
                 <LiaEdit />
-              </div>
+              </Link>
             </Tooltip>
 
             <Tooltip content="Delete" animation="duration-500">
@@ -42,11 +36,8 @@ const ReferenceTableTr = ({ row }) => {
           </div>
         </td>
       </tr>
-
-      {/* Edit Reference Modal */}
-      <ReferenceEditModal openModal={openModal} setOpenModal={setOpenModal} />
     </>
   );
 };
 
-export default ReferenceTableTr;
+export default ProductTableTr;

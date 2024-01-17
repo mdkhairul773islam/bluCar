@@ -1,4 +1,3 @@
-// Import Dependencies
 import Panel from "@/components/common/Panel";
 import AddCategoryForm from "@/components/category/AddCategoryForm";
 

@@ -1,4 +1,3 @@
-// Import Dependencies
 import Panel from "@/components/common/Panel";
 import AddBrandForm from "@/components/brand/AddBrandForm";
 

@@ -1,4 +1,5 @@
 "use client";
+// Import Dependencies
 import "regenerator-runtime/runtime";
 import { useState } from "react";
 import { IoSearchOutline } from "react-icons/io5";

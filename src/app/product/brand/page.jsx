@@ -10,7 +10,6 @@ const BrandPage = () => {
   return (
     <>
       <Panel title="All Brand">
-        <BrandFilter />
         <BrandTable />
       </Panel>
     </>
