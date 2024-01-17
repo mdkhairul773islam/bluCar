@@ -70,6 +70,10 @@ tbody tr td {
   @apply py-4 !px-2;
 }
 
+.primaryBtn {
+  @apply inline-flex items-center gap-2 px-3 py-2 rounded bg-primary text-white duration-300 hover:bg-dark-purple cursor-pointer;
+}
+
 .sideBar::-webkit-scrollbar {
   display: none;
 }
