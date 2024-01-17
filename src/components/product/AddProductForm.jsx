@@ -224,7 +224,6 @@ const AddProductForm = () => {
               id="available"
               {...register("status")}
               name="status"
-              checked
               className="radioInput"
             />
             <label htmlFor="available" className="radioLabel">
