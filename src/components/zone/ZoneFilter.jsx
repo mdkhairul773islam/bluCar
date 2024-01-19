@@ -4,8 +4,9 @@ import "regenerator-runtime/runtime";
 import { useState } from "react";
 import { IoSearchOutline } from "react-icons/io5";
 import { useAsyncDebounce } from "react-table";
-import ZoneAddModal from "./ZoneAddModal";
+import Modal from "../common/Modal";
 import { MdAddLocationAlt } from "react-icons/md";
+import AddZoneForm from "./AddZoneForm";
 
 const ZoneFilter = ({ filter, setFilter }) => {
   const [value, setValue] = useState(filter);
@@ -38,7 +39,9 @@ const ZoneFilter = ({ filter, setFilter }) => {
       </button>
 
       {/* Add Zone Modal */}
-      <ZoneAddModal openModal={openModal} setOpenModal={setOpenModal} />
+      <Modal title="Add Zone" openModal={openModal} setOpenModal={setOpenModal}>
+        <AddZoneForm setOpenModal={setOpenModal} />
+      </Modal>
     </div>
   );
 };

@@ -80,7 +80,6 @@ tbody tr td {
 
 @media (min-width: 1024px) {
   .mainbody.active {
-    background-color: red;
     margin-left: 288px;
   }
 }

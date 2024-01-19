@@ -1,19 +1,21 @@
 // Import Dependencies
 import { Modal } from "flowbite-react";
 import { RxCross2 } from "react-icons/rx";
-import EditZoneForm from "./EditZoneForm";
 
-const ZoneEditModal = ({ openModal, setOpenModal }) => {
+const CustomModal = ({ title, size, openModal, setOpenModal, children }) => {
   return (
     <Modal
-      size="md"
+      size={size || "lg"}
       dismissible
       show={openModal}
+      className="z-[99999999999999999]"
       onClose={() => setOpenModal(false)}
     >
       <div className="p-5 flex bg-white rounded flex-col gap-5">
         <div className="flex items-center justify-between">
-          <span className="text-tertiary text-lg font-medium">Edit Zone</span>
+          <span className="text-tertiary text-lg font-medium">
+            {title || ""}
+          </span>
           <div
             onClick={() => setOpenModal(false)}
             className="flex items-center justify-center h-6 w-6 hover:bg-gray-100 cursor-pointer hover:text-red-600 rounded-full"
@@ -22,11 +24,10 @@ const ZoneEditModal = ({ openModal, setOpenModal }) => {
           </div>
         </div>
 
-        {/* Edit Zone Form */}
-        <EditZoneForm setOpenModal={setOpenModal} />
+        {children}
       </div>
     </Modal>
   );
 };
 
-export default ZoneEditModal;
+export default CustomModal;

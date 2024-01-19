@@ -4,7 +4,8 @@ import { useState } from "react";
 import { GoTrash } from "react-icons/go";
 import { Tooltip } from "flowbite-react";
 import { LiaEdit } from "react-icons/lia";
-import ShowroomEditModal from "./ShowroomEditModal";
+import Modal from "../common/Modal";
+import EditShowroomForm from "./EditShowroomForm";
 
 const ShowroomTableTr = ({ row }) => {
   const [openModal, setOpenModal] = useState(false);
@@ -44,7 +45,13 @@ const ShowroomTableTr = ({ row }) => {
       </tr>
 
       {/* Edit Showroom Modal */}
-      <ShowroomEditModal openModal={openModal} setOpenModal={setOpenModal} />
+      <Modal
+        title="Edit Showroom"
+        openModal={openModal}
+        setOpenModal={setOpenModal}
+      >
+        <EditShowroomForm setOpenModal={setOpenModal} />
+      </Modal>
     </>
   );
 };

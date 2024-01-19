@@ -4,8 +4,8 @@ import validationSchema from "./validateionSchema";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { ErrorMessage } from "@hookform/error-message";
 
-const EditShowroomForm = ({ setOpenModal }) => {
-  const showroomInfo = {
+const EditZoneForm = ({ setOpenModal }) => {
+  const zoneInfo = {
     name: "Mymensingh",
   };
 
@@ -15,7 +15,7 @@ const EditShowroomForm = ({ setOpenModal }) => {
     formState: { errors },
   } = useForm({
     resolver: yupResolver(validationSchema),
-    defaultValues: showroomInfo,
+    defaultValues: zoneInfo,
   });
 
   const handleOnSubmit = (data) => {
@@ -53,4 +53,4 @@ const EditShowroomForm = ({ setOpenModal }) => {
   );
 };
 
-export default EditShowroomForm;
+export default EditZoneForm;

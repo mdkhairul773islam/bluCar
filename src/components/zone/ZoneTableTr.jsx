@@ -4,7 +4,8 @@ import { useState } from "react";
 import { GoTrash } from "react-icons/go";
 import { Tooltip } from "flowbite-react";
 import { LiaEdit } from "react-icons/lia";
-import ZoneEditModal from "./ZoneEditModal";
+import Modal from "../common/Modal";
+import EditZoneForm from "./EditZoneForm";
 
 const ZoneTableTr = ({ row }) => {
   const [openModal, setOpenModal] = useState(false);
@@ -44,7 +45,13 @@ const ZoneTableTr = ({ row }) => {
       </tr>
 
       {/* Edit Zone Modal */}
-      <ZoneEditModal openModal={openModal} setOpenModal={setOpenModal} />
+      <Modal
+        title="Edit Zone"
+        openModal={openModal}
+        setOpenModal={setOpenModal}
+      >
+        <EditZoneForm setOpenModal={setOpenModal} />
+      </Modal>
     </>
   );
 };

@@ -4,7 +4,8 @@ import { useState } from "react";
 import { GoTrash } from "react-icons/go";
 import { Tooltip } from "flowbite-react";
 import { LiaEdit } from "react-icons/lia";
-import ReferenceEditModal from "./ReferenceEditModal";
+import Modal from "../common/Modal";
+import EditReferenceForm from "./EditReferenceForm";
 
 const ReferenceTableTr = ({ row }) => {
   const [openModal, setOpenModal] = useState(false);
@@ -44,7 +45,13 @@ const ReferenceTableTr = ({ row }) => {
       </tr>
 
       {/* Edit Reference Modal */}
-      <ReferenceEditModal openModal={openModal} setOpenModal={setOpenModal} />
+      <Modal
+        title="Edit Reference"
+        openModal={openModal}
+        setOpenModal={setOpenModal}
+      >
+        <EditReferenceForm setOpenModal={setOpenModal} />
+      </Modal>
     </>
   );
 };

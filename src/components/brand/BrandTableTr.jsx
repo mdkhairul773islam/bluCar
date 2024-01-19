@@ -1,10 +1,11 @@
 "use client";
 // Import Dependencies
 import { useState } from "react";
+import Modal from "../common/Modal";
 import { GoTrash } from "react-icons/go";
 import { Tooltip } from "flowbite-react";
 import { LiaEdit } from "react-icons/lia";
-import BrandEditModal from "./BrandEditModal";
+import EditBrandForm from "./EditBrandForm";
 
 const BrandTableTr = ({ row }) => {
   const [openModal, setOpenModal] = useState(false);
@@ -44,7 +45,13 @@ const BrandTableTr = ({ row }) => {
       </tr>
 
       {/* Edit Brand Modal */}
-      <BrandEditModal openModal={openModal} setOpenModal={setOpenModal} />
+      <Modal
+        title="Edit Brand"
+        openModal={openModal}
+        setOpenModal={setOpenModal}
+      >
+        <EditBrandForm setOpenModal={setOpenModal} />
+      </Modal>
     </>
   );
 };

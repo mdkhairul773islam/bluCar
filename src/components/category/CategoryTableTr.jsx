@@ -1,10 +1,11 @@
 "use client";
 // Import Dependencies
 import { useState } from "react";
+import Modal from "../common/Modal";
 import { GoTrash } from "react-icons/go";
 import { Tooltip } from "flowbite-react";
 import { LiaEdit } from "react-icons/lia";
-import CategoryEditModal from "./CategoryEditModal";
+import EditCategoryForm from "./EditCategoryForm";
 
 const CategoryTableTr = ({ row }) => {
   const [openModal, setOpenModal] = useState(false);
@@ -44,7 +45,13 @@ const CategoryTableTr = ({ row }) => {
       </tr>
 
       {/* Edit Category Modal */}
-      <CategoryEditModal openModal={openModal} setOpenModal={setOpenModal} />
+      <Modal
+        title="Edit Category"
+        openModal={openModal}
+        setOpenModal={setOpenModal}
+      >
+        <EditCategoryForm setOpenModal={setOpenModal} />
+      </Modal>
     </>
   );
 };
