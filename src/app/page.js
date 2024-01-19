@@ -8,6 +8,14 @@ export const metadata = {
 };
 
 const DashboardPage = () => {
+  // const [richTextValue, setRichTextValue] = useState("");
+
+  // const handleRichTextChange = (value) => {
+  //   setRichTextValue(value);
+  // };
+
+  // console.log(richTextValue);
+
   return (
     <div>
       {/* Dashboard Item  */}
@@ -20,6 +28,10 @@ const DashboardPage = () => {
         </h3>
         <InstallmentTable />
       </div>
+
+      {/* <div>
+        <RichTextEditor value={richTextValue} onChange={handleRichTextChange} />
+      </div> */}
     </div>
   );
 };

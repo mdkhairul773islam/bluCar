@@ -83,3 +83,24 @@ tbody tr td {
     margin-left: 288px;
   }
 }
+
+/* Rich Text Editor Default Design Upgrade */
+.quill .ql-toolbar {
+  @apply !border !border-gray-300 !rounded-t;
+}
+
+.quill .ql-container {
+  @apply !border-gray-300 !rounded-b;
+}
+
+.ql-snow.ql-toolbar button,
+.ql-snow .ql-toolbar button {
+  @apply !border !border-gray-300 !rounded-sm !mr-1 !bg-gray-200;
+}
+
+.ql-snow.ql-toolbar .ql-active,
+.ql-snow .ql-toolbar .ql-active,
+.ql-snow.ql-toolbar button:hover,
+.ql-snow .ql-toolbar button:hover {
+  @apply !bg-primary/20 !text-white;
+}
