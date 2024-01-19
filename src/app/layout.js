@@ -1,9 +1,7 @@
-import { Inter } from "next/font/google";
 import "./globals.css";
-import SideBar from "@/components/layouts/sidebar/Sidebar";
-import Header from "@/components/layouts/header/Header";
+import { Inter } from "next/font/google";
+import LayoutProvider from "@/providers/LayoutProvider";
 import ProgressProvider from "@/providers/ProgressProvider";
-import Footer from "@/components/layouts/footer/Footer";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -19,23 +17,9 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <body className={inter.className}>
-        <div className="">
-          {/* Sidebar Area */}
-          <SideBar />
-
-          <div className="p-5 ml-72 ">
-            {/* Header Area */}
-            <Header />
-
-            {/* Main Area */}
-            <main>
-              <ProgressProvider>{children}</ProgressProvider>
-            </main>
-
-            {/* Footer Area */}
-            {/* <Footer /> */}
-          </div>
-        </div>
+        <ProgressProvider>
+          <LayoutProvider>{children}</LayoutProvider>
+        </ProgressProvider>
       </body>
     </html>
   );

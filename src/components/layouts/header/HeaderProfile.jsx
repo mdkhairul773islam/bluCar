@@ -25,7 +25,7 @@ const HeaderProfile = ({ image }) => {
                 Super Admin
               </span>
             </h5>
-            <RiArrowDownSLine className="text-dark-500" />
+            <RiArrowDownSLine className="text-dark-500 hidden md:block" />
           </div>
         )}
       >

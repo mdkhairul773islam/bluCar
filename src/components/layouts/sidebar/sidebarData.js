@@ -27,7 +27,7 @@ import { IoCart, IoPricetagsSharp, IoSettingsSharp } from "react-icons/io5";
 import { AiFillBank, AiOutlineCluster } from "react-icons/ai";
 
 const sidebarData = [
-  { title: "Dashboard", icon: <RiDashboardFill />, slug: "/dashboard" },
+  { title: "Dashboard", icon: <RiDashboardFill />, slug: "/" },
   {
     title: "Product",
     icon: <FaBoxOpen />,
@@ -40,14 +40,7 @@ const sidebarData = [
       { title: "All Brand", slug: "/product/brand" },
     ],
   },
-  // {
-  //   title: "Brand",
-  //   icon: <TbBrandAirtable />,
-  //   submenu: [
-  //     { title: "Add Brand", slug: "/product/brand/add" },
-  //     { title: "All Brand", slug: "/product/brand" },
-  //   ],
-  // },
+
   {
     title: "Barcode",
     icon: <FaBarcode />,
@@ -59,14 +52,6 @@ const sidebarData = [
     ],
   },
 
-  // {
-  //   title: "Category",
-  //   icon: <MdCategory />,
-  //   submenu: [
-  //     { title: "Add Category", slug: "/category/add" },
-  //     { title: "All Category", slug: "/category" },
-  //   ],
-  // },
   {
     title: "Reference",
     icon: <FaUserCheck />,

@@ -1,15 +1,14 @@
 "use client";
-
+// Import Dependencies
 import Link from "next/link";
 import { useState } from "react";
 import sidebarData from "./sidebarData";
+import { GrClose } from "react-icons/gr";
 import { IoLogoModelS } from "react-icons/io";
-import { IoMdArrowDropright } from "react-icons/io";
 import { RiArrowDownSLine } from "react-icons/ri";
-import { FaBarsStaggered } from "react-icons/fa6";
+import { IoMdArrowDropright } from "react-icons/io";
 
-const Sidebar = () => {
-  const [open, setOpen] = useState(true);
+const Sidebar = ({ sidebarOpen, setSidebarOpen }) => {
   const [subnav, setSubnav] = useState({
     open: false,
     index: null,
@@ -24,14 +23,16 @@ const Sidebar = () => {
   return (
     <div
       className={`sideBar ${
-        open ? "w-72" : ""
-      } bg-white h-screen fixed p-5  duration-300 overflow-y-auto`}
+        sidebarOpen
+          ? "visible opacity-100 left-0"
+          : "-left-full invisible opacity-0"
+      } w-72 bg-white h-screen fixed p-5 shadow-md duration-500 overflow-y-auto z-[99999]`}
     >
       <div className="flex items-center justify-between pb-3 border-b border-b-[#f6f6f6]">
-        <Link href={"/dashboard"} className="flex gap-x-4 items-center  ">
+        <div className="flex gap-x-4 items-center  ">
           <div
             className={`bg-primary p-2 rounded-sm text-white ${
-              open && "rotate-[360deg]"
+              sidebarOpen && "rotate-[360deg]"
             }`}
           >
             <IoLogoModelS />
@@ -39,9 +40,13 @@ const Sidebar = () => {
           <span className={`text-black font-bold text-xl duration-200`}>
             BlueCar
           </span>
-        </Link>
-        <div className="text-primary rounded-sm text-xl cursor-pointer">
-          <FaBarsStaggered />
+        </div>
+
+        <div
+          onClick={() => setSidebarOpen(!sidebarOpen)}
+          className="text-primary lg:hidden rounded-sm text-xl cursor-pointer"
+        >
+          <GrClose />
         </div>
       </div>
 
@@ -59,9 +64,7 @@ const Sidebar = () => {
                } `}
             >
               {menu.icon}
-              <span className={`${!open && "hidden"} origin-left duration-200`}>
-                {menu.title}
-              </span>
+              <span className={` origin-left duration-200`}>{menu.title}</span>
               {menu.submenu && (
                 <RiArrowDownSLine
                   className={`absolute right-3 ${
