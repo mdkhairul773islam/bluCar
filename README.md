@@ -35,3 +35,15 @@ git remote set-url origin https://github.com/mdkhairul773islam/bluCar.git
 -- Tailwind css
 -- Redux
 -- React icons
+
+## Completed Module
+
+-- Dashboard
+-- Product
+-- Reference
+-- Showroom
+-- Orders
+-- Zone
+-- Income
+-- Cost
+-- Md Transaction
