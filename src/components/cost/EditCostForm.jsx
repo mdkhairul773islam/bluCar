@@ -4,12 +4,14 @@ import validationSchema from "./validationSchema";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { ErrorMessage } from "@hookform/error-message";
 
-const EditReferenceForm = ({ setOpenModal }) => {
-  const referenceInfo = {
-    name: "Mehedi Hasan ",
-    mobile: "01726476303",
-    address: "Trishal, Mymensingh",
-    area: "Mymensingh",
+const EditCostForm = ({ setOpenModal }) => {
+  const costInfo = {
+    date: "6/11/2023",
+    showroom: "Blue Car",
+    field_income: "Purchase",
+    description: "Oth nondisp fx of lower end l humer, subs for fx w nonunion",
+    amount: 5253.92,
+    income_by: "Leslie Teideman",
   };
 
   const {
@@ -18,7 +20,7 @@ const EditReferenceForm = ({ setOpenModal }) => {
     formState: { errors },
   } = useForm({
     resolver: yupResolver(validationSchema),
-    defaultValues: referenceInfo,
+    defaultValues: costInfo,
   });
 
   const handleOnSubmit = (data) => {
@@ -101,4 +103,4 @@ const EditReferenceForm = ({ setOpenModal }) => {
   );
 };
 
-export default EditReferenceForm;
+export default EditCostForm;

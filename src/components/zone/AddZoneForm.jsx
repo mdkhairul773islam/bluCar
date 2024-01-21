@@ -1,7 +1,7 @@
 "use client";
 // Import Dependencies
 import { useForm } from "react-hook-form";
-import validationSchema from "./validateionSchema";
+import validationSchema from "./validationSchema";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { ErrorMessage } from "@hookform/error-message";
 

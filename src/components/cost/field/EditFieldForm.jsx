@@ -28,7 +28,7 @@ const EditFieldForm = ({ setOpenModal }) => {
     <form onSubmit={handleSubmit(handleOnSubmit)} className="inputForm">
       <div className="inputGroup">
         <label htmlFor="name" className="inputLabel required">
-          Field of Income
+          Field of Cost
         </label>
         <input
           type="text"

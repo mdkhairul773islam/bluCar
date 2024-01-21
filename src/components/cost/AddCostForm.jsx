@@ -1,26 +1,17 @@
 "use client";
+// Import Dependencies
 import { useForm } from "react-hook-form";
 import validationSchema from "./validationSchema";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { ErrorMessage } from "@hookform/error-message";
 
-const EditIncomeForm = ({ setOpenModal }) => {
-  const incomeInfo = {
-    date: "6/11/2023",
-    showroom: "Blue Car",
-    field_income: "Purchase",
-    description: "Oth nondisp fx of lower end l humer, subs for fx w nonunion",
-    amount: 5253.92,
-    income_by: "Leslie Teideman",
-  };
-
+const AddCostForm = () => {
   const {
     register,
     handleSubmit,
     formState: { errors },
   } = useForm({
     resolver: yupResolver(validationSchema),
-    defaultValues: incomeInfo,
   });
 
   const handleOnSubmit = (data) => {
@@ -64,18 +55,18 @@ const EditIncomeForm = ({ setOpenModal }) => {
       </div>
 
       <div className="inputGroup">
-        <label htmlFor="field_income" className="inputLabel required">
-          Field of Income
+        <label htmlFor="field_cost" className="inputLabel required">
+          Field of Cost
         </label>
         <input
           type="text"
-          id="field_income"
+          id="field_cost"
           className="inputField"
-          {...register("field_income")}
+          {...register("field_cost")}
         />
         <ErrorMessage
           errors={errors}
-          name={"field_income"}
+          name={"field_cost"}
           render={(m) => <p className="text-red-500 text-sm">{m.message}</p>}
         />
       </div>
@@ -115,14 +106,14 @@ const EditIncomeForm = ({ setOpenModal }) => {
       </div>
 
       <div className="inputGroup">
-        <label htmlFor="income_by" className="inputLabel required">
-          Income By
+        <label htmlFor="cost_by" className="inputLabel required">
+          Cost By
         </label>
         <input
           type="text"
-          id="income_by"
+          id="cost_by"
           className="inputField"
-          {...register("income_by")}
+          {...register("cost_by")}
         />
         <ErrorMessage
           errors={errors}
@@ -131,16 +122,13 @@ const EditIncomeForm = ({ setOpenModal }) => {
         />
       </div>
 
-      <div className="flex items-center gap-2 justify-end">
-        <div onClick={() => setOpenModal(false)} className="inputBtn cancel">
-          Cancel
-        </div>
+      <div className="text-right">
         <button type="submit" className="inputBtn">
-          Update
+          Submit
         </button>
       </div>
     </form>
   );
 };
 
-export default EditIncomeForm;
+export default AddCostForm;
