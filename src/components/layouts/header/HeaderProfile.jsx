@@ -43,7 +43,7 @@ const HeaderProfile = ({ image }) => {
           Frontend
         </Dropdown.Item>
         <Dropdown.Divider />
-        <Dropdown.Item href="/" icon={HiLogout}>
+        <Dropdown.Item href="/login" icon={HiLogout}>
           Sign out
         </Dropdown.Item>
       </Dropdown>
