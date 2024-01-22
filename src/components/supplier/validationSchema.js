@@ -17,7 +17,10 @@ const validationSchema = Yup.object().shape({
     .typeError("Mobile Number must be a number")
     .required()
     .label("Mobile Number"),
-  balance_type: Yup.string().required().label("Status"),
+  balance_type: Yup.string()
+    .oneOf(["payable", "receivable"], "Invalid Balance Type")
+    .required()
+    .label("Balance Type"),
   address: Yup.string().label("Address Name"),
 });
 
