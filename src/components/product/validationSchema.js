@@ -2,7 +2,10 @@ import * as Yup from "yup";
 
 const validationSchema = Yup.object().shape({
   name: Yup.string().required().label("Product Name"),
-  code: Yup.number().required().label("Product Code"),
+  code: Yup.number()
+    .typeError("Product Code must be a number")
+    .required()
+    .label("Product Code"),
   model: Yup.string().required().label("Model"),
   category: Yup.string().required().label("Category"),
   brand: Yup.string().required().label("Brand"),
