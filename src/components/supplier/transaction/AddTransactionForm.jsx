@@ -1,30 +1,18 @@
 "use client";
+
 // Import Dependencies
-import * as Yup from "yup";
-import Link from "next/link";
 import { useForm } from "react-hook-form";
+import validationSchema from "./validationSchema";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { ErrorMessage } from "@hookform/error-message";
-import validationSchema from "./validationSchema";
 
-const EditSupplierForm = () => {
-  const supplierInfo = {
-    date: "8/5/2023",
-    showroom: "Skiba",
-    name: "Jacquie Cestard",
-    contact_person: "Brunhilde Gehringer",
-    mobile: 2518788335,
-    balance: 2253.57,
-    type: true,
-  };
-
+const AddTransactionForm = () => {
   const {
     register,
     handleSubmit,
     formState: { errors },
   } = useForm({
     resolver: yupResolver(validationSchema),
-    defaultValues: supplierInfo,
   });
 
   const handleOnSubmit = (data) => {
@@ -104,7 +92,7 @@ const EditSupplierForm = () => {
       <div className="grid md:grid-cols-2 gap-5">
         <div className="inputGroup">
           <label htmlFor="name" className="inputLabel required">
-            Supplier Name
+            Transaction Name
           </label>
           <input
             type="text"
@@ -215,16 +203,13 @@ const EditSupplierForm = () => {
         />
       </div>
 
-      <div className="flex items-center gap-2 justify-end">
-        <Link href="/supplier" className="inputBtn cancel">
-          Cancel
-        </Link>
+      <div className="text-right">
         <button type="submit" className="inputBtn">
-          Update
+          Submit
         </button>
       </div>
     </form>
   );
 };
 
-export default EditSupplierForm;
+export default AddTransactionForm;

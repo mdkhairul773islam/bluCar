@@ -7,8 +7,8 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import { ErrorMessage } from "@hookform/error-message";
 import validationSchema from "./validationSchema";
 
-const EditSupplierForm = () => {
-  const supplierInfo = {
+const EditTransactionForm = () => {
+  const transactionInfo = {
     date: "8/5/2023",
     showroom: "Skiba",
     name: "Jacquie Cestard",
@@ -24,7 +24,7 @@ const EditSupplierForm = () => {
     formState: { errors },
   } = useForm({
     resolver: yupResolver(validationSchema),
-    defaultValues: supplierInfo,
+    defaultValues: transactionInfo,
   });
 
   const handleOnSubmit = (data) => {
@@ -104,7 +104,7 @@ const EditSupplierForm = () => {
       <div className="grid md:grid-cols-2 gap-5">
         <div className="inputGroup">
           <label htmlFor="name" className="inputLabel required">
-            Supplier Name
+            Transaction Name
           </label>
           <input
             type="text"
@@ -216,7 +216,7 @@ const EditSupplierForm = () => {
       </div>
 
       <div className="flex items-center gap-2 justify-end">
-        <Link href="/supplier" className="inputBtn cancel">
+        <Link href="/transaction" className="inputBtn cancel">
           Cancel
         </Link>
         <button type="submit" className="inputBtn">
@@ -227,4 +227,4 @@ const EditSupplierForm = () => {
   );
 };
 
-export default EditSupplierForm;
+export default EditTransactionForm;
