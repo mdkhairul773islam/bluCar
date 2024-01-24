@@ -22,7 +22,7 @@ import {
   FaUserPlus,
   FaUsers,
 } from "react-icons/fa";
-import { LuBarChart3, LuCalendarClock } from "react-icons/lu";
+import { LuCalendarClock } from "react-icons/lu";
 import { IoCart, IoPricetagsSharp, IoSettingsSharp } from "react-icons/io5";
 import { AiFillBank, AiOutlineCluster } from "react-icons/ai";
 
@@ -31,6 +31,7 @@ const sidebarData = [
   {
     title: "Product",
     icon: <FaBoxOpen />,
+    activeMenu: "product",
     submenu: [
       { title: "Add Product", slug: "/product/add" },
       { title: "All Product", slug: "/product" },
@@ -44,6 +45,7 @@ const sidebarData = [
   {
     title: "Barcode",
     icon: <FaBarcode />,
+    activeMenu: "barcode",
     submenu: [
       { title: "Barcode Setting", slug: "/barcode/setting" },
       { title: "Barcode Print", slug: "/barcode/print" },
@@ -55,6 +57,7 @@ const sidebarData = [
   {
     title: "Reference",
     icon: <FaUserCheck />,
+    activeMenu: "reference",
     submenu: [
       { title: "Add Reference", slug: "/reference/add" },
       { title: "All Reference", slug: "/reference" },
@@ -63,6 +66,7 @@ const sidebarData = [
   {
     title: "Showroom",
     icon: <FaShop />,
+    activeMenu: "showroom",
     submenu: [
       { title: "Add Showroom", slug: "/showroom/add" },
       { title: "All Showroom", slug: "/showroom" },
@@ -71,6 +75,7 @@ const sidebarData = [
   {
     title: "Supplier",
     icon: <FaUsers />,
+    activeMenu: "supplier",
     submenu: [
       { title: "Add Supplier", slug: "/supplier/add" },
       { title: "All Supplier", slug: "/supplier" },
@@ -83,16 +88,19 @@ const sidebarData = [
   {
     title: "Orders",
     icon: <GiBoxUnpacking />,
+    activeMenu: "orders",
     slug: "/orders",
   },
   {
     title: "Zone",
     icon: <MdLocationCity />,
+    activeMenu: "zone",
     slug: "/zone",
   },
   {
     title: "Party",
     icon: <FaUsersLine />,
+    activeMenu: "party",
     submenu: [
       { title: "Add Party", slug: "/party/add" },
       { title: "All Party", slug: "/party" },
@@ -107,6 +115,7 @@ const sidebarData = [
   {
     title: "Purchase",
     icon: <IoCart />,
+    activeMenu: "purchase",
     submenu: [
       { title: "Add Purchase", slug: "/purchase/add" },
       { title: "All Purchase", slug: "/purchase" },
@@ -121,16 +130,19 @@ const sidebarData = [
   {
     title: "Stock",
     icon: <MdBarChart />,
+    activeMenu: "stock",
     slug: "/stock",
   },
   {
     title: "Datewise Stock",
     icon: <FaRegCalendarAlt />,
+    activeMenu: "datewise_stock",
     slug: "/datewise_stock",
   },
   {
     title: "Damage Product",
     icon: <GiBoxTrap />,
+    activeMenu: "damage_product",
     submenu: [
       { title: "Add Damage Product", slug: "/damage_product/add" },
       { title: "All Damage Product", slug: "/damage_product" },
@@ -141,8 +153,9 @@ const sidebarData = [
     ],
   },
   {
-    title: "Challan ",
+    title: "Challan",
     icon: <HiMiniClipboardDocumentList />,
+    activeMenu: "challan",
     submenu: [
       { title: "Add Challan", slug: "/challan/add" },
       { title: "All Challan", slug: "/challan" },
@@ -151,6 +164,7 @@ const sidebarData = [
   {
     title: "Sale",
     icon: <IoPricetagsSharp />,
+    activeMenu: "sale",
     submenu: [
       { title: "Add Sale", slug: "/sale/add" },
       { title: "All Sale", slug: "/sale" },
@@ -168,6 +182,7 @@ const sidebarData = [
   {
     title: "Income",
     icon: <GiTakeMyMoney />,
+    activeMenu: "income",
     submenu: [
       { title: "Field of Income", slug: "/income/field" },
       { title: "Add Income", slug: "/income/add" },
@@ -178,6 +193,7 @@ const sidebarData = [
   {
     title: "Cost",
     icon: <GiPayMoney />,
+    activeMenu: "cost",
     submenu: [
       { title: "Field of Cost", slug: "/cost/field" },
       { title: "Add Cost", slug: "/cost/add" },
@@ -188,11 +204,13 @@ const sidebarData = [
   {
     title: "Bank Invoice",
     icon: <FaFileInvoiceDollar />,
+    activeMenu: "bank_invoice",
     slug: "/bank_invoice",
   },
   {
     title: "Md Transaction",
     icon: <GrTransaction />,
+    activeMenu: "transaction",
     submenu: [
       { title: "Add Md Transaction", slug: "/transaction/add" },
       { title: "All Md Transaction", slug: "/transaction" },
@@ -203,6 +221,7 @@ const sidebarData = [
   {
     title: "Due List",
     icon: <LuCalendarClock />,
+    activeMenu: "due_list",
     submenu: [
       { title: "Party Due", slug: "/due_list" },
       { title: "Credit Party Due", slug: "/due_list/credit" },
@@ -212,6 +231,7 @@ const sidebarData = [
   {
     title: "Banking",
     icon: <AiFillBank />,
+    activeMenu: "bank",
     submenu: [
       { title: "Add Bank", slug: "/bank/add" },
       { title: "Add Account", slug: "/bank/account/add" },
@@ -225,6 +245,7 @@ const sidebarData = [
   {
     title: "Ledger",
     icon: <SiGooglesheets />,
+    activeMenu: "ledger",
     submenu: [
       { title: "Supplier Ledger", slug: "/ledger/supplier" },
       { title: "Party Ledger", slug: "/ledger/party" },
@@ -234,6 +255,7 @@ const sidebarData = [
   {
     title: "Customer Commitment",
     icon: <FaHandshake />,
+    activeMenu: "customer_commitment",
     submenu: [
       { title: "Add Commitment", slug: "/customer_commitment/add" },
       { title: "All Commitment", slug: "/customer_commitment" },
@@ -242,6 +264,7 @@ const sidebarData = [
   {
     title: "Report",
     icon: <FaUsersLine />,
+    activeMenu: "report",
     submenu: [
       { title: "Purchase Report", slug: "/report/purchase" },
       { title: "Sales Report", slug: "/report/sales" },
@@ -264,6 +287,7 @@ const sidebarData = [
   {
     title: "Fixed Assets",
     icon: <AiOutlineCluster />,
+    activeMenu: "fixed_assets",
     submenu: [
       { title: "Field of Fixed Assets", slug: "/fixed_assets/field" },
       { title: "Add Fixed Assets", slug: "/fixed_assets/add" },
@@ -274,6 +298,7 @@ const sidebarData = [
   {
     title: "Employee",
     icon: <FaUsers />,
+    activeMenu: "employee",
     submenu: [
       { title: "Add Employee", slug: "/employee/add" },
       { title: "All Employee", slug: "/employee" },
@@ -290,6 +315,7 @@ const sidebarData = [
   {
     title: "Mobile SMS",
     icon: <MdSms />,
+    activeMenu: "sms",
     submenu: [
       { title: "Send SMS ", slug: "/sms/send" },
       { title: "Custom SMS ", slug: "/sms/custom" },
@@ -299,16 +325,19 @@ const sidebarData = [
   {
     title: "Settings",
     icon: <IoSettingsSharp />,
+    activeMenu: "settings",
     slug: "/settings",
   },
   {
     title: "Set Privilege",
     icon: <FaUserPlus />,
+    activeMenu: "privilege",
     slug: "/privilege",
   },
   {
     title: "Data Backup",
     icon: <FaDatabase />,
+    activeMenu: "data_backup",
     slug: "/data_backup",
   },
 ];

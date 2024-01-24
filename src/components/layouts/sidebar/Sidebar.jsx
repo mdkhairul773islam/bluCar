@@ -7,8 +7,15 @@ import { GrClose } from "react-icons/gr";
 import { IoLogoModelS } from "react-icons/io";
 import { RiArrowDownSLine } from "react-icons/ri";
 import { IoMdArrowDropright } from "react-icons/io";
+import { usePathname } from "next/navigation";
 
 const Sidebar = ({ sidebarOpen, setSidebarOpen }) => {
+  const pathname = usePathname();
+
+  const parts = pathname.split("/");
+
+  const firstValue = parts.filter((part) => part !== "")[0];
+
   const [subnav, setSubnav] = useState({
     open: false,
     index: null,
@@ -61,7 +68,7 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }) => {
                  subnav.open &&
                  subnav.index === index &&
                  "bg-primary !text-white"
-               } `}
+               } ${menu.activeMenu === firstValue && "bg-primary !text-white"}`}
             >
               {menu.icon}
               <span className={` origin-left duration-200`}>{menu.title}</span>
