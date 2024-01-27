@@ -12,7 +12,7 @@ const Footer = () => {
           href="https://mehedihasan.tech"
         >
           {" "}
-          Mehedi Hasan
+          Johan Khan
         </Link>
       </p>
     </div>

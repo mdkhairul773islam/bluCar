@@ -6,8 +6,8 @@ import { ErrorMessage } from "@hookform/error-message";
 
 const EditReferenceForm = ({ setOpenModal }) => {
   const referenceInfo = {
-    name: "Mehedi Hasan ",
-    mobile: "01726476303",
+    name: "Johan Khan ",
+    mobile: "00000000000",
     address: "Trishal, Mymensingh",
     area: "Mymensingh",
   };

@@ -6,8 +6,8 @@ import { ErrorMessage } from "@hookform/error-message";
 
 const EditShowroomForm = ({ setOpenModal }) => {
   const showroomInfo = {
-    name: "Mehedi Hasan ",
-    mobile: "01726476303",
+    name: "Johan Khan ",
+    mobile: "00000000000",
     address: "Trishal, Mymensingh",
     area: "Mymensingh",
   };

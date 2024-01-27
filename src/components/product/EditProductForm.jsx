@@ -302,8 +302,8 @@ export default AddProductForm;
 
 // const EditProductForm = ({ setOpenModal }) => {
 //   const productInfo = {
-//     name: "Mehedi Hasan ",
-//     mobile: "01726476303",
+//     name: "Johan Khan ",
+//     mobile: "00000000000",
 //     address: "Trishal, Mymensingh",
 //     area: "Mymensingh",
 //   };
