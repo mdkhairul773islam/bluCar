@@ -6,7 +6,7 @@ import { ErrorMessage } from "@hookform/error-message";
 
 const EditZoneForm = ({ setOpenModal }) => {
   const zoneInfo = {
-    name: "Mymensingh",
+    name: "Sirajgong, Rajshahi",
   };
 
   const {

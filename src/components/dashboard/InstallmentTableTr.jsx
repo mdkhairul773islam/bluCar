@@ -10,13 +10,13 @@ const InstallmentTableTr = ({ category }) => {
       <Table.Row className="bg-white ">
         <Table.Cell className="!px-2">{category}</Table.Cell>
         <Table.Cell className="!px-3 whitespace-nowrap font-medium text-gray-900">
-          Mehedi Hasan
+          John Doe
         </Table.Cell>
         <Table.Cell className="!px-3 whitespace-nowrap font-medium text-gray-900">
-          01726476303
+          01700000000
         </Table.Cell>
         <Table.Cell className="!px-3 whitespace-nowrap font-medium text-gray-900">
-          Dhanikhola, Trishal, Mymensingh
+          Sirajgong, Rajshahi
         </Table.Cell>
         <Table.Cell className="!px-3 whitespace-nowrap font-medium text-gray-900">
           716000

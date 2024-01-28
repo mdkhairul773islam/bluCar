@@ -6,7 +6,7 @@ import { ErrorMessage } from "@hookform/error-message";
 
 const EditFieldForm = ({ setOpenModal }) => {
   const fieldInfo = {
-    name: "Mymensingh",
+    name: "Sirajgong, Rajshahi",
   };
 
   const {

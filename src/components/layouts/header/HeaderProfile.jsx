@@ -15,12 +15,12 @@ const HeaderProfile = ({ image }) => {
             <Image
               height={40}
               width={40}
-              src="/images/mehedi.jpg"
+              src="/images/profile.jpg"
               alt="User"
               className="aspect-square h-full rounded-full object-cover "
             />
             <h5 className="font-medium text-dark-700 whitespace-nowrap hidden tracking-wider md:block">
-              Mehedi Hasan
+              John Doe
               <span className="text-xs text-dark-500 block font-medium">
                 Super Admin
               </span>
@@ -30,9 +30,9 @@ const HeaderProfile = ({ image }) => {
         )}
       >
         <Dropdown.Header>
-          <span className="block text-sm">Mehedi Hasan</span>
+          <span className="block text-sm">John Doe</span>
           <span className="block truncate text-sm font-medium">
-            mehedi@devzet.com
+            johndoe@gmail.com
           </span>
         </Dropdown.Header>
         <Dropdown.Item href="/admin" icon={HiViewGrid}>

@@ -9,7 +9,7 @@ const EditAssetForm = ({ setOpenModal }) => {
     showroom: "Showroom one",
     date: "1993-09-19T00:00:00.000Z",
     field: "Field three",
-    spend_by: "Mehedi Hasan",
+    spend_by: "John Doe",
     amount: 3430,
     quantity: 2,
     description: "Description Here",
