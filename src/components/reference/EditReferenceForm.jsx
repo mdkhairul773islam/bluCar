@@ -8,7 +8,7 @@ const EditReferenceForm = ({ setOpenModal }) => {
   const referenceInfo = {
     name: "John Doe ",
     mobile: "01700000000",
-    address: "Sirajgong, Rajshahi, Sirajgong, Rajshahi",
+    address: "Sirajgong, Rajshahi",
     area: "Sirajgong, Rajshahi",
   };
 

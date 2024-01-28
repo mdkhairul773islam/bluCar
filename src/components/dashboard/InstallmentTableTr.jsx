@@ -18,6 +18,7 @@ const InstallmentTableTr = ({ category }) => {
         <Table.Cell className="!px-3 whitespace-nowrap font-medium text-gray-900">
           Sirajgong, Rajshahi
         </Table.Cell>
+
         <Table.Cell className="!px-3 whitespace-nowrap font-medium text-gray-900">
           716000
         </Table.Cell>
