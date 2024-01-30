@@ -127,12 +127,12 @@ const sidebarData = [
   //     { title: "All Purchase Pre Order", slug: "/purchase/pre_order" },
   //   ],
   // },
-  // {
-  //   title: "Stock",
-  //   icon: <MdBarChart />,
-  //   activeMenu: "stock",
-  //   slug: "/stock",
-  // },
+  {
+    title: "Stock",
+    icon: <MdBarChart />,
+    activeMenu: "stock",
+    slug: "/stock",
+  },
   // {
   //   title: "Datewise Stock",
   //   icon: <FaRegCalendarAlt />,
