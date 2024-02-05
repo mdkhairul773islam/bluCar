@@ -218,16 +218,16 @@ const sidebarData = [
       { title: "Delete Md Transaction", slug: "/transaction/delete" },
     ],
   },
-  // {
-  //   title: "Due List",
-  //   icon: <LuCalendarClock />,
-  //   activeMenu: "due_list",
-  //   submenu: [
-  //     { title: "Party Due", slug: "/due_list" },
-  //     { title: "Credit Party Due", slug: "/due_list/credit" },
-  //     { title: "Supplier Due", slug: "/due_list/supplier" },
-  //   ],
-  // },
+  {
+    title: "Due List",
+    icon: <LuCalendarClock />,
+    activeMenu: "due_list",
+    submenu: [
+      { title: "Party Due", slug: "/due_list" },
+      { title: "Credit Party Due", slug: "/due_list/credit" },
+      { title: "Supplier Due", slug: "/due_list/supplier" },
+    ],
+  },
   // {
   //   title: "Banking",
   //   icon: <AiFillBank />,
