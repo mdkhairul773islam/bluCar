@@ -139,19 +139,19 @@ const sidebarData = [
   //   activeMenu: "datewise_stock",
   //   slug: "/datewise_stock",
   // },
-  // {
-  //   title: "Damage Product",
-  //   icon: <GiBoxTrap />,
-  //   activeMenu: "damage_product",
-  //   submenu: [
-  //     { title: "Add Damage Product", slug: "/damage_product/add" },
-  //     { title: "All Damage Product", slug: "/damage_product" },
-  //     {
-  //       title: "Delete Damage Product",
-  //       slug: "/damage_product/delete_history",
-  //     },
-  //   ],
-  // },
+  {
+    title: "Damage Product",
+    icon: <GiBoxTrap />,
+    activeMenu: "damage_product",
+    submenu: [
+      { title: "Add Damage Product", slug: "/damage_product/add" },
+      { title: "All Damage Product", slug: "/damage_product" },
+      {
+        title: "Delete Damage Product",
+        slug: "/damage_product/delete_history",
+      },
+    ],
+  },
   // {
   //   title: "Challan",
   //   icon: <HiMiniClipboardDocumentList />,
