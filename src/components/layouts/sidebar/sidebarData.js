@@ -23,7 +23,12 @@ import {
   FaUsers,
 } from "react-icons/fa";
 import { LuCalendarClock } from "react-icons/lu";
-import { IoCart, IoPricetagsSharp, IoSettingsSharp } from "react-icons/io5";
+import {
+  IoCart,
+  IoPricetagsSharp,
+  IoSettingsSharp,
+  IoDocumentsSharp,
+} from "react-icons/io5";
 import { AiFillBank, AiOutlineCluster } from "react-icons/ai";
 
 const sidebarData = [
@@ -90,6 +95,13 @@ const sidebarData = [
     icon: <GiBoxUnpacking />,
     activeMenu: "orders",
     slug: "/orders",
+  },
+
+  {
+    title: "Document",
+    icon: <IoDocumentsSharp />,
+    activeMenu: "document",
+    slug: "/document",
   },
   {
     title: "Zone",
