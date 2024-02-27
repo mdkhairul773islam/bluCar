@@ -15,7 +15,7 @@ body {
 }
 
 .inputLabel {
-  @apply inline-block text-sm text-dark-600 font-medium absolute left-2 -top-3 bg-white px-1;
+  @apply inline-block text-sm text-dark-600 font-medium absolute left-2 top-0 -translate-y-1/2 bg-white px-1 z-[1] has-[~.inputField[readonly]]:before:bg-gray-100 has-[~.inputField[readonly]]:before:left-0 has-[~.inputField[readonly]]:before:right-0 has-[~.inputField[readonly]]:before:bottom-0 has-[~.inputField[readonly]]:before:h-1/2 has-[~.inputField[readonly]]:before:absolute has-[~.inputField[readonly]]:before:z-[-1];
 }
 
 .inputLabel.required {
@@ -24,6 +24,10 @@ body {
 
 .inputField {
   @apply w-full rounded text-dark-800  border border-gray-300 focus:!shadow-none focus:border-primary focus:ring-0;
+}
+
+.inputField[readOnly] {
+  @apply bg-gray-100 border-gray-100;
 }
 
 .radioInput {
