@@ -1,15 +1,15 @@
 import Panel from "@/components/common/Panel";
-import PurchaseTable from "@/components/purchase/PurchaseTable";
+import PurchaseDeleteTable from "@/components/purchase/delete/PurchaseDeleteTable";
 
 export const metadata = {
-  title: "Purchase",
+  title: "Purchase Delete",
 };
 
 const PurchasePage = () => {
   return (
     <>
-      <Panel title="All Purchase">
-        <PurchaseTable />
+      <Panel title="All Purchase Delete">
+        <PurchaseDeleteTable />
       </Panel>
     </>
   );

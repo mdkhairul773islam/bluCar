@@ -29,14 +29,14 @@ const CategoryTableTr = ({ row }) => {
                   console.log(row.original.id);
                   setOpenModal(true);
                 }}
-                className="h-7 w-7 bg-emerald-600/20 text-emerald-600 hover:bg-emerald-600 hover:text-white rounded text-xs flex items-center justify-center cursor-pointer"
+                className="actionBtn actionBtnEdit"
               >
                 <LiaEdit />
               </div>
             </Tooltip>
 
             <Tooltip content="Delete" animation="duration-500">
-              <div className="h-7 w-7 bg-red-600/20 text-red-600 hover:bg-red-600 hover:text-white rounded text-xs flex items-center justify-center cursor-pointer">
+              <div className="actionBtn actionBtnDelete">
                 <GoTrash />
               </div>
             </Tooltip>
