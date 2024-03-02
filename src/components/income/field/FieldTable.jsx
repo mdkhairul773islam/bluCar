@@ -52,7 +52,7 @@ const FieldTable = () => {
       <FieldFilter filter={globalFilter} setFilter={setGlobalFilter} />
 
       {/* Field Table */}
-      <div className="overflow-x-auto">
+      <div className="table overflow-x-auto">
         <table {...getTableProps()}>
           <thead>
             {headerGroups.map((headerGroup, index) => {

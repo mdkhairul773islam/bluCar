@@ -52,7 +52,7 @@ const ZoneTable = () => {
       <ZoneFilter filter={globalFilter} setFilter={setGlobalFilter} />
 
       {/* Zone Table */}
-      <div className="overflow-x-auto">
+      <div className="table overflow-x-auto">
         <table {...getTableProps()}>
           <thead>
             {headerGroups.map((headerGroup, index) => {

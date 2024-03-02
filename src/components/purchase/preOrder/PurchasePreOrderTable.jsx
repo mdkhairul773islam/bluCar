@@ -11,7 +11,7 @@ const PurchasePreOrderTable = () => {
       <PurchasePreOrderFilter />
 
       {/* Purchase Table */}
-      <div className="overflow-x-auto">
+      <div className="table overflow-x-auto">
         <table>
           <thead>
             <tr>

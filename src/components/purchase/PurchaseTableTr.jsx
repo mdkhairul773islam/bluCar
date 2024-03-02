@@ -2,6 +2,7 @@
 
 // Import Dependencies
 import { Tooltip } from "flowbite-react";
+import Link from "next/link";
 import { FaEye } from "react-icons/fa";
 import { GoTrash } from "react-icons/go";
 import { LiaEdit } from "react-icons/lia";
@@ -28,9 +29,9 @@ const PurchaseTableTr = () => {
       <td>
         <div className="grid grid-cols-2 gap-1 w-[60px]">
           <Tooltip content="Show" animation="duration-500">
-            <div className="actionBtn actionBtnShow">
+            <Link href="/purchase/view" className="actionBtn actionBtnShow">
               <FaEye />
-            </div>
+            </Link>
           </Tooltip>
 
           <Tooltip content="Update" animation="duration-500">

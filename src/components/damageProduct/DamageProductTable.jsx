@@ -52,7 +52,7 @@ const DamageProductTable = () => {
       <DamageProductFilter filter={globalFilter} setFilter={setGlobalFilter} />
 
       {/* DamageProduct Table */}
-      <div className="overflow-x-auto">
+      <div className="table overflow-x-auto">
         <table {...getTableProps()}>
           <thead>
             {headerGroups.map((headerGroup, index) => {

@@ -52,7 +52,7 @@ const EmployeeTable = () => {
       <EmployeeFilter filter={globalFilter} setFilter={setGlobalFilter} />
 
       {/* Employee Table */}
-      <div className="overflow-x-auto">
+      <div className="table overflow-x-auto">
         <table {...getTableProps()}>
           <thead>
             {headerGroups.map((headerGroup, index) => {

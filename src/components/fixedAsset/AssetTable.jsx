@@ -52,7 +52,7 @@ const AssetTable = () => {
       <AssetFilter filter={globalFilter} setFilter={setGlobalFilter} />
 
       {/* Asset Table */}
-      <div className="overflow-x-auto">
+      <div className="table overflow-x-auto">
         <table {...getTableProps()}>
           <thead>
             {headerGroups.map((headerGroup, index) => {

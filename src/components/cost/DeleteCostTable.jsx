@@ -52,7 +52,7 @@ const DeleteCostTable = () => {
       <DeleteCostFilter filter={globalFilter} setFilter={setGlobalFilter} />
 
       {/* Delete Cost Table */}
-      <div className="overflow-x-auto">
+      <div className="table overflow-x-auto">
         <table {...getTableProps()}>
           <thead>
             {headerGroups.map((headerGroup, index) => {

@@ -66,27 +66,27 @@ body {
   @apply bg-red-700 hover:bg-dark-purple;
 }
 
-table {
+.table table {
   @apply w-full text-left text-sm text-gray-500;
 }
 
-thead {
+.table thead {
   @apply text-xs uppercase text-gray-700;
 }
 
-table thead th {
+.table table thead th {
   @apply bg-gray-50 dark:bg-gray-700 py-3 px-2;
 }
 
-tbody {
+.table tbody {
   @apply divide-y divide-dashed;
 }
 
-tbody tr {
+.table tbody tr {
   @apply hover:bg-gray-50  bg-white;
 }
 
-tbody tr td {
+.table tbody tr td {
   @apply py-4 !px-2;
 }
 

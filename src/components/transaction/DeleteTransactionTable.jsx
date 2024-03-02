@@ -55,7 +55,7 @@ const DeleteTransactionTable = () => {
       />
 
       {/* Transaction Table */}
-      <div className="overflow-x-auto">
+      <div className="table overflow-x-auto">
         <table {...getTableProps()}>
           <thead>
             {headerGroups.map((headerGroup, index) => {
