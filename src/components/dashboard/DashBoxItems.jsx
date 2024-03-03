@@ -63,7 +63,7 @@ const dashBoxData = [
 
 const DashBoxItems = () => {
   return (
-    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 md:gap-7">
+    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 mt-5">
       {dashBoxData.map((item, index) => (
         <div
           key={index}
@@ -91,11 +91,11 @@ const DashBoxItems = () => {
 
           <div className="flex items-center justify-between">
             <div>
-              <h4 className="text-2xl font-bold">{item.count}</h4>
+              <h4 className="text-xl font-bold text-dark-700">{item.count}</h4>
               <span className="text-sm text-gray-600">{item.label}</span>
             </div>
 
-            <CircleProgressBar percentage={75} />
+            {/* <CircleProgressBar percentage={75} /> */}
           </div>
         </div>
       ))}

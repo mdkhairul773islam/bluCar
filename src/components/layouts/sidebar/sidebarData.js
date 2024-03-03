@@ -22,42 +22,47 @@ import {
   FaUserPlus,
   FaUsers,
 } from "react-icons/fa";
-import { LuBarChart3, LuCalendarClock } from "react-icons/lu";
-import { IoCart, IoPricetagsSharp, IoSettingsSharp } from "react-icons/io5";
+import { LuCalendarClock } from "react-icons/lu";
+import {
+  IoCart,
+  IoPricetagsSharp,
+  IoSettingsSharp,
+  IoDocumentsSharp,
+} from "react-icons/io5";
 import { AiFillBank, AiOutlineCluster } from "react-icons/ai";
 
 const sidebarData = [
-  { title: "Dashboard", icon: <RiDashboardFill />, slug: "/dashboard" },
+  { title: "Dashboard", icon: <RiDashboardFill />, slug: "/" },
   {
-    title: "Brand",
-    icon: <TbBrandAirtable />,
+    title: "Product",
+    icon: <FaBoxOpen />,
+    activeMenu: "product",
     submenu: [
-      { title: "Add Brand", slug: "/brand/add" },
-      { title: "All Brand", slug: "/brand" },
-    ],
-  },
-  {
-    title: "Barcode",
-    icon: <FaBarcode />,
-    submenu: [
-      { title: "Barcode Setting", slug: "/barcode/setting" },
-      { title: "Barcode Print", slug: "/barcode/print" },
-      { title: "Barcode Generate", slug: "/barcode/generate" },
-      { title: "Purchase Wise Barcode", slug: "/barcode/purchase_wise" },
+      { title: "Add Product", slug: "/product/add" },
+      { title: "All Product", slug: "/product" },
+      { title: "Add Category", slug: "/product/category/add" },
+      { title: "All Category", slug: "/product/category" },
+      { title: "Add Brand", slug: "/product/brand/add" },
+      { title: "All Brand", slug: "/product/brand" },
     ],
   },
 
-  {
-    title: "Category",
-    icon: <MdCategory />,
-    submenu: [
-      { title: "Add Category", slug: "/category/add" },
-      { title: "All Category", slug: "/category" },
-    ],
-  },
+  // {
+  //   title: "Barcode",
+  //   icon: <FaBarcode />,
+  //   activeMenu: "barcode",
+  //   submenu: [
+  //     { title: "Barcode Setting", slug: "/barcode/setting" },
+  //     { title: "Barcode Print", slug: "/barcode/print" },
+  //     { title: "Barcode Generate", slug: "/barcode/generate" },
+  //     { title: "Purchase Wise Barcode", slug: "/barcode/purchase_wise" },
+  //   ],
+  // },
+
   {
     title: "Reference",
     icon: <FaUserCheck />,
+    activeMenu: "reference",
     submenu: [
       { title: "Add Reference", slug: "/reference/add" },
       { title: "All Reference", slug: "/reference" },
@@ -66,6 +71,7 @@ const sidebarData = [
   {
     title: "Showroom",
     icon: <FaShop />,
+    activeMenu: "showroom",
     submenu: [
       { title: "Add Showroom", slug: "/showroom/add" },
       { title: "All Showroom", slug: "/showroom" },
@@ -74,6 +80,7 @@ const sidebarData = [
   {
     title: "Supplier",
     icon: <FaUsers />,
+    activeMenu: "supplier",
     submenu: [
       { title: "Add Supplier", slug: "/supplier/add" },
       { title: "All Supplier", slug: "/supplier" },
@@ -82,41 +89,45 @@ const sidebarData = [
       { title: "Delete Transaction", slug: "/supplier/transaction/delete" },
     ],
   },
-  {
-    title: "Product",
-    icon: <FaBoxOpen />,
-    submenu: [
-      { title: "Add Product", slug: "/product/add" },
-      { title: "All Product", slug: "/product" },
-    ],
-  },
+
   {
     title: "Orders",
     icon: <GiBoxUnpacking />,
+    activeMenu: "orders",
     slug: "/orders",
+  },
+
+  {
+    title: "Document",
+    icon: <IoDocumentsSharp />,
+    activeMenu: "document",
+    slug: "/document",
   },
   {
     title: "Zone",
     icon: <MdLocationCity />,
+    activeMenu: "zone",
     slug: "/zone",
   },
-  {
-    title: "Party",
-    icon: <FaUsersLine />,
-    submenu: [
-      { title: "Add Party", slug: "/party/add" },
-      { title: "All Party", slug: "/party" },
-      { title: "Payable Party List", slug: "/party/payable" },
-      { title: "Receivable Party List", slug: "/party/receivable" },
-      { title: "Add Transaction", slug: "/party/transaction/add" },
-      { title: "All Transaction", slug: "/party/transaction" },
-      { title: "Delete Transaction", slug: "/party/transaction/delete" },
-      { title: "Collection Report", slug: "/party/transaction/collection" },
-    ],
-  },
+  // {
+  //   title: "Party",
+  //   icon: <FaUsersLine />,
+  //   activeMenu: "party",
+  //   submenu: [
+  //     { title: "Add Party", slug: "/party/add" },
+  //     { title: "All Party", slug: "/party" },
+  //     { title: "Payable Party List", slug: "/party/payable" },
+  //     { title: "Receivable Party List", slug: "/party/receivable" },
+  //     { title: "Add Transaction", slug: "/party/transaction/add" },
+  //     { title: "All Transaction", slug: "/party/transaction" },
+  //     { title: "Delete Transaction", slug: "/party/transaction/delete" },
+  //     { title: "Collection Report", slug: "/party/transaction/collection" },
+  //   ],
+  // },
   {
     title: "Purchase",
     icon: <IoCart />,
+    activeMenu: "purchase",
     submenu: [
       { title: "Add Purchase", slug: "/purchase/add" },
       { title: "All Purchase", slug: "/purchase" },
@@ -131,50 +142,59 @@ const sidebarData = [
   {
     title: "Stock",
     icon: <MdBarChart />,
+    activeMenu: "stock",
     slug: "/stock",
   },
-  {
-    title: "Datewise Stock",
-    icon: <FaRegCalendarAlt />,
-    slug: "/datewise_stock",
-  },
+  // {
+  //   title: "Datewise Stock",
+  //   icon: <FaRegCalendarAlt />,
+  //   activeMenu: "datewise_stock",
+  //   slug: "/datewise_stock",
+  // },
   {
     title: "Damage Product",
     icon: <GiBoxTrap />,
+    activeMenu: "damage_product",
     submenu: [
-      { title: "Add Purchase", slug: "/damage_product/add" },
-      { title: "All Purchase", slug: "/damage_product" },
-      { title: "Delete History", slug: "/damage_product/delete_history" },
+      { title: "Add Damage Product", slug: "/damage_product/add" },
+      { title: "All Damage Product", slug: "/damage_product" },
+      {
+        title: "Delete Damage Product",
+        slug: "/damage_product/delete_history",
+      },
     ],
   },
-  {
-    title: "Challan ",
-    icon: <HiMiniClipboardDocumentList />,
-    submenu: [
-      { title: "Add Challan", slug: "/challan/add" },
-      { title: "All Challan", slug: "/challan" },
-    ],
-  },
-  {
-    title: "Sale",
-    icon: <IoPricetagsSharp />,
-    submenu: [
-      { title: "Add Sale", slug: "/sale/add" },
-      { title: "All Sale", slug: "/sale" },
-      { title: "Delete Sale", slug: "/sale/delete" },
-      { title: "Add Hire Sale", slug: "/sale/hire/add" },
-      { title: "All Hire Sale", slug: "/sale/hire" },
-      { title: "Add Pre Order Sale", slug: "/sale/pre_order/add" },
-      { title: "All Pre Order Sale", slug: "/sale/pre_order" },
-      { title: "All Delete Pre Order Sale", slug: "/sale/pre_order/delete" },
-      { title: "Search Item Wise", slug: "/sale/item_wise" },
-      { title: "Add Sale Return", slug: "/sale/return/add" },
-      { title: "All Sale Return", slug: "/sale/return" },
-    ],
-  },
+  // {
+  //   title: "Challan",
+  //   icon: <HiMiniClipboardDocumentList />,
+  //   activeMenu: "challan",
+  //   submenu: [
+  //     { title: "Add Challan", slug: "/challan/add" },
+  //     { title: "All Challan", slug: "/challan" },
+  //   ],
+  // },
+  // {
+  //   title: "Sale",
+  //   icon: <IoPricetagsSharp />,
+  //   activeMenu: "sale",
+  //   submenu: [
+  //     { title: "Add Sale", slug: "/sale/add" },
+  //     { title: "All Sale", slug: "/sale" },
+  //     { title: "Delete Sale", slug: "/sale/delete" },
+  //     { title: "Add Hire Sale", slug: "/sale/hire/add" },
+  //     { title: "All Hire Sale", slug: "/sale/hire" },
+  //     { title: "Add Pre Order Sale", slug: "/sale/pre_order/add" },
+  //     { title: "All Pre Order Sale", slug: "/sale/pre_order" },
+  //     { title: "All Delete Pre Order Sale", slug: "/sale/pre_order/delete" },
+  //     { title: "Search Item Wise", slug: "/sale/item_wise" },
+  //     { title: "Add Sale Return", slug: "/sale/return/add" },
+  //     { title: "All Sale Return", slug: "/sale/return" },
+  //   ],
+  // },
   {
     title: "Income",
     icon: <GiTakeMyMoney />,
+    activeMenu: "income",
     submenu: [
       { title: "Field of Income", slug: "/income/field" },
       { title: "Add Income", slug: "/income/add" },
@@ -185,6 +205,7 @@ const sidebarData = [
   {
     title: "Cost",
     icon: <GiPayMoney />,
+    activeMenu: "cost",
     submenu: [
       { title: "Field of Cost", slug: "/cost/field" },
       { title: "Add Cost", slug: "/cost/add" },
@@ -192,14 +213,16 @@ const sidebarData = [
       { title: "Delete Cost", slug: "/cost/delete" },
     ],
   },
-  {
-    title: "Bank Invoice",
-    icon: <FaFileInvoiceDollar />,
-    slug: "/bank_invoice",
-  },
+  // {
+  //   title: "Bank Invoice",
+  //   icon: <FaFileInvoiceDollar />,
+  //   activeMenu: "bank_invoice",
+  //   slug: "/bank_invoice",
+  // },
   {
     title: "Md Transaction",
     icon: <GrTransaction />,
+    activeMenu: "transaction",
     submenu: [
       { title: "Add Md Transaction", slug: "/transaction/add" },
       { title: "All Md Transaction", slug: "/transaction" },
@@ -210,67 +233,73 @@ const sidebarData = [
   {
     title: "Due List",
     icon: <LuCalendarClock />,
+    activeMenu: "due_list",
     submenu: [
       { title: "Party Due", slug: "/due_list" },
       { title: "Credit Party Due", slug: "/due_list/credit" },
       { title: "Supplier Due", slug: "/due_list/supplier" },
     ],
   },
-  {
-    title: "Banking",
-    icon: <AiFillBank />,
-    submenu: [
-      { title: "Add Bank", slug: "/bank/add" },
-      { title: "Add Account", slug: "/bank/account/add" },
-      { title: "All Account", slug: "/bank/account" },
-      { title: "Add Transaction", slug: "/bank/transaction/add" },
-      { title: "All Transaction", slug: "/bank/transaction" },
-      { title: "Delete Transaction", slug: "/bank/transaction/delete" },
-      { title: "Bank Ledger", slug: "/bank/ledger" },
-    ],
-  },
-  {
-    title: "Ledger",
-    icon: <SiGooglesheets />,
-    submenu: [
-      { title: "Supplier Ledger", slug: "/ledger/supplier" },
-      { title: "Party Ledger", slug: "/ledger/party" },
-      { title: "Product Ledger", slug: "/ledger/product" },
-    ],
-  },
-  {
-    title: "Customer Commitment",
-    icon: <FaHandshake />,
-    submenu: [
-      { title: "Add Commitment", slug: "/customer_commitment/add" },
-      { title: "All Commitment", slug: "/customer_commitment" },
-    ],
-  },
-  {
-    title: "Report",
-    icon: <FaUsersLine />,
-    submenu: [
-      { title: "Purchase Report", slug: "/report/purchase" },
-      { title: "Sales Report", slug: "/report/sales" },
-      { title: "Sales Item Report", slug: "/report/sales_item" },
-      { title: "Income Report", slug: "/report/income" },
-      { title: "Cost Report", slug: "/report/cost" },
-      { title: "Profit Report", slug: "/report/profit" },
-      { title: "Profit / Loss Report", slug: "/report/profit_loss" },
-      { title: "Balance Sheet", slug: "/report/balance_sheet" },
-      { title: "Closing Record", slug: "/report/closing_record" },
-      { title: "Highest Sale Product", slug: "/report/highest_sale" },
-      { title: "Lowest Sale Product", slug: "/report/lowest_sale" },
-      {
-        title: "Client Wise Highest Sale ",
-        slug: "/report/client_highest_sale",
-      },
-      { title: "Client Wise Lowest Sale", slug: "/report/client_lowest_sale" },
-    ],
-  },
+  // {
+  //   title: "Banking",
+  //   icon: <AiFillBank />,
+  //   activeMenu: "bank",
+  //   submenu: [
+  //     { title: "Add Bank", slug: "/bank/add" },
+  //     { title: "Add Account", slug: "/bank/account/add" },
+  //     { title: "All Account", slug: "/bank/account" },
+  //     { title: "Add Transaction", slug: "/bank/transaction/add" },
+  //     { title: "All Transaction", slug: "/bank/transaction" },
+  //     { title: "Delete Transaction", slug: "/bank/transaction/delete" },
+  //     { title: "Bank Ledger", slug: "/bank/ledger" },
+  //   ],
+  // },
+  // {
+  //   title: "Ledger",
+  //   icon: <SiGooglesheets />,
+  //   activeMenu: "ledger",
+  //   submenu: [
+  //     { title: "Supplier Ledger", slug: "/ledger/supplier" },
+  //     { title: "Party Ledger", slug: "/ledger/party" },
+  //     { title: "Product Ledger", slug: "/ledger/product" },
+  //   ],
+  // },
+  // {
+  //   title: "Customer Commitment",
+  //   icon: <FaHandshake />,
+  //   activeMenu: "customer_commitment",
+  //   submenu: [
+  //     { title: "Add Commitment", slug: "/customer_commitment/add" },
+  //     { title: "All Commitment", slug: "/customer_commitment" },
+  //   ],
+  // },
+  // {
+  //   title: "Report",
+  //   icon: <FaUsersLine />,
+  //   activeMenu: "report",
+  //   submenu: [
+  //     { title: "Purchase Report", slug: "/report/purchase" },
+  //     { title: "Sales Report", slug: "/report/sales" },
+  //     { title: "Sales Item Report", slug: "/report/sales_item" },
+  //     { title: "Income Report", slug: "/report/income" },
+  //     { title: "Cost Report", slug: "/report/cost" },
+  //     { title: "Profit Report", slug: "/report/profit" },
+  //     { title: "Profit / Loss Report", slug: "/report/profit_loss" },
+  //     { title: "Balance Sheet", slug: "/report/balance_sheet" },
+  //     { title: "Closing Record", slug: "/report/closing_record" },
+  //     { title: "Highest Sale Product", slug: "/report/highest_sale" },
+  //     { title: "Lowest Sale Product", slug: "/report/lowest_sale" },
+  //     {
+  //       title: "Client Wise Highest Sale ",
+  //       slug: "/report/client_highest_sale",
+  //     },
+  //     { title: "Client Wise Lowest Sale", slug: "/report/client_lowest_sale" },
+  //   ],
+  // },
   {
     title: "Fixed Assets",
     icon: <AiOutlineCluster />,
+    activeMenu: "fixed_assets",
     submenu: [
       { title: "Field of Fixed Assets", slug: "/fixed_assets/field" },
       { title: "Add Fixed Assets", slug: "/fixed_assets/add" },
@@ -281,6 +310,7 @@ const sidebarData = [
   {
     title: "Employee",
     icon: <FaUsers />,
+    activeMenu: "employee",
     submenu: [
       { title: "Add Employee", slug: "/employee/add" },
       { title: "All Employee", slug: "/employee" },
@@ -294,30 +324,34 @@ const sidebarData = [
       { title: "All Payment", slug: "/employee/payment" },
     ],
   },
-  {
-    title: "Mobile SMS",
-    icon: <MdSms />,
-    submenu: [
-      { title: "Send SMS ", slug: "/sms/send" },
-      { title: "Custom SMS ", slug: "/sms/custom" },
-      { title: "SMS Report", slug: "/sms/report" },
-    ],
-  },
-  {
-    title: "Settings",
-    icon: <IoSettingsSharp />,
-    slug: "/settings",
-  },
-  {
-    title: "Set Privilege",
-    icon: <FaUserPlus />,
-    slug: "/privilege",
-  },
-  {
-    title: "Data Backup",
-    icon: <FaDatabase />,
-    slug: "/data_backup",
-  },
+  // {
+  //   title: "Mobile SMS",
+  //   icon: <MdSms />,
+  //   activeMenu: "sms",
+  //   submenu: [
+  //     { title: "Send SMS ", slug: "/sms/send" },
+  //     { title: "Custom SMS ", slug: "/sms/custom" },
+  //     { title: "SMS Report", slug: "/sms/report" },
+  //   ],
+  // },
+  // {
+  //   title: "Settings",
+  //   icon: <IoSettingsSharp />,
+  //   activeMenu: "settings",
+  //   slug: "/settings",
+  // },
+  // {
+  //   title: "Set Privilege",
+  //   icon: <FaUserPlus />,
+  //   activeMenu: "privilege",
+  //   slug: "/privilege",
+  // },
+  // {
+  //   title: "Data Backup",
+  //   icon: <FaDatabase />,
+  //   activeMenu: "data_backup",
+  //   slug: "/data_backup",
+  // },
 ];
 
 export default sidebarData;

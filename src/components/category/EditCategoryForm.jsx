@@ -1,24 +1,12 @@
 "use client";
-
-// Import Dependencies
 import { useForm } from "react-hook-form";
-import * as Yup from "yup";
+import validationSchema from "./validationSchema";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { ErrorMessage } from "@hookform/error-message";
 
-const validationSchema = Yup.object().shape({
-  name: Yup.string().required().label("Name"),
-  mobile: Yup.number()
-    .typeError("Mobile must be a number")
-    .required()
-    .label("Mobile"),
-  address: Yup.string().label("Address"),
-  area: Yup.string().label("Area"),
-});
-
 const EditCategoryForm = ({ setOpenModal }) => {
-  const referenceInfo = {
-    name: "AC Pump",
+  const categoryInfo = {
+    name: "Yamaha",
   };
 
   const {
@@ -27,7 +15,7 @@ const EditCategoryForm = ({ setOpenModal }) => {
     formState: { errors },
   } = useForm({
     resolver: yupResolver(validationSchema),
-    defaultValues: referenceInfo,
+    defaultValues: categoryInfo,
   });
 
   const handleOnSubmit = (data) => {
@@ -45,7 +33,7 @@ const EditCategoryForm = ({ setOpenModal }) => {
           id="name"
           className="inputField"
           {...register("name")}
-          placeholder="Category Name"
+          placeholder="Name"
         />
         <ErrorMessage
           errors={errors}

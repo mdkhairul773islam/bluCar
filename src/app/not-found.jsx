@@ -6,7 +6,7 @@ const NotFound = () => {
   const router = useRouter();
 
   return (
-    <div className="flex items-center justify-center gap-10 h-[calc(100vh-65px)]">
+    <div className="flex items-center justify-center gap-10 h-[calc(100vh-211px)] bg-white shadow-md my-5 rounded">
       <Image
         src="/not-found-computer.svg"
         height={308}

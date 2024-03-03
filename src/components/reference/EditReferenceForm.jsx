@@ -1,27 +1,15 @@
 "use client";
 import { useForm } from "react-hook-form";
-
+import validationSchema from "./validationSchema";
 import { yupResolver } from "@hookform/resolvers/yup";
-import * as Yup from "yup";
 import { ErrorMessage } from "@hookform/error-message";
-import Link from "next/link";
-
-const validationSchema = Yup.object().shape({
-  name: Yup.string().required().label("Name"),
-  mobile: Yup.number()
-    .typeError("Mobile must be a number")
-    .required()
-    .label("Mobile"),
-  address: Yup.string().label("Address"),
-  area: Yup.string().label("Area"),
-});
 
 const EditReferenceForm = ({ setOpenModal }) => {
   const referenceInfo = {
-    name: "Mehedi Hasan ",
-    mobile: "01726476303",
-    address: "Trishal, Mymensingh",
-    area: "Mymensingh",
+    name: "John Doe ",
+    mobile: "01700000000",
+    address: "Sirajgong, Rajshahi",
+    area: "Sirajgong, Rajshahi",
   };
 
   const {
@@ -62,7 +50,7 @@ const EditReferenceForm = ({ setOpenModal }) => {
           Mobile
         </label>
         <input
-          type="text"
+          type="number"
           id="mobile"
           className="inputField"
           {...register("mobile", { valueAsNumber: true })}

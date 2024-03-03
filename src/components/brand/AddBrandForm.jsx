@@ -1,14 +1,9 @@
 "use client";
-
 // Import Dependencies
-import * as Yup from "yup";
 import { useForm } from "react-hook-form";
+import validationSchema from "./validationSchema";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { ErrorMessage } from "@hookform/error-message";
-
-const validationSchema = Yup.object().shape({
-  name: Yup.string().required().label("Name"),
-});
 
 const AddBrandForm = () => {
   const {
@@ -24,7 +19,11 @@ const AddBrandForm = () => {
   };
 
   return (
-    <form onSubmit={handleSubmit(handleOnSubmit)} className="inputForm">
+    <form
+      action=""
+      onSubmit={handleSubmit(handleOnSubmit)}
+      className="inputForm"
+    >
       <div className="inputGroup">
         <label htmlFor="name" className="inputLabel required">
           Brand Name
@@ -34,7 +33,6 @@ const AddBrandForm = () => {
           id="name"
           className="inputField"
           {...register("name")}
-          placeholder="Brand Name"
         />
         <ErrorMessage
           errors={errors}

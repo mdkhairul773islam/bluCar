@@ -1,45 +1,57 @@
 "use client";
 // Import Dependencies
 import { useState } from "react";
+import Modal from "../common/Modal";
 import { GoTrash } from "react-icons/go";
+import { Tooltip } from "flowbite-react";
 import { LiaEdit } from "react-icons/lia";
-import { Table, Tooltip } from "flowbite-react";
-import CategoryEditModal from "./CategoryEditModal";
+import EditCategoryForm from "./EditCategoryForm";
 
-const CategoryTableTr = ({ category }) => {
+const CategoryTableTr = ({ row }) => {
   const [openModal, setOpenModal] = useState(false);
 
   return (
     <>
-      <Table.Row className="bg-white ">
-        <Table.Cell className="!px-2">{category}</Table.Cell>
-        <Table.Cell className="!px-3">
-          <span className="whitespace-nowrap font-medium text-gray-900">
-            AC Pump
-          </span>
-        </Table.Cell>
-        <Table.Cell className="!px-2">
+      <tr {...row.getRowProps()}>
+        {row.cells.map((cell, index) => {
+          return (
+            <td key={index} {...cell.getCellProps()}>
+              {cell.render("Cell")}
+            </td>
+          );
+        })}
+
+        <td>
           <div className="flex items-center justify-end gap-2">
             <Tooltip content="Update" animation="duration-500">
               <div
-                onClick={() => setOpenModal(true)}
-                className="h-7 w-7 bg-emerald-600/20 text-emerald-600 hover:bg-emerald-600 hover:text-white rounded text-xs flex items-center justify-center cursor-pointer"
+                onClick={() => {
+                  console.log(row.original.id);
+                  setOpenModal(true);
+                }}
+                className="actionBtn actionBtnEdit"
               >
                 <LiaEdit />
               </div>
             </Tooltip>
 
             <Tooltip content="Delete" animation="duration-500">
-              <div className="h-7 w-7 bg-red-600/20 text-red-600 hover:bg-red-600 hover:text-white rounded text-xs flex items-center justify-center cursor-pointer">
+              <div className="actionBtn actionBtnDelete">
                 <GoTrash />
               </div>
             </Tooltip>
           </div>
-        </Table.Cell>
-      </Table.Row>
+        </td>
+      </tr>
 
       {/* Edit Category Modal */}
-      <CategoryEditModal openModal={openModal} setOpenModal={setOpenModal} />
+      <Modal
+        title="Edit Category"
+        openModal={openModal}
+        setOpenModal={setOpenModal}
+      >
+        <EditCategoryForm setOpenModal={setOpenModal} />
+      </Modal>
     </>
   );
 };

@@ -1,32 +1,34 @@
 "use client";
 // Import Dependencies
 import { useState } from "react";
-import Image from "next/image";
 import { GoTrash } from "react-icons/go";
+import { Tooltip } from "flowbite-react";
 import { LiaEdit } from "react-icons/lia";
-import { Badge, Table, Tooltip } from "flowbite-react";
-import ReferenceEditModal from "./ReferenceEditModal";
+import Modal from "../common/Modal";
+import EditReferenceForm from "./EditReferenceForm";
 
-const ReferenceTableTr = ({ user }) => {
+const ReferenceTableTr = ({ row }) => {
   const [openModal, setOpenModal] = useState(false);
 
   return (
     <>
-      <Table.Row className="bg-white ">
-        <Table.Cell className="!px-2">{user}</Table.Cell>
-        <Table.Cell className="!px-3">
-          <span className="whitespace-nowrap font-medium text-gray-900">
-            Mehedi Hasan Rahat
-          </span>
-        </Table.Cell>
-        <Table.Cell className="!px-2">01726476303</Table.Cell>
-        <Table.Cell className="!px-2">Trishal, Mymensingh</Table.Cell>
-        <Table.Cell className="!px-2 whitespace-nowrap">Mymensingh</Table.Cell>
-        <Table.Cell className="!px-2">
+      <tr {...row.getRowProps()}>
+        {row.cells.map((cell, index) => {
+          return (
+            <td key={index} {...cell.getCellProps()}>
+              {cell.render("Cell")}
+            </td>
+          );
+        })}
+
+        <td>
           <div className="flex items-center justify-end gap-2">
             <Tooltip content="Update" animation="duration-500">
               <div
-                onClick={() => setOpenModal(true)}
+                onClick={() => {
+                  console.log(row.original.id);
+                  setOpenModal(true);
+                }}
                 className="h-7 w-7 bg-emerald-600/20 text-emerald-600 hover:bg-emerald-600 hover:text-white rounded text-xs flex items-center justify-center cursor-pointer"
               >
                 <LiaEdit />
@@ -39,11 +41,17 @@ const ReferenceTableTr = ({ user }) => {
               </div>
             </Tooltip>
           </div>
-        </Table.Cell>
-      </Table.Row>
+        </td>
+      </tr>
 
       {/* Edit Reference Modal */}
-      <ReferenceEditModal openModal={openModal} setOpenModal={setOpenModal} />
+      <Modal
+        title="Edit Reference"
+        openModal={openModal}
+        setOpenModal={setOpenModal}
+      >
+        <EditReferenceForm setOpenModal={setOpenModal} />
+      </Modal>
     </>
   );
 };

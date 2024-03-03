@@ -1,19 +1,9 @@
 "use client";
+// Import Dependencies
 import { useForm } from "react-hook-form";
-
+import validationSchema from "./validationSchema";
 import { yupResolver } from "@hookform/resolvers/yup";
-import * as Yup from "yup";
 import { ErrorMessage } from "@hookform/error-message";
-
-const validationSchema = Yup.object().shape({
-  name: Yup.string().required().label("Name"),
-  mobile: Yup.number()
-    .typeError("Mobile must be a number")
-    .required()
-    .label("Mobile"),
-  address: Yup.string().label("Address"),
-  area: Yup.string().label("Area"),
-});
 
 const AddReferenceForm = () => {
   const {
@@ -29,11 +19,7 @@ const AddReferenceForm = () => {
   };
 
   return (
-    <form
-      action=""
-      onSubmit={handleSubmit(handleOnSubmit)}
-      className="inputForm"
-    >
+    <form onSubmit={handleSubmit(handleOnSubmit)} className="inputForm">
       <div className="inputGroup">
         <label htmlFor="name" className="inputLabel required">
           Name
@@ -43,7 +29,6 @@ const AddReferenceForm = () => {
           id="name"
           className="inputField"
           {...register("name")}
-          placeholder="Name"
         />
         <ErrorMessage
           errors={errors}
@@ -57,11 +42,10 @@ const AddReferenceForm = () => {
           Mobile
         </label>
         <input
-          type="text"
+          type="number"
           id="mobile"
           className="inputField"
           {...register("mobile", { valueAsNumber: true })}
-          placeholder="Mobile"
         />
         <ErrorMessage
           errors={errors}
@@ -79,7 +63,6 @@ const AddReferenceForm = () => {
           id="address"
           className="inputField"
           {...register("address")}
-          placeholder="Address"
         />
       </div>
 
@@ -92,7 +75,6 @@ const AddReferenceForm = () => {
           id="area"
           className="inputField"
           {...register("area")}
-          placeholder="Area"
         />
       </div>
 
