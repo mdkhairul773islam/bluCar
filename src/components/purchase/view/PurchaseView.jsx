@@ -2,7 +2,7 @@ const PurchaseView = () => {
   return (
     <div className="">
       <div className="grid grid-cols-2 gap-5">
-        <table class="w-full">
+        <table className="w-full">
           <tbody>
             <tr>
               <th className="text-left whitespace-nowrap w-32">
@@ -24,7 +24,7 @@ const PurchaseView = () => {
           </tbody>
         </table>
 
-        <table class="w-full ">
+        <table className="w-full ">
           <tbody>
             <tr>
               <th className="text-left whitespace-nowrap w-32">Date :</th>

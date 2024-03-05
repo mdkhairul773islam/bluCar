@@ -21,7 +21,7 @@ const AddCostForm = () => {
   return (
     <form onSubmit={handleSubmit(handleOnSubmit)} className="inputForm">
       <div className="inputGroup">
-        <label htmlFor="date" className="inputLabel required">
+        <label htmlhtmlFor="date" className="inputLabel required">
           Date
         </label>
         <input
@@ -38,7 +38,7 @@ const AddCostForm = () => {
       </div>
 
       <div className="inputGroup">
-        <label htmlFor="showroom" className="inputLabel required">
+        <label htmlhtmlFor="showroom" className="inputLabel required">
           Showroom
         </label>
         <input
@@ -55,7 +55,7 @@ const AddCostForm = () => {
       </div>
 
       <div className="inputGroup">
-        <label htmlFor="field_cost" className="inputLabel required">
+        <label htmlhtmlFor="field_cost" className="inputLabel required">
           Field of Cost
         </label>
         <input
@@ -72,7 +72,7 @@ const AddCostForm = () => {
       </div>
 
       <div className="inputGroup">
-        <label htmlFor="description" className="inputLabel required">
+        <label htmlhtmlFor="description" className="inputLabel required">
           Description
         </label>
         <textarea
@@ -89,7 +89,7 @@ const AddCostForm = () => {
       </div>
 
       <div className="inputGroup">
-        <label htmlFor="amount" className="inputLabel required">
+        <label htmlhtmlFor="amount" className="inputLabel required">
           Amount
         </label>
         <input
@@ -106,7 +106,7 @@ const AddCostForm = () => {
       </div>
 
       <div className="inputGroup">
-        <label htmlFor="cost_by" className="inputLabel required">
+        <label htmlhtmlFor="cost_by" className="inputLabel required">
           Cost By
         </label>
         <input

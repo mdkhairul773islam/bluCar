@@ -21,7 +21,7 @@ const AddTransactionForm = () => {
   return (
     <form onSubmit={handleSubmit(handleOnSubmit)} className="inputForm">
       <div className="inputGroup">
-        <label htmlFor="showroom" className="inputLabel required">
+        <label htmlhtmlFor="showroom" className="inputLabel required">
           Showroom
         </label>
 
@@ -39,7 +39,7 @@ const AddTransactionForm = () => {
       </div>
 
       <div className="inputGroup">
-        <label htmlFor="date" className="inputLabel required">
+        <label htmlhtmlFor="date" className="inputLabel required">
           Date
         </label>
         <input
@@ -56,7 +56,7 @@ const AddTransactionForm = () => {
       </div>
 
       <div className="inputGroup">
-        <label htmlFor="type" className="inputLabel required">
+        <label htmlhtmlFor="type" className="inputLabel required">
           Trx Type
         </label>
 
@@ -73,7 +73,7 @@ const AddTransactionForm = () => {
       </div>
 
       <div className="inputGroup">
-        <label htmlFor="amount" className="inputLabel required">
+        <label htmlhtmlFor="amount" className="inputLabel required">
           Amount
         </label>
         <input
@@ -90,7 +90,7 @@ const AddTransactionForm = () => {
       </div>
 
       <div className="inputGroup">
-        <label htmlFor="remark" className="inputLabel">
+        <label htmlhtmlFor="remark" className="inputLabel">
           Remark
         </label>
         <textarea

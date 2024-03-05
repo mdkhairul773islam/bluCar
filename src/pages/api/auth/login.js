@@ -6,12 +6,13 @@ export default async function handler(req, res) {
   switch (method) {
     case 'POST':
       try {
+        console.log('req', req.body);
         const response = await post('/login', {
-          email: "mdkhairul773@gmail.com", //email
-          password: "mdkhairul773", //password
+          email: email, //"mdkhairul773@gmail.com", //email
+          password: password, // "mdkhairul773", //password
         });
         const token = response;
-        res.status(200).json(token);
+        res.status(200).json({ token: token });
       } catch (error) {
         console.error('Error fetching users:', error);
         res.status(500).json({ message: 'Error fetching users from Laravel API' });
