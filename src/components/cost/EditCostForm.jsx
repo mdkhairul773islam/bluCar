@@ -30,7 +30,7 @@ const EditCostForm = ({ setOpenModal }) => {
   return (
     <form onSubmit={handleSubmit(handleOnSubmit)} className="inputForm">
       <div className="inputGroup">
-        <label htmlFor="name" className="inputLabel required">
+        <label htmlhtmlFor="name" className="inputLabel required">
           Name
         </label>
         <input
@@ -48,7 +48,7 @@ const EditCostForm = ({ setOpenModal }) => {
       </div>
 
       <div className="inputGroup">
-        <label htmlFor="mobile" className="inputLabel required">
+        <label htmlhtmlFor="mobile" className="inputLabel required">
           Mobile
         </label>
         <input
@@ -66,7 +66,7 @@ const EditCostForm = ({ setOpenModal }) => {
       </div>
 
       <div className="inputGroup">
-        <label htmlFor="address" className="inputLabel">
+        <label htmlhtmlFor="address" className="inputLabel">
           Address
         </label>
         <input
@@ -79,7 +79,7 @@ const EditCostForm = ({ setOpenModal }) => {
       </div>
 
       <div className="inputGroup">
-        <label htmlFor="area" className="inputLabel">
+        <label htmlhtmlFor="area" className="inputLabel">
           Area
         </label>
         <input

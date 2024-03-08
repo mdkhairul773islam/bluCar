@@ -32,7 +32,7 @@ const EditAssetForm = ({ setOpenModal }) => {
     <form onSubmit={handleSubmit(handleOnSubmit)} className="inputForm">
       <div className="grid grid-cols-2 gap-5">
         <div className="inputGroup">
-          <label htmlFor="showroom" className="inputLabel required">
+          <label htmlhtmlFor="showroom" className="inputLabel required">
             Showroom
           </label>
           <select
@@ -64,7 +64,7 @@ const EditAssetForm = ({ setOpenModal }) => {
         </div>
 
         <div className="inputGroup">
-          <label htmlFor="date" className="inputLabel required">
+          <label htmlhtmlFor="date" className="inputLabel required">
             Date
           </label>
           <input
@@ -81,7 +81,7 @@ const EditAssetForm = ({ setOpenModal }) => {
         </div>
 
         <div className="inputGroup">
-          <label htmlFor="field" className="inputLabel required">
+          <label htmlhtmlFor="field" className="inputLabel required">
             Field Of Fixed Assets
           </label>
           <select
@@ -113,7 +113,7 @@ const EditAssetForm = ({ setOpenModal }) => {
         </div>
 
         <div className="inputGroup">
-          <label htmlFor="amount" className="inputLabel required">
+          <label htmlhtmlFor="amount" className="inputLabel required">
             Amount
           </label>
           <input
@@ -130,7 +130,7 @@ const EditAssetForm = ({ setOpenModal }) => {
         </div>
 
         <div className="inputGroup">
-          <label htmlFor="quantity" className="inputLabel required">
+          <label htmlhtmlFor="quantity" className="inputLabel required">
             Quantity
           </label>
           <input
@@ -147,7 +147,7 @@ const EditAssetForm = ({ setOpenModal }) => {
         </div>
 
         <div className="inputGroup">
-          <label htmlFor="spend_by" className="inputLabel ">
+          <label htmlhtmlFor="spend_by" className="inputLabel ">
             Spend By
           </label>
           <input
@@ -160,7 +160,7 @@ const EditAssetForm = ({ setOpenModal }) => {
       </div>
 
       <div className="inputGroup">
-        <label htmlFor="description" className="inputLabel">
+        <label htmlhtmlFor="description" className="inputLabel">
           Description
         </label>
         <textarea

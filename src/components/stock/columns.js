@@ -18,7 +18,7 @@ export const COLUMNS = [
   {
     Header: "QTY",
     accessor: "quantity",
-    Cell: (props) => <span class="whitespace-nowrap">{props.value} pcs</span>,
+    Cell: (props) => <span className="whitespace-nowrap">{props.value} pcs</span>,
   },
   {
     Header: "Purchase Price",

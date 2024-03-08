@@ -23,7 +23,7 @@ const AddDocumentForm = () => {
     <form onSubmit={handleSubmit(handleOnSubmit)} className="inputForm">
       <div className="grid md:grid-cols-2 gap-5">
         <div className="inputGroup">
-          <label htmlFor="name" className="inputLabel required">
+          <label htmlhtmlFor="name" className="inputLabel required">
             Name
           </label>
           <input
@@ -40,7 +40,7 @@ const AddDocumentForm = () => {
         </div>
 
         <div className="inputGroup">
-          <label htmlFor="mobile" className="inputLabel required">
+          <label htmlhtmlFor="mobile" className="inputLabel required">
             Mobile
           </label>
           <input
@@ -59,7 +59,7 @@ const AddDocumentForm = () => {
 
       <div>
         <label
-          htmlFor="image"
+          htmlhtmlFor="image"
           className="inputLabel !relative top-auto required"
         >
           Image/File
@@ -78,7 +78,7 @@ const AddDocumentForm = () => {
       </div>
 
       <div className="inputGroup">
-        <label htmlFor="address" className="inputLabel">
+        <label htmlhtmlFor="address" className="inputLabel">
           Address
         </label>
         <textarea

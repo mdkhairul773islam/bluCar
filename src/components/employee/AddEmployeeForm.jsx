@@ -22,7 +22,7 @@ const AddEmployeeForm = () => {
     <form onSubmit={handleSubmit(handleOnSubmit)} className="inputForm">
       <div className="grid grid-cols-2 gap-5">
         <div className="inputGroup">
-          <label htmlFor="date" className="inputLabel required">
+          <label htmlhtmlFor="date" className="inputLabel required">
             Date
           </label>
           <input
@@ -39,7 +39,7 @@ const AddEmployeeForm = () => {
         </div>
 
         <div className="inputGroup">
-          <label htmlFor="showroom" className="inputLabel required">
+          <label htmlhtmlFor="showroom" className="inputLabel required">
             Showroom
           </label>
           <select
@@ -71,7 +71,7 @@ const AddEmployeeForm = () => {
         </div>
 
         <div className="inputGroup">
-          <label htmlFor="name" className="inputLabel required">
+          <label htmlhtmlFor="name" className="inputLabel required">
             Employee Name
           </label>
           <input
@@ -88,7 +88,7 @@ const AddEmployeeForm = () => {
         </div>
 
         <div className="inputGroup">
-          <label htmlFor="mobile" className="inputLabel">
+          <label htmlhtmlFor="mobile" className="inputLabel">
             Mobile
           </label>
           <input
@@ -105,7 +105,7 @@ const AddEmployeeForm = () => {
         </div>
 
         <div className="inputGroup">
-          <label htmlFor="email" className="inputLabel">
+          <label htmlhtmlFor="email" className="inputLabel">
             Email
           </label>
           <input
@@ -122,7 +122,7 @@ const AddEmployeeForm = () => {
         </div>
 
         <div className="inputGroup">
-          <label htmlFor="designation" className="inputLabel ">
+          <label htmlhtmlFor="designation" className="inputLabel ">
             Designation
           </label>
           <input
@@ -134,7 +134,7 @@ const AddEmployeeForm = () => {
         </div>
 
         <div className="inputGroup  col-span-2">
-          <label htmlFor="present_address" className="inputLabel">
+          <label htmlhtmlFor="present_address" className="inputLabel">
             Present Address
           </label>
           <textarea
@@ -145,7 +145,7 @@ const AddEmployeeForm = () => {
         </div>
 
         <div className="inputGroup  col-span-2">
-          <label htmlFor="permanent_address" className="inputLabel">
+          <label htmlhtmlFor="permanent_address" className="inputLabel">
             Permanent_address
           </label>
           <textarea
@@ -167,7 +167,7 @@ const AddEmployeeForm = () => {
                 name="gender"
                 className="radioInput"
               />
-              <label htmlFor="male" className="radioLabel">
+              <label htmlhtmlFor="male" className="radioLabel">
                 Male
               </label>
             </div>
@@ -181,7 +181,7 @@ const AddEmployeeForm = () => {
                 name="gender"
                 className="radioInput"
               />
-              <label htmlFor="female" className="radioLabel">
+              <label htmlhtmlFor="female" className="radioLabel">
                 Female
               </label>
             </div>
@@ -194,7 +194,7 @@ const AddEmployeeForm = () => {
         </div>
 
         <div className="inputGroup">
-          <label htmlFor="basic_salary" className="inputLabel">
+          <label htmlhtmlFor="basic_salary" className="inputLabel">
             Basic Salary
           </label>
           <input
@@ -211,7 +211,7 @@ const AddEmployeeForm = () => {
         </div>
 
         <div className="inputGroup">
-          <label htmlFor="overtime_rate" className="inputLabel">
+          <label htmlhtmlFor="overtime_rate" className="inputLabel">
             Overtime Rate
           </label>
           <input
@@ -228,7 +228,7 @@ const AddEmployeeForm = () => {
         </div>
 
         <div className="inputGroup">
-          <label htmlFor="image" className="inputLabel">
+          <label htmlhtmlFor="image" className="inputLabel">
             Image
           </label>
           <input

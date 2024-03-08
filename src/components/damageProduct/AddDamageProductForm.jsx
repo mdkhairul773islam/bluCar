@@ -21,7 +21,7 @@ const AddDamageProductForm = () => {
   return (
     <form onSubmit={handleSubmit(handleOnSubmit)} className="inputForm">
       <div className="inputGroup">
-        <label htmlFor="date" className="inputLabel required">
+        <label htmlhtmlFor="date" className="inputLabel required">
           Date
         </label>
         <input
@@ -37,7 +37,7 @@ const AddDamageProductForm = () => {
         />
       </div>
       <div className="inputGroup">
-        <label htmlFor="showroom" className="inputLabel required">
+        <label htmlhtmlFor="showroom" className="inputLabel required">
           Showroom
         </label>
         <select
@@ -69,7 +69,7 @@ const AddDamageProductForm = () => {
       </div>
 
       <div className="inputGroup">
-        <label htmlFor="product_name" className="inputLabel required">
+        <label htmlhtmlFor="product_name" className="inputLabel required">
           Product Name
         </label>
         <select
@@ -101,7 +101,7 @@ const AddDamageProductForm = () => {
       </div>
 
       <div className="inputGroup">
-        <label htmlFor="stock" className="inputLabel required">
+        <label htmlhtmlFor="stock" className="inputLabel required">
           Current Stock
         </label>
         <input
@@ -118,7 +118,7 @@ const AddDamageProductForm = () => {
       </div>
 
       <div className="inputGroup">
-        <label htmlFor="quantity" className="inputLabel required">
+        <label htmlhtmlFor="quantity" className="inputLabel required">
           Damage Quantity
         </label>
         <input
@@ -135,7 +135,7 @@ const AddDamageProductForm = () => {
       </div>
 
       <div className="inputGroup">
-        <label htmlFor="remark" className="inputLabel">
+        <label htmlhtmlFor="remark" className="inputLabel">
           Remark
         </label>
         <textarea

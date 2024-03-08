@@ -28,7 +28,7 @@ const EditShowroomForm = ({ setOpenModal }) => {
   return (
     <form onSubmit={handleSubmit(handleOnSubmit)} className="inputForm">
       <div className="inputGroup">
-        <label htmlFor="name" className="inputLabel required">
+        <label htmlhtmlFor="name" className="inputLabel required">
           Name
         </label>
         <input
@@ -46,7 +46,7 @@ const EditShowroomForm = ({ setOpenModal }) => {
 
       <div className="grid grid-cols-2 gap-5">
         <div className="inputGroup">
-          <label htmlFor="manager" className="inputLabel required">
+          <label htmlhtmlFor="manager" className="inputLabel required">
             Manager Name
           </label>
           <input
@@ -63,7 +63,7 @@ const EditShowroomForm = ({ setOpenModal }) => {
         </div>
 
         <div className="inputGroup">
-          <label htmlFor="mobile" className="inputLabel required">
+          <label htmlhtmlFor="mobile" className="inputLabel required">
             Mobile
           </label>
           <input
@@ -80,7 +80,7 @@ const EditShowroomForm = ({ setOpenModal }) => {
         </div>
 
         <div className="inputGroup">
-          <label htmlFor="mobile_two" className="inputLabel">
+          <label htmlhtmlFor="mobile_two" className="inputLabel">
             Mobile Two
           </label>
           <input
@@ -97,7 +97,7 @@ const EditShowroomForm = ({ setOpenModal }) => {
         </div>
 
         <div className="inputGroup">
-          <label htmlFor="mobile_three" className="inputLabel">
+          <label htmlhtmlFor="mobile_three" className="inputLabel">
             Mobile Three
           </label>
           <input
@@ -115,7 +115,7 @@ const EditShowroomForm = ({ setOpenModal }) => {
       </div>
 
       <div className="inputGroup">
-        <label htmlFor="address" className="inputLabel">
+        <label htmlhtmlFor="address" className="inputLabel">
           Address
         </label>
         <textarea
@@ -126,7 +126,7 @@ const EditShowroomForm = ({ setOpenModal }) => {
       </div>
 
       <div className="inputGroup">
-        <label htmlFor="area" className="inputLabel required">
+        <label htmlhtmlFor="area" className="inputLabel required">
           Prefix
         </label>
         <input

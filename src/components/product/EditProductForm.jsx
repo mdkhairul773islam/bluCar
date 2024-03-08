@@ -37,7 +37,7 @@ const EditProductForm = () => {
   return (
     <form onSubmit={handleSubmit(handleOnSubmit)} className="inputForm">
       <div className="inputGroup">
-        <label htmlFor="name" className="inputLabel required">
+        <label htmlhtmlFor="name" className="inputLabel required">
           Product Name
         </label>
         <input
@@ -55,7 +55,7 @@ const EditProductForm = () => {
 
       <div className="grid grid-cols-2 gap-5">
         <div className="inputGroup">
-          <label htmlFor="code" className="inputLabel required">
+          <label htmlhtmlFor="code" className="inputLabel required">
             Product Code
           </label>
           <input
@@ -72,7 +72,7 @@ const EditProductForm = () => {
         </div>
 
         <div className="inputGroup">
-          <label htmlFor="model" className="inputLabel required">
+          <label htmlhtmlFor="model" className="inputLabel required">
             Model
           </label>
           <input
@@ -89,7 +89,7 @@ const EditProductForm = () => {
         </div>
 
         <div className="inputGroup">
-          <label htmlFor="category" className="inputLabel required">
+          <label htmlhtmlFor="category" className="inputLabel required">
             Category
           </label>
           <select
@@ -123,7 +123,7 @@ const EditProductForm = () => {
         </div>
 
         <div className="inputGroup">
-          <label htmlFor="brand" className="inputLabel required">
+          <label htmlhtmlFor="brand" className="inputLabel required">
             Brand
           </label>
           <select
@@ -157,7 +157,7 @@ const EditProductForm = () => {
         </div>
 
         <div className="inputGroup">
-          <label htmlFor="purchase_price" className="inputLabel">
+          <label htmlhtmlFor="purchase_price" className="inputLabel">
             Purchase Price
           </label>
           <input
@@ -174,7 +174,7 @@ const EditProductForm = () => {
         </div>
 
         <div className="inputGroup">
-          <label htmlFor="sale_price" className="inputLabel">
+          <label htmlhtmlFor="sale_price" className="inputLabel">
             Sale Price
           </label>
           <input
@@ -191,7 +191,7 @@ const EditProductForm = () => {
         </div>
 
         <div className="inputGroup">
-          <label htmlFor="unit" className="inputLabel">
+          <label htmlhtmlFor="unit" className="inputLabel">
             Unit
           </label>
           <select
@@ -214,7 +214,7 @@ const EditProductForm = () => {
         </div>
 
         <div className="inputGroup">
-          <label htmlFor="low_lavel" className="inputLabel">
+          <label htmlhtmlFor="low_lavel" className="inputLabel">
             Low Lavel
           </label>
           <input
@@ -242,7 +242,7 @@ const EditProductForm = () => {
               name="status"
               className="radioInput"
             />
-            <label htmlFor="available" className="radioLabel">
+            <label htmlhtmlFor="available" className="radioLabel">
               Available
             </label>
           </div>
@@ -256,7 +256,7 @@ const EditProductForm = () => {
               name="status"
               className="radioInput"
             />
-            <label htmlFor="not_available" className="radioLabel">
+            <label htmlhtmlFor="not_available" className="radioLabel">
               Not Available
             </label>
           </div>

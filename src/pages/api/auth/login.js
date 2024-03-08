@@ -1,29 +1,26 @@
-// Next.js API route for login
+import { post } from "@/lib/api";
 export default async function handler(req, res) {
-    if (req.method === 'POST') {
+  const { method } = req;
+  const { email, password } = req.body;
+
+  switch (method) {
+    case 'POST':
       try {
-        const response = await fetch('http://localhost:8000/api/login', {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-          },
-          body: JSON.stringify(req.body),
+        console.log('req', req.body);
+        const response = await post('/login', {
+          email: email, //"mdkhairul773@gmail.com", //email
+          password: password, // "mdkhairul773", //password
         });
-  
-        const data = await response.json();
-  
-        if (response.ok) {
-          return res.status(200).json(data);
-        } else {
-          return res.status(response.status).json(data);
-        }
+        const token = response;
+        res.status(200).json({ token: token });
       } catch (error) {
-        return res.status(500).json({ message: 'Internal server error' });
+        console.error('Error fetching users:', error);
+        res.status(500).json({ message: 'Error fetching users from Laravel API' });
       }
-    } else {
-      // Handle any requests that aren't POST
-      res.setHeader('Allow', ['POST']);
-      res.status(405).end(`Method ${req.method} Not Allowed`);
-    }
+      break;
+    // Implement other methods (POST for creating a new user, etc.) as needed
+    default:
+      res.setHeader('Allow', ['POST']); // Adjust this based on the methods you implement
+      res.status(405).end(`Method ${method} Not Allowed`);
   }
-  
+}

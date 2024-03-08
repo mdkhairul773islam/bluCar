@@ -64,7 +64,7 @@ const AddPurchasePreOrderForm = () => {
 
       <div className="grid lg:grid-cols-2 gap-5">
         <div className="inputGroup">
-          <label htmlFor="remark" className="inputLabel required">
+          <label htmlhtmlFor="remark" className="inputLabel required">
             Remark
           </label>
           <textarea
@@ -76,28 +76,28 @@ const AddPurchasePreOrderForm = () => {
 
         <div className="flex flex-col gap-6">
           <div className="inputGroup">
-            <label htmlFor="total" className="inputLabel required">
+            <label htmlhtmlFor="total" className="inputLabel required">
               Total
             </label>
             <input type="number" id="total" readOnly className="inputField" />
           </div>
 
           <div className="inputGroup">
-            <label htmlFor="discount" className="inputLabel required">
+            <label htmlhtmlFor="discount" className="inputLabel required">
               Total Discount
             </label>
             <input type="number" id="discount" className="inputField" />
           </div>
 
           <div className="inputGroup">
-            <label htmlFor="transport" className="inputLabel required">
+            <label htmlhtmlFor="transport" className="inputLabel required">
               Transport Cost
             </label>
             <input type="number" id="transport" className="inputField" />
           </div>
 
           <div className="inputGroup">
-            <label htmlFor="grand_total" className="inputLabel required">
+            <label htmlhtmlFor="grand_total" className="inputLabel required">
               Grand Total
             </label>
             <input
@@ -110,7 +110,7 @@ const AddPurchasePreOrderForm = () => {
 
           <div className="grid grid-cols-3 gap-5">
             <div className="inputGroup col-span-2">
-              <label htmlFor="previous_balance" className="inputLabel required">
+              <label htmlhtmlFor="previous_balance" className="inputLabel required">
                 Previous Balance
               </label>
               <input
@@ -132,7 +132,7 @@ const AddPurchasePreOrderForm = () => {
 
           <div className="grid grid-cols-3 gap-5">
             <div className="inputGroup col-span-2">
-              <label htmlFor="paid" className="inputLabel required">
+              <label htmlhtmlFor="paid" className="inputLabel required">
                 Paid
               </label>
               <input type="number" id="paid" readOnly className="inputField" />
@@ -149,7 +149,7 @@ const AddPurchasePreOrderForm = () => {
 
           <div className="grid grid-cols-3 gap-5">
             <div className="inputGroup col-span-2">
-              <label htmlFor="current_balance" className="inputLabel required">
+              <label htmlhtmlFor="current_balance" className="inputLabel required">
                 Current Balance
               </label>
               <input

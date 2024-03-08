@@ -23,7 +23,7 @@ const AddSupplierForm = () => {
     <form onSubmit={handleSubmit(handleOnSubmit)} className="inputForm">
       <div className="grid md:grid-cols-2 gap-5">
         <div className="inputGroup">
-          <label htmlFor="code" className="inputLabel required">
+          <label htmlhtmlFor="code" className="inputLabel required">
             Code
           </label>
           <input
@@ -40,7 +40,7 @@ const AddSupplierForm = () => {
         </div>
 
         <div className="inputGroup">
-          <label htmlFor="date" className="inputLabel required">
+          <label htmlhtmlFor="date" className="inputLabel required">
             Date
           </label>
           <input
@@ -58,7 +58,7 @@ const AddSupplierForm = () => {
       </div>
 
       <div className="inputGroup">
-        <label htmlFor="showroom" className="inputLabel required">
+        <label htmlhtmlFor="showroom" className="inputLabel required">
           Showroom
         </label>
         <select
@@ -91,7 +91,7 @@ const AddSupplierForm = () => {
 
       <div className="grid md:grid-cols-2 gap-5">
         <div className="inputGroup">
-          <label htmlFor="name" className="inputLabel required">
+          <label htmlhtmlFor="name" className="inputLabel required">
             Supplier Name
           </label>
           <input
@@ -108,7 +108,7 @@ const AddSupplierForm = () => {
         </div>
 
         <div className="inputGroup">
-          <label htmlFor="contact_person" className="inputLabel">
+          <label htmlhtmlFor="contact_person" className="inputLabel">
             Contact Person
           </label>
           <input
@@ -120,7 +120,7 @@ const AddSupplierForm = () => {
         </div>
 
         <div className="inputGroup">
-          <label htmlFor="mobile" className="inputLabel required">
+          <label htmlhtmlFor="mobile" className="inputLabel required">
             Mobile
           </label>
           <input
@@ -137,7 +137,7 @@ const AddSupplierForm = () => {
         </div>
 
         <div className="inputGroup">
-          <label htmlFor="balance" className="inputLabel required">
+          <label htmlhtmlFor="balance" className="inputLabel required">
             Initial Balance (TK)
           </label>
           <input
@@ -155,7 +155,7 @@ const AddSupplierForm = () => {
       </div>
 
       <div className="inputGroup">
-        <label htmlFor="address" className="inputLabel">
+        <label htmlhtmlFor="address" className="inputLabel">
           Address
         </label>
         <textarea
@@ -177,7 +177,7 @@ const AddSupplierForm = () => {
               name="balance_type"
               className="radioInput"
             />
-            <label htmlFor="payable" className="radioLabel">
+            <label htmlhtmlFor="payable" className="radioLabel">
               Payable
             </label>
           </div>
@@ -191,7 +191,7 @@ const AddSupplierForm = () => {
               name="balance_type"
               className="radioInput"
             />
-            <label htmlFor="receivable" className="radioLabel">
+            <label htmlhtmlFor="receivable" className="radioLabel">
               Receivable
             </label>
           </div>

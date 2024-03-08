@@ -21,7 +21,7 @@ const AddFieldForm = () => {
   return (
     <form onSubmit={handleSubmit(handleOnSubmit)} className="inputForm">
       <div className="inputGroup">
-        <label htmlFor="name" className="inputLabel required">
+        <label htmlhtmlFor="name" className="inputLabel required">
           Field Name
         </label>
         <input
