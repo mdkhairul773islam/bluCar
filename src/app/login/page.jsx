@@ -1,5 +1,5 @@
+import LoginForm from "@/components/login/LoginForm";
 import { IoLogoModelS } from "react-icons/io";
-import LoginForm from "./component/LoginForm";
 
 const LoginPage = () => {
   return (
