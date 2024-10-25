@@ -1,12 +1,5 @@
 'use client'
 
-import React from 'react'
-import { z } from 'zod'
-import { useForm } from 'react-hook-form'
-import { Input } from '@/components/ui/input'
-import { Button } from '@/components/ui/button'
-import { toast } from '@/components/ui/use-toast'
-import { zodResolver } from '@hookform/resolvers/zod'
 import {
   Form,
   FormControl,
@@ -15,14 +8,24 @@ import {
   FormLabel,
   FormMessage
 } from '@/components/ui/form'
+import { z } from 'zod'
+import React from 'react'
+import { Supplier } from './columns'
+import toastify from '@/lib/toastify'
+import { useForm } from 'react-hook-form'
+import { Input } from '@/components/ui/input'
+import supplierSchema from './supplierSchema'
+import { Button } from '@/components/ui/button'
+import { zodResolver } from '@hookform/resolvers/zod'
+import supplierService from '@/services/supplier-service'
+import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query'
+import { RadioGroup, RadioGroupItem } from '@/components/ui/radio-group'
 import { Textarea } from '@/components/ui/textarea'
 import {
   Popover,
   PopoverContent,
   PopoverTrigger
 } from '@/components/ui/popover'
-import { cn } from '@/lib/utils'
-import { format } from 'date-fns'
 import { CalendarIcon } from 'lucide-react'
 import { Calendar } from '@/components/ui/calendar'
 import {
@@ -32,99 +35,88 @@ import {
   SelectTrigger,
   SelectValue
 } from '@/components/ui/select'
-import { RadioGroup, RadioGroupItem } from '@/components/ui/radio-group'
+import showroomService from '@/services/showroom-service'
+import { Showroom } from '@/app/showroom/_components/columns'
+import { format, parseISO } from 'date-fns'
+import { cn } from '@/lib/utils'
 
-const FormSchema = z.object({
-  code: z.string(),
-  showroom: z.string(),
-  date: z.date({
-    required_error: 'Date is required.'
-  }),
-  name: z.string(),
-  contact_person: z.string(),
-  mobile: z.string(),
-  address: z.string(),
-  initial_balance: z.coerce.number(),
-  status: z.enum(['receivable', 'payable'], {
-    required_error: 'You need to select type.'
+const EditSupplierForm = ({
+  setOpen,
+  supplier
+}: {
+  setOpen: any
+  supplier: Supplier
+}) => {
+  const queryClient = useQueryClient()
+
+  const {
+    data: showrooms,
+    isLoading: showroomLoading,
+    error: showroomError
+  } = useQuery({
+    queryKey: ['showrooms'],
+    queryFn: showroomService.getAllShowrooms
   })
-})
 
-const EditSupplierForm = () => {
-  const form = useForm<z.infer<typeof FormSchema>>({
-    resolver: zodResolver(FormSchema),
+  const form = useForm<z.infer<typeof supplierSchema>>({
+    resolver: zodResolver(supplierSchema),
     defaultValues: {
-      code: '01137'
+      address: supplier?.address,
+      contact_person: supplier?.contact_person,
+      // @ts-ignore
+      date: supplier?.date,
+      initial_balance: supplier?.initial_balance,
+      mobile: supplier?.mobile,
+      name: supplier?.name,
+      showroom_id: supplier?.showroom_id,
+      status: supplier?.status
     }
   })
 
-  function onSubmit(data: z.infer<typeof FormSchema>) {
-    toast({
-      title: 'You submitted the following values:',
-      description: (
-        <pre className='mt-2 w-[340px] rounded-md bg-slate-950 p-4'>
-          <code className='text-white'>{JSON.stringify(data, null, 2)}</code>
-        </pre>
-      )
-    })
+  const mutation = useMutation({
+    mutationFn: data => supplierService.updateSupplier(supplier.id, data),
+    onSuccess: () => {
+      // @ts-ignore
+      queryClient.invalidateQueries(['suppliers'])
+      toastify.success('Supplier updated successfully')
+      setOpen(false)
+    },
+    onError: error => {
+      toastify.error('Failed to update supplier')
+    }
+  })
+
+  function onSubmit(data: z.infer<typeof supplierSchema>) {
+    // @ts-ignore
+    mutation.mutate(data)
+
+    console.log(supplier)
+    console.log(data)
   }
   return (
     <Form {...form}>
       <form onSubmit={form.handleSubmit(onSubmit)}>
         <div className='grid gap-4 py-4'>
-          {/* Code */}
+          {/* Showroom  */}
           <FormField
             control={form.control}
-            name='code'
-            render={({ field }) => (
-              <FormItem>
-                <FormLabel>Code</FormLabel>
-                <FormControl>
-                  <Input
-                    type='number'
-                    readOnly
-                    placeholder='01*********'
-                    {...field}
-                  />
-                </FormControl>
-                <FormMessage />
-              </FormItem>
-            )}
-          />
-
-          {/* Showroom */}
-          <FormField
-            control={form.control}
-            name='showroom'
+            name='showroom_id'
             render={({ field }) => (
               <FormItem>
                 <FormLabel>Showroom</FormLabel>
-                <Select
-                  onValueChange={field.onChange}
-                  defaultValue={field.value}
-                >
+                <Select onValueChange={value => field.onChange(Number(value))}>
                   <FormControl>
                     <SelectTrigger>
-                      <SelectValue placeholder='Select showroom' />
+                      {/* <SelectValue placeholder='Select showroom' /> */}
+                      {showrooms?.find(
+                        (showroom: Showroom) => showroom.id === field.value
+                      )?.name || 'Select showroom'}
                     </SelectTrigger>
                   </FormControl>
                   <SelectContent>
-                    {[
-                      {
-                        label: 'showroom one',
-                        value: 'showroom one'
-                      },
-                      {
-                        label: 'showroom two',
-                        value: 'showroom two'
-                      },
-                      {
-                        label: 'showroom three',
-                        value: 'showroom three'
-                      }
-                    ].map(({ value, label }) => (
-                      <SelectItem key={value} value={value}>
-                        {label}
+                    {showrooms?.map((showroom: Showroom) => (
+                      <SelectItem key={showroom.id} value={String(showroom.id)}>
+                        {showroom.name}
                       </SelectItem>
                     ))}
                   </SelectContent>
@@ -152,7 +144,7 @@ const EditSupplierForm = () => {
                         )}
                       >
                         {field.value ? (
-                          format(field.value, 'PPP')
+                          format(parseISO(field.value), 'PPP')
                         ) : (
                           <span>Pick a date</span>
                         )}
@@ -163,8 +155,13 @@ const EditSupplierForm = () => {
                   <PopoverContent className='w-auto p-0' align='start'>
                     <Calendar
                       mode='single'
-                      selected={field.value}
-                      onSelect={field.onChange}
+                      selected={field.value ? parseISO(field.value) : undefined}
+                      onSelect={date => {
+                        const formattedDate = date
+                          ? date.toISOString().split('T')[0]
+                          : ''
+                        field.onChange(formattedDate)
+                      }}
                       disabled={date =>
                         date > new Date() || date < new Date('1900-01-01')
                       }
@@ -267,7 +264,7 @@ const EditSupplierForm = () => {
                   >
                     <FormItem className='flex items-center  gap-1'>
                       <FormControl>
-                        <RadioGroupItem value='receivable' />
+                        <RadioGroupItem value='Receivable' />
                       </FormControl>
                       <FormLabel className='!mt-0 cursor-pointer font-medium'>
                         Receivable
@@ -275,7 +272,7 @@ const EditSupplierForm = () => {
                     </FormItem>
                     <FormItem className='flex items-center  gap-1'>
                       <FormControl>
-                        <RadioGroupItem value='payable' />
+                        <RadioGroupItem value='Payable' />
                       </FormControl>
                       <FormLabel className='!mt-0 cursor-pointer font-medium'>
                         Payable
@@ -288,8 +285,12 @@ const EditSupplierForm = () => {
             )}
           />
 
-          <Button type='submit' className='bg-brand'>
-            Save changes
+          <Button
+            disabled={mutation.isPending}
+            type='submit'
+            className='bg-brand'
+          >
+            {mutation.isPending ? 'Submitting...' : 'Submit'}
           </Button>
         </div>
       </form>

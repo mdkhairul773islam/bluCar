@@ -1,4 +1,5 @@
-import { Button } from '@/components/ui/button'
+'use client'
+
 import {
   Sheet,
   SheetContent,
@@ -7,12 +8,17 @@ import {
   SheetTitle,
   SheetTrigger
 } from '@/components/ui/sheet'
+import React from 'react'
 import { Edit } from 'lucide-react'
+import { Product } from './columns'
 import EditProductForm from './EditProductForm'
+import { Button } from '@/components/ui/button'
 
-export default function EditProduct() {
+export default function EditProduct({ product }: { product: Product }) {
+  const [open, setOpen] = React.useState(false)
+
   return (
-    <Sheet>
+    <Sheet open={open} onOpenChange={setOpen}>
       <SheetTrigger asChild>
         <Button size='icon' className='edit-button'>
           <Edit className='size-4' />
@@ -27,7 +33,7 @@ export default function EditProduct() {
         </SheetHeader>
 
         {/* Edit Product form */}
-        <EditProductForm />
+        <EditProductForm product={product} setOpen={setOpen} />
       </SheetContent>
     </Sheet>
   )

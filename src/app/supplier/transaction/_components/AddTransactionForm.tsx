@@ -1,12 +1,12 @@
 'use client'
 
-import React from 'react'
-import { z } from 'zod'
-import { useForm } from 'react-hook-form'
-import { Input } from '@/components/ui/input'
-import { Button } from '@/components/ui/button'
-import { toast } from '@/components/ui/use-toast'
-import { zodResolver } from '@hookform/resolvers/zod'
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue
+} from '@/components/ui/select'
 import {
   Form,
   FormControl,
@@ -20,58 +20,84 @@ import {
   PopoverContent,
   PopoverTrigger
 } from '@/components/ui/popover'
+import { z } from 'zod'
 import { cn } from '@/lib/utils'
-import { format } from 'date-fns'
+import toastify from '@/lib/toastify'
+import { useForm } from 'react-hook-form'
 import { CalendarIcon } from 'lucide-react'
+import { format, parseISO } from 'date-fns'
+import { Input } from '@/components/ui/input'
+import { Label } from '@/components/ui/label'
+import { Button } from '@/components/ui/button'
 import { Calendar } from '@/components/ui/calendar'
-import {
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SelectValue
-} from '@/components/ui/select'
+import transactionSchema from './transactionSchema'
+import { Supplier } from '../../_components/columns'
+import { zodResolver } from '@hookform/resolvers/zod'
+import { Showroom } from '@/app/showroom/_components/columns'
+import transactionService from '@/services/transaction-service'
+import { useMutation, useQueryClient } from '@tanstack/react-query'
+import React, { Dispatch, SetStateAction, useEffect, useState } from 'react'
 
-const FormSchema = z.object({
-  date: z.date({
-    required_error: 'Date is required.'
-  }),
-  showroom: z.string(),
-  name: z.string(),
-  balance: z.coerce.number(),
-  balance_type: z.enum(['receivable', 'payable']),
-  transaction_type: z.enum(['Receive From Supplier', 'Paid To Supplier']),
-  transaction_method: z.enum(['Cash', 'Cheque', 'Bkash', 'T.T', 'Cash to T.T']),
-  payment: z.coerce.number(),
-  remission: z.coerce.number(),
-  total_balance: z.coerce.number(),
-  tbalance_type: z.enum(['receivable', 'payable']),
-  spand_by: z.string()
-})
+const AddTransactionForm = ({
+  suppliers,
+  showrooms,
+  setOpen
+}: {
+  setOpen: Dispatch<SetStateAction<boolean>>
+  suppliers: Supplier[]
+  showrooms: Showroom[]
+}) => {
+  const [loading, setLoading] = useState(false)
+  const queryClient = useQueryClient()
+  const [supplier, setSupplier] = useState<any>(null)
 
-const AddTransactionForm = () => {
-  const form = useForm<z.infer<typeof FormSchema>>({
-    resolver: zodResolver(FormSchema),
+  const form = useForm<z.infer<typeof transactionSchema>>({
+    resolver: zodResolver(transactionSchema),
     defaultValues: {
-      balance: 1000,
-      balance_type: 'receivable',
-      payment: 0,
-      remission: 0,
-      total_balance: 1000,
-      tbalance_type: 'payable'
+      balance_status: 'Receivable'
     }
   })
 
-  function onSubmit(data: z.infer<typeof FormSchema>) {
-    toast({
-      title: 'You submitted the following values:',
-      description: (
-        <pre className='mt-2 w-[340px] rounded-md bg-slate-950 p-4'>
-          <code className='text-white'>{JSON.stringify(data, null, 2)}</code>
-        </pre>
-      )
-    })
+  const supplierId = form.watch('supplier_id')
+
+  useEffect(() => {
+    const sup = suppliers?.find(supplier => supplier.id == supplierId)
+    // @ts-ignore
+    form.setValue('party_code', sup?.code)
+
+    setSupplier(sup)
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [supplierId])
+
+  const totalBalance = supplier?.initial_balance - form.watch('payment')
+
+  form.setValue('balance_status', totalBalance > 0 ? 'Receivable' : 'Payable')
+
+  totalBalance
+
+  const mutation = useMutation({
+    mutationFn: transactionService.addTransaction,
+    onSuccess: () => {
+      // @ts-ignore
+      queryClient.invalidateQueries(['transactions'])
+      toastify.success('Transaction added successfully')
+      setOpen(false)
+    },
+    onError: (error: any) => {
+      toastify.error(error.message)
+    }
+  })
+
+  function onSubmit(data: z.infer<typeof transactionSchema>) {
+    setLoading(true)
+    const updatedData = {
+      ...data,
+      transaction_at: format(data.transaction_at, 'yyyy-MM-dd')
+    }
+    mutation.mutate(updatedData)
+    setLoading(true)
   }
+
   return (
     <Form {...form}>
       <form onSubmit={form.handleSubmit(onSubmit)}>
@@ -79,10 +105,10 @@ const AddTransactionForm = () => {
           {/* Date */}
           <FormField
             control={form.control}
-            name='date'
+            name='transaction_at'
             render={({ field }) => (
               <FormItem className='flex flex-col'>
-                <FormLabel>Date</FormLabel>
+                <FormLabel>Date of birth</FormLabel>
                 <Popover>
                   <PopoverTrigger asChild>
                     <FormControl>
@@ -119,16 +145,16 @@ const AddTransactionForm = () => {
             )}
           />
 
-          {/* Showroom */}
+          {/* Showroom Name */}
           <FormField
             control={form.control}
-            name='showroom'
+            name='showroom_id'
             render={({ field }) => (
               <FormItem>
-                <FormLabel>Showroom</FormLabel>
+                <FormLabel>Showrooms Name</FormLabel>
                 <Select
-                  onValueChange={field.onChange}
-                  defaultValue={field.value}
+                  onValueChange={value => field.onChange(Number(value))}
+                  defaultValue={String(field.value)}
                 >
                   <FormControl>
                     <SelectTrigger>
@@ -136,22 +162,9 @@ const AddTransactionForm = () => {
                     </SelectTrigger>
                   </FormControl>
                   <SelectContent>
-                    {[
-                      {
-                        label: 'showroom one',
-                        value: 'showroom one'
-                      },
-                      {
-                        label: 'showroom two',
-                        value: 'showroom two'
-                      },
-                      {
-                        label: 'showroom three',
-                        value: 'showroom three'
-                      }
-                    ].map(({ value, label }) => (
-                      <SelectItem key={value} value={value}>
-                        {label}
+                    {showrooms?.map((showroom: Showroom) => (
+                      <SelectItem key={showroom.id} value={String(showroom.id)}>
+                        {showroom.name}
                       </SelectItem>
                     ))}
                   </SelectContent>
@@ -164,36 +177,23 @@ const AddTransactionForm = () => {
           {/* Supplier Name */}
           <FormField
             control={form.control}
-            name='name'
+            name='supplier_id'
             render={({ field }) => (
               <FormItem>
                 <FormLabel>Supplier Name</FormLabel>
                 <Select
-                  onValueChange={field.onChange}
-                  defaultValue={field.value}
+                  onValueChange={value => field.onChange(Number(value))}
+                  defaultValue={String(field.value)}
                 >
                   <FormControl>
                     <SelectTrigger>
-                      <SelectValue placeholder='Select showroom' />
+                      <SelectValue placeholder='Select supplier' />
                     </SelectTrigger>
                   </FormControl>
                   <SelectContent>
-                    {[
-                      {
-                        label: 'John Doe',
-                        value: 'John Doe'
-                      },
-                      {
-                        label: 'Hary Markoyiz',
-                        value: 'Hary Markoyiz'
-                      },
-                      {
-                        label: 'Dolph Zigler',
-                        value: 'Dolph Zigler'
-                      }
-                    ].map(({ value, label }) => (
-                      <SelectItem key={value} value={value}>
-                        {label}
+                    {suppliers?.map((supplier: Supplier) => (
+                      <SelectItem key={supplier.id} value={String(supplier.id)}>
+                        {supplier.name}
                       </SelectItem>
                     ))}
                   </SelectContent>
@@ -203,38 +203,18 @@ const AddTransactionForm = () => {
             )}
           />
 
-          {/* Balance (TK) */}
           <div className='grid grid-cols-2 items-end gap-4'>
-            <FormField
-              control={form.control}
-              name='balance'
-              render={({ field }) => (
-                <FormItem>
-                  <FormLabel>Balance (TK)</FormLabel>
-                  <FormControl>
-                    <Input readOnly type='number' {...field} />
-                  </FormControl>
-                  <FormMessage />
-                </FormItem>
-              )}
-            />
+            <div>
+              <Label>Balance (TK)</Label>
+              <Input
+                readOnly
+                value={supplier ? supplier?.initial_balance : 0}
+              />
+            </div>
 
-            {/* Balance Type (TK) */}
-            <FormField
-              control={form.control}
-              name='balance_type'
-              render={({ field }) => (
-                <FormItem>
-                  <FormControl>
-                    <Input readOnly {...field} />
-                  </FormControl>
-                  <FormMessage />
-                </FormItem>
-              )}
-            />
+            <Input readOnly value={supplier ? supplier?.status : ''} />
           </div>
 
-          {/* Transaction Type */}
           <FormField
             control={form.control}
             name='transaction_type'
@@ -254,11 +234,11 @@ const AddTransactionForm = () => {
                     {[
                       {
                         label: 'Receive From Supplier',
-                        value: 'Receive From Supplier'
+                        value: 'receive'
                       },
                       {
                         label: 'Paid To Supplier',
-                        value: 'Paid To Supplier'
+                        value: 'paid'
                       }
                     ].map(({ value, label }) => (
                       <SelectItem key={value} value={value}>
@@ -330,7 +310,12 @@ const AddTransactionForm = () => {
               <FormItem>
                 <FormLabel>Payment (Tk)</FormLabel>
                 <FormControl>
-                  <Input type='number' placeholder='BDT' {...field} />
+                  <Input
+                    type='number'
+                    placeholder='BDT'
+                    {...field}
+                    onChange={event => field.onChange(+event.target.value)}
+                  />
                 </FormControl>
                 <FormMessage />
               </FormItem>
@@ -340,12 +325,17 @@ const AddTransactionForm = () => {
           {/* Remission (TK) */}
           <FormField
             control={form.control}
-            name='remission'
+            name='commission'
             render={({ field }) => (
               <FormItem>
                 <FormLabel>Remission (Tk)</FormLabel>
                 <FormControl>
-                  <Input type='number' placeholder='BDT' {...field} />
+                  <Input
+                    type='number'
+                    placeholder='BDT'
+                    {...field}
+                    onChange={event => field.onChange(+event.target.value)}
+                  />
                 </FormControl>
                 <FormMessage />
               </FormItem>
@@ -354,24 +344,15 @@ const AddTransactionForm = () => {
 
           {/* Total Balance (TK) */}
           <div className='grid grid-cols-2 items-end gap-4'>
-            <FormField
-              control={form.control}
-              name='total_balance'
-              render={({ field }) => (
-                <FormItem>
-                  <FormLabel>Total Balance (TK)</FormLabel>
-                  <FormControl>
-                    <Input readOnly type='number' {...field} />
-                  </FormControl>
-                  <FormMessage />
-                </FormItem>
-              )}
-            />
+            <div>
+              <Label>Total Balance (TK)</Label>
+              <Input readOnly value={totalBalance || 0} />
+            </div>
 
-            {/* Total Balance Type (TK) */}
+            {/* Total Balance status */}
             <FormField
               control={form.control}
-              name='tbalance_type'
+              name='balance_status'
               render={({ field }) => (
                 <FormItem>
                   <FormControl>
@@ -386,7 +367,7 @@ const AddTransactionForm = () => {
           {/* Spend By */}
           <FormField
             control={form.control}
-            name='spand_by'
+            name='remark'
             render={({ field }) => (
               <FormItem>
                 <FormLabel>Spend By</FormLabel>
@@ -398,8 +379,8 @@ const AddTransactionForm = () => {
             )}
           />
 
-          <Button type='submit' className='bg-brand'>
-            Submit
+          <Button type='submit' disabled={loading} className='bg-brand'>
+            {loading ? 'Loading..' : 'Submit'}
           </Button>
         </div>
       </form>

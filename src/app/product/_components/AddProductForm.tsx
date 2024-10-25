@@ -1,12 +1,5 @@
 'use client'
 
-import React from 'react'
-import { z } from 'zod'
-import { useForm } from 'react-hook-form'
-import { Input } from '@/components/ui/input'
-import { Button } from '@/components/ui/button'
-import { toast } from '@/components/ui/use-toast'
-import { zodResolver } from '@hookform/resolvers/zod'
 import {
   Form,
   FormControl,
@@ -22,43 +15,60 @@ import {
   SelectTrigger,
   SelectValue
 } from '@/components/ui/select'
-import { RadioGroup, RadioGroupItem } from '@/components/ui/radio-group'
+import React from 'react'
+import { z } from 'zod'
+import { useForm } from 'react-hook-form'
+import { Input } from '@/components/ui/input'
+import { Button } from '@/components/ui/button'
+import { productSchema } from './productSchema'
+import { toast } from '@/components/ui/use-toast'
+import { zodResolver } from '@hookform/resolvers/zod'
+import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query'
+import brandService from '@/services/brand-service'
+import categoryService from '@/services/category-service'
+import productService from '@/services/product-service'
+import toastify from '@/lib/toastify'
 
-const FormSchema = z.object({
-  name: z.string(),
-  product_code: z.coerce.number(),
-  model: z.string(),
-  category: z.string(),
-  brand: z.string(),
-  purchase_price: z.coerce.number(),
-  sale_price: z.coerce.number(),
-  unit: z.string(),
-  low_level: z.coerce.number(),
-  status: z.enum(['available', 'notavailable'], {
-    required_error: 'You need to select Status'
+const AddProductForm = ({ setOpen }: { setOpen: any }) => {
+  const queryClient = useQueryClient()
+
+  const {
+    data: brands,
+    isLoading: brandLoading,
+    error: brandError
+  } = useQuery({
+    queryKey: ['brands'],
+    queryFn: brandService.getAllBrands
   })
-})
 
-const AddProductForm = () => {
-  const form = useForm<z.infer<typeof FormSchema>>({
-    resolver: zodResolver(FormSchema),
-    defaultValues: {
-      product_code: 2525,
-      purchase_price: 0,
-      sale_price: 0,
-      status: 'available'
+  const {
+    data: categories,
+    isLoading: categoryLoading,
+    error: categoryError
+  } = useQuery({
+    queryKey: ['categories'],
+    queryFn: categoryService.getAllCategories
+  })
+
+  const form = useForm<z.infer<typeof productSchema>>({
+    resolver: zodResolver(productSchema)
+  })
+
+  const mutation = useMutation({
+    mutationFn: productService.addProduct,
+    onSuccess: () => {
+      // @ts-ignore
+      queryClient.invalidateQueries(['products'])
+      toastify.success('Showroom added successfully')
+      setOpen(false)
+    },
+    onError: (error: any) => {
+      toastify.error(error.message)
     }
   })
 
-  function onSubmit(data: z.infer<typeof FormSchema>) {
-    toast({
-      title: 'You submitted the following values:',
-      description: (
-        <pre className='mt-2 w-[340px] rounded-md bg-slate-950 p-4'>
-          <code className='text-white'>{JSON.stringify(data, null, 2)}</code>
-        </pre>
-      )
-    })
+  function onSubmit(data: z.infer<typeof productSchema>) {
+    mutation.mutate(data)
   }
   return (
     <Form {...form}>
@@ -73,21 +83,6 @@ const AddProductForm = () => {
                 <FormLabel>Product Name</FormLabel>
                 <FormControl>
                   <Input placeholder='Product Name' {...field} />
-                </FormControl>
-                <FormMessage />
-              </FormItem>
-            )}
-          />
-
-          {/* Product Code */}
-          <FormField
-            control={form.control}
-            name='product_code'
-            render={({ field }) => (
-              <FormItem>
-                <FormLabel>Product Code</FormLabel>
-                <FormControl>
-                  <Input type='number' placeholder='Code' readOnly {...field} />
                 </FormControl>
                 <FormMessage />
               </FormItem>
@@ -112,36 +107,23 @@ const AddProductForm = () => {
           {/* Category */}
           <FormField
             control={form.control}
-            name='category'
+            name='category_id'
             render={({ field }) => (
               <FormItem>
                 <FormLabel>Category</FormLabel>
-                <Select
-                  onValueChange={field.onChange}
-                  defaultValue={field.value}
-                >
+                <Select onValueChange={value => field.onChange(Number(value))}>
                   <FormControl>
                     <SelectTrigger>
                       <SelectValue placeholder='Select Category' />
                     </SelectTrigger>
                   </FormControl>
                   <SelectContent>
-                    {[
-                      {
-                        label: 'Category one',
-                        value: 'Category one'
-                      },
-                      {
-                        label: 'Category two',
-                        value: 'Category two'
-                      },
-                      {
-                        label: 'Category three',
-                        value: 'Category three'
-                      }
-                    ].map(({ value, label }) => (
-                      <SelectItem key={value} value={value}>
-                        {label}
+                    {categories?.map((category: any) => (
+                      <SelectItem
+                        key={category?.id}
+                        value={String(category?.id)}
+                      >
+                        {category?.name}
                       </SelectItem>
                     ))}
                   </SelectContent>
@@ -154,36 +136,20 @@ const AddProductForm = () => {
           {/* Brand */}
           <FormField
             control={form.control}
-            name='brand'
+            name='brand_id'
             render={({ field }) => (
               <FormItem>
                 <FormLabel>Brand</FormLabel>
-                <Select
-                  onValueChange={field.onChange}
-                  defaultValue={field.value}
-                >
+                <Select onValueChange={value => field.onChange(Number(value))}>
                   <FormControl>
                     <SelectTrigger>
                       <SelectValue placeholder='Select Brand' />
                     </SelectTrigger>
                   </FormControl>
                   <SelectContent>
-                    {[
-                      {
-                        label: 'Brand one',
-                        value: 'Brand one'
-                      },
-                      {
-                        label: 'Brand two',
-                        value: 'Brand two'
-                      },
-                      {
-                        label: 'Brand three',
-                        value: 'Brand three'
-                      }
-                    ].map(({ value, label }) => (
-                      <SelectItem key={value} value={value}>
-                        {label}
+                    {brands?.map((brand: any) => (
+                      <SelectItem key={brand?.id} value={String(brand?.id)}>
+                        {brand?.name}
                       </SelectItem>
                     ))}
                   </SelectContent>
@@ -201,7 +167,11 @@ const AddProductForm = () => {
               <FormItem>
                 <FormLabel>Purchase Price</FormLabel>
                 <FormControl>
-                  <Input type='number' {...field} />
+                  <Input
+                    type='number'
+                    {...field}
+                    onChange={event => field.onChange(+event.target.value)}
+                  />
                 </FormControl>
                 <FormMessage />
               </FormItem>
@@ -216,7 +186,11 @@ const AddProductForm = () => {
               <FormItem>
                 <FormLabel>Sale Price</FormLabel>
                 <FormControl>
-                  <Input type='number' {...field} />
+                  <Input
+                    type='number'
+                    {...field}
+                    onChange={event => field.onChange(+event.target.value)}
+                  />
                 </FormControl>
                 <FormMessage />
               </FormItem>
@@ -238,44 +212,12 @@ const AddProductForm = () => {
             )}
           />
 
-          {/* Status */}
-          <FormField
-            control={form.control}
-            name='status'
-            render={({ field }) => (
-              <FormItem>
-                <FormLabel>Status</FormLabel>
-                <FormControl>
-                  <RadioGroup
-                    onValueChange={field.onChange}
-                    defaultValue={field.value}
-                    className='flex gap-3'
-                  >
-                    <FormItem className='flex items-center gap-1 space-y-0'>
-                      <FormControl>
-                        <RadioGroupItem value='available' />
-                      </FormControl>
-                      <FormLabel className='cursor-pointer font-medium'>
-                        Available
-                      </FormLabel>
-                    </FormItem>
-                    <FormItem className='flex items-center gap-1 space-y-0'>
-                      <FormControl>
-                        <RadioGroupItem value='notavailable' />
-                      </FormControl>
-                      <FormLabel className='cursor-pointer font-medium'>
-                        Not Available
-                      </FormLabel>
-                    </FormItem>
-                  </RadioGroup>
-                </FormControl>
-                <FormMessage />
-              </FormItem>
-            )}
-          />
-
-          <Button type='submit' className='bg-brand'>
-            Submit
+          <Button
+            disabled={mutation.isPending}
+            type='submit'
+            className='bg-brand'
+          >
+            {mutation.isPending ? 'Submitting...' : 'Submit'}
           </Button>
         </div>
       </form>

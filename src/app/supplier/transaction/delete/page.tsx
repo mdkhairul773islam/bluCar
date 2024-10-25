@@ -144,7 +144,7 @@ const DeleteTransactionPage = async () => {
 
       {/* Panel Header */}
       <PanelHeader title='Delete Transaction'>
-        <AddTransaction />
+        {/* <AddTransaction /> */}
       </PanelHeader>
 
       {/* Transaction Table */}

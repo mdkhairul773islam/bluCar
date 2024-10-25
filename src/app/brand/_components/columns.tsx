@@ -1,51 +1,54 @@
 'use client'
 
-import { Checkbox } from '@/components/ui/checkbox'
-
-import { ColumnDef } from '@tanstack/react-table'
-import { Hash, LayoutPanelLeft, Lightbulb, Trash, User } from 'lucide-react'
-
-import { Button } from '@/components/ui/button'
 import EditBrand from './EditBrand'
+import DeleteBrand from './DeleteBrand'
+import dateFormat from '@/lib/dateFormat'
+import { BiDetail } from 'react-icons/bi'
 import Column from '@/components/shared/Column'
+import { ColumnDef } from '@tanstack/react-table'
+import { Checkbox } from '@/components/ui/checkbox'
+import { Calendar, Hash, LayoutPanelLeft, Lightbulb } from 'lucide-react'
 
 export type Brand = {
-  id: string
+  id: number
   name: string
+  description: string | null
+  created_at: Date
 }
 
 export const columns: ColumnDef<Brand>[] = [
+  // {
+  //   id: 'Select',
+  //   header: ({ table }) => (
+  //     <Checkbox
+  //       checked={
+  //         table.getIsAllPageRowsSelected() ||
+  //         (table.getIsSomePageRowsSelected() && 'indeterminate')
+  //       }
+  //       onCheckedChange={value => table.toggleAllPageRowsSelected(!!value)}
+  //       aria-label='Select all'
+  //     />
+  //   ),
+  //   cell: ({ row }) => (
+  //     <Checkbox
+  //       checked={row.getIsSelected()}
+  //       onCheckedChange={value => row.toggleSelected(!!value)}
+  //       aria-label='Select row'
+  //     />
+  //   ),
+  //   enableSorting: false,
+  //   enableHiding: false
+  // },
   {
-    id: 'Select',
-    header: ({ table }) => (
-      <Checkbox
-        checked={
-          table.getIsAllPageRowsSelected() ||
-          (table.getIsSomePageRowsSelected() && 'indeterminate')
-        }
-        onCheckedChange={value => table.toggleAllPageRowsSelected(!!value)}
-        aria-label='Select all'
-      />
-    ),
-    cell: ({ row }) => (
-      <Checkbox
-        checked={row.getIsSelected()}
-        onCheckedChange={value => row.toggleSelected(!!value)}
-        aria-label='Select row'
-      />
-    ),
-    enableSorting: false,
-    enableHiding: false
-  },
-  {
-    accessorKey: 'id',
+    accessorKey: 'serial',
     header: ({ column }) => (
       <Column
         icon={<Hash className='size-3' />}
-        label='ID'
+        label='SL'
         onclick={() => column.toggleSorting(column.getIsSorted() === 'asc')}
       />
-    )
+    ),
+    cell: ({ row }) => <>{row.index + 1}</>
   },
 
   {
@@ -57,21 +60,46 @@ export const columns: ColumnDef<Brand>[] = [
       />
     )
   },
+
+  {
+    accessorKey: 'description',
+    header: () => (
+      <Column icon={<BiDetail className='size-3' />} label='Description' />
+    ),
+    cell: ({ row }) => {
+      const { description } = row.original
+
+      return description ? description : '-'
+    }
+  },
+  {
+    accessorKey: 'created_at',
+    header: ({ column }) => (
+      <Column
+        icon={<Calendar className='size-3' />}
+        label='Date'
+        onclick={() => column.toggleSorting(column.getIsSorted() === 'asc')}
+      />
+    ),
+    cell: ({ row }) => {
+      const { created_at } = row.original
+
+      return <>{dateFormat(created_at)}</>
+    }
+  },
   {
     id: 'actions',
     header: () => (
       <Column icon={<Lightbulb className='size-3' />} label='Actions' />
     ),
     cell: ({ row }) => {
-      const { id }: { id: string } = row.original
+      const { id }: { id: number } = row.original
 
       return (
         <>
           <div className='flex items-center justify-end gap-2'>
-            <EditBrand />
-            <Button size='icon' className='delete-button'>
-              <Trash className=' size-4' />
-            </Button>
+            <EditBrand brand={row.original} />
+            <DeleteBrand id={id} />
           </div>
         </>
       )

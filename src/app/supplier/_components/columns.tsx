@@ -1,80 +1,73 @@
 'use client'
 
-import { Checkbox } from '@/components/ui/checkbox'
-import { ColumnDef } from '@tanstack/react-table'
 import {
   Hash,
   Lightbulb,
   LocateFixed,
   PhoneCall,
   User,
-  Calculator,
   Store,
   User2,
   Coins,
   Trash,
-  Eye
+  Eye,
+  Calendar
 } from 'lucide-react'
 import EditSupplier from './EditSupplier'
 import { Badge } from '@/components/ui/badge'
 import { Button } from '@/components/ui/button'
 import Column from '@/components/shared/Column'
+import { ColumnDef } from '@tanstack/react-table'
+import dateFormat from '@/lib/dateFormat'
+import DeleteSupplier from './DeleteSupplier'
+import Link from 'next/link'
 
 export type Supplier = {
-  id: string
-  date: string
-  showroom: string
+  id: number
+  showroom_id: number
+  date: Date
   name: string
+  code: string
   contact_person: string
   mobile: string
-  current_balance: number
-  type: 'Receivable' | 'Payable'
-  status: 'Active' | 'Inactive'
+  address: string
+  initial_balance: number
+  status: 'Receivable' | 'Payable'
+  created_at: Date
+  updated_at: Date
 }
 
 export const columns: ColumnDef<Supplier>[] = [
   {
-    id: 'Select',
-    header: ({ table }) => (
-      <Checkbox
-        checked={
-          table.getIsAllPageRowsSelected() ||
-          (table.getIsSomePageRowsSelected() && 'indeterminate')
-        }
-        onCheckedChange={value => table.toggleAllPageRowsSelected(!!value)}
-        aria-label='Select all'
-      />
-    ),
-    cell: ({ row }) => (
-      <Checkbox
-        checked={row.getIsSelected()}
-        onCheckedChange={value => row.toggleSelected(!!value)}
-        aria-label='Select row'
-      />
-    ),
-    enableSorting: false,
-    enableHiding: false
-  },
-  {
-    accessorKey: 'id',
+    accessorKey: 'serial',
     header: ({ column }) => (
       <Column
         icon={<Hash className='size-3' />}
         label='SL'
         onclick={() => column.toggleSorting(column.getIsSorted() === 'asc')}
       />
-    )
+    ),
+    cell: ({ row }) => <>{row.index + 1}</>
   },
   {
     accessorKey: 'date',
-    header: () => (
-      <Column icon={<Calculator className='size-3' />} label='Date' />
-    )
+    header: ({ column }) => (
+      <Column
+        icon={<Calendar className='size-3' />}
+        label='Date'
+        onclick={() => column.toggleSorting(column.getIsSorted() === 'asc')}
+      />
+    ),
+    cell: ({ row }) => {
+      const { date } = row.original
+
+      return <>{dateFormat(date)}</>
+    }
   },
   {
-    accessorKey: 'showroom',
+    accessorKey: 'showroom_id',
     header: () => (
-      <Column icon={<Store className='size-3' />} label='Showroom' />
+      <Column icon={<Store className='size-3' />} label='Showroom Id' />
     )
   },
   {
@@ -94,40 +87,21 @@ export const columns: ColumnDef<Supplier>[] = [
     )
   },
   {
-    accessorKey: 'current_balance',
+    accessorKey: 'initial_balance',
     header: () => (
-      <Column icon={<Coins className='size-3' />} label='Current Balance' />
+      <Column icon={<Coins className='size-3' />} label='Initial Balance' />
     ),
     cell: ({ row }) => {
-      const { current_balance, type } = row.original
+      const { initial_balance, status } = row.original
 
       return (
         <>
-          {type === 'Receivable' ? (
+          {status === 'Receivable' ? (
             <span className=' font-medium text-green-600'>
-              {current_balance}
+              {initial_balance}
             </span>
           ) : (
-            <span className=' font-medium text-red-600'>{current_balance}</span>
-          )}
-        </>
-      )
-    }
-  },
-  {
-    accessorKey: 'type',
-    header: () => (
-      <Column icon={<LocateFixed className='size-3' />} label='Type' />
-    ),
-    cell: ({ row }) => {
-      const { type } = row.original
-
-      return (
-        <>
-          {type === 'Receivable' ? (
-            <Badge className='rounded-full bg-green-600'>Receivable</Badge>
-          ) : (
-            <Badge className='rounded-full bg-red-600'>Payable</Badge>
+            <span className=' font-medium text-red-600'>{initial_balance}</span>
           )}
         </>
       )
@@ -143,35 +117,36 @@ export const columns: ColumnDef<Supplier>[] = [
 
       return (
         <>
-          {status === 'Active' ? (
-            <Badge className='rounded-full bg-green-600'>Active</Badge>
+          {status === 'Receivable' ? (
+            <Badge className='rounded-full bg-green-600'>Receivable</Badge>
           ) : (
-            <Badge className='rounded-full bg-red-600'>Inactive</Badge>
+            <Badge className='rounded-full bg-red-600'>Payable</Badge>
           )}
         </>
       )
     }
   },
+
   {
     id: 'actions',
     header: () => (
       <Column icon={<Lightbulb className='size-3' />} label='Actions' />
     ),
     cell: ({ row }) => {
-      const { id }: { id: string } = row.original
+      const { id }: { id: number } = row.original
 
       return (
         <>
           <div className='flex items-center justify-end gap-2'>
-            <Button size='icon' className='show-button'>
-              <Eye className='size-4' />
-            </Button>
+            <Link href={`/supplier/show/${id}`}>
+              <Button size='icon' className='show-button'>
+                <Eye className='size-4' />
+              </Button>
+            </Link>
 
-            <EditSupplier />
+            <EditSupplier supplier={row.original} />
 
-            <Button size='icon' className='delete-button'>
-              <Trash className='size-4' />
-            </Button>
+            <DeleteSupplier id={id} />
           </div>
         </>
       )

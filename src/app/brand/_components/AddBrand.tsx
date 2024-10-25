@@ -1,5 +1,6 @@
-import { Button } from '@/components/ui/button'
-import AddBrandForm from './AddBrandForm'
+'use client'
+
+import React from 'react'
 import {
   Dialog,
   DialogContent,
@@ -9,12 +10,19 @@ import {
   DialogTrigger
 } from '@/components/ui/dialog'
 import { CirclePlus } from 'lucide-react'
+import AddBrandForm from './AddBrandForm'
+import { Button } from '@/components/ui/button'
 
 export default function AddBrand() {
+  const [open, setOpen] = React.useState(false)
+
   return (
-    <Dialog>
+    <Dialog open={open} onOpenChange={setOpen}>
       <DialogTrigger asChild>
-        <Button className='flex items-center gap-2 bg-brand'>
+        <Button
+          className='flex items-center gap-2 bg-brand'
+          onClick={() => setOpen(true)}
+        >
           <CirclePlus className='size-4' />
           Add New
         </Button>
@@ -28,7 +36,7 @@ export default function AddBrand() {
         </DialogHeader>
 
         {/* Add Brand form */}
-        <AddBrandForm />
+        <AddBrandForm setOpen={setOpen} />
       </DialogContent>
     </Dialog>
   )

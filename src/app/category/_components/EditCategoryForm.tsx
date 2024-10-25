@@ -1,23 +1,106 @@
-import React from "react";
-import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
-import { Label } from "@/components/ui/label";
+'use client'
 
-const EditCategoryForm = () => {
+import {
+  Form,
+  FormControl,
+  FormField,
+  FormItem,
+  FormLabel,
+  FormMessage
+} from '@/components/ui/form'
+import { z } from 'zod'
+import React from 'react'
+import toastify from '@/lib/toastify'
+import { Category } from './columns'
+import { useForm } from 'react-hook-form'
+import { Input } from '@/components/ui/input'
+import categorySchema from './categorySchema'
+import { Button } from '@/components/ui/button'
+import { Textarea } from '@/components/ui/textarea'
+import { zodResolver } from '@hookform/resolvers/zod'
+import categoryService from '@/services/category-service'
+import { useMutation, useQueryClient } from '@tanstack/react-query'
+
+const EditCategoryForm = ({
+  setOpen,
+  category
+}: {
+  setOpen: any
+  category: Category
+}) => {
+  const queryClient = useQueryClient()
+
+  const form = useForm<z.infer<typeof categorySchema>>({
+    resolver: zodResolver(categorySchema),
+    defaultValues: {
+      name: category?.name || '',
+      description: category?.description || ''
+    }
+  })
+
+  const mutation = useMutation({
+    mutationFn: data => categoryService.updateCategory(category.id, data),
+    onSuccess: () => {
+      // @ts-ignore
+      queryClient.invalidateQueries(['categories'])
+      toastify.success('Category updated successfully')
+      setOpen(false)
+    },
+    onError: error => {
+      toastify.error('Failed to update category')
+    }
+  })
+
+  function onSubmit(data: z.infer<typeof categorySchema>) {
+    // @ts-ignore
+    mutation.mutate(data)
+  }
+
   return (
-    <form action="">
-      <div className="grid gap-6 py-4">
-        <div className="grid gap-2">
-          <Label htmlFor="name">Category Name</Label>
-          <Input id="name" placeholder="Name" />
+    <Form {...form}>
+      <form onSubmit={form.handleSubmit(onSubmit)}>
+        <div className='grid gap-4 py-4'>
+          {/* Category name */}
+          <FormField
+            control={form.control}
+            name='name'
+            render={({ field }) => (
+              <FormItem>
+                <FormLabel>Category name</FormLabel>
+                <FormControl>
+                  <Input placeholder='Category name' {...field} />
+                </FormControl>
+                <FormMessage />
+              </FormItem>
+            )}
+          />
+
+          {/* Description */}
+          <FormField
+            control={form.control}
+            name='description'
+            render={({ field }) => (
+              <FormItem>
+                <FormLabel>Description</FormLabel>
+                <FormControl>
+                  <Textarea placeholder='Description' {...field} />
+                </FormControl>
+                <FormMessage />
+              </FormItem>
+            )}
+          />
+
+          <Button
+            disabled={mutation.isPending}
+            type='submit'
+            className='bg-brand'
+          >
+            {mutation.isPending ? 'Submitting...' : 'Update'}
+          </Button>
         </div>
+      </form>
+    </Form>
+  )
+}
 
-        <Button type="submit" className="bg-brand">
-          Save changes
-        </Button>
-      </div>
-    </form>
-  );
-};
-
-export default EditCategoryForm;
+export default EditCategoryForm

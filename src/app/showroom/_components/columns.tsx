@@ -1,73 +1,60 @@
 'use client'
 
-import { Checkbox } from '@/components/ui/checkbox'
-
-import { ColumnDef } from '@tanstack/react-table'
 import {
   Hash,
   Lightbulb,
   LocateFixed,
   PhoneCall,
   User,
-  MapPinned
+  MapPinned,
+  MapPin
 } from 'lucide-react'
-
-import { Button } from '@/components/ui/button'
 import EditShowroom from './EditShowroom'
 import Column from '@/components/shared/Column'
+import { ColumnDef } from '@tanstack/react-table'
+import DeleteShowroom from './DeleteShowroom'
 
 export type Showroom = {
-  id: string
+  id: number
   name: string
-  manager: string
-  mobile: string
-  mobile_two: string
-  mobile_three: string
-  address: string
-  prefix: string
+  location: string
+  manager: string | null
+  mobile: string | null
+  mobile_two: string | null
+  address: string | null
+  name_code: string
 }
 
 export const columns: ColumnDef<Showroom>[] = [
   {
-    id: 'Select',
-    header: ({ table }) => (
-      <Checkbox
-        checked={
-          table.getIsAllPageRowsSelected() ||
-          (table.getIsSomePageRowsSelected() && 'indeterminate')
-        }
-        onCheckedChange={value => table.toggleAllPageRowsSelected(!!value)}
-        aria-label='Select all'
-      />
-    ),
-    cell: ({ row }) => (
-      <Checkbox
-        checked={row.getIsSelected()}
-        onCheckedChange={value => row.toggleSelected(!!value)}
-        aria-label='Select row'
-      />
-    ),
-    enableSorting: false,
-    enableHiding: false
-  },
-  {
-    accessorKey: 'id',
+    accessorKey: 'serial',
     header: ({ column }) => (
       <Column
         icon={<Hash className='size-3' />}
-        label='ID'
+        label='SL'
         onclick={() => column.toggleSorting(column.getIsSorted() === 'asc')}
       />
-    )
+    ),
+    cell: ({ row }) => <>{row.index + 1}</>
   },
-
   {
     accessorKey: 'name',
     header: () => <Column icon={<User className='size-3' />} label='Name' />
   },
   {
+    accessorKey: 'location',
+    header: () => (
+      <Column icon={<MapPin className='size-3' />} label='Location' />
+    )
+  },
+  {
     accessorKey: 'manager',
-    header: () => <Column icon={<User className='size-3' />} label='Manager' />
+    header: () => <Column icon={<User className='size-3' />} label='Manager' />,
+    cell: ({ row }) => {
+      const { manager }: { manager: string | null } = row.original
+
+      return <>{manager ? manager : '-'}</>
+    }
   },
   {
     accessorKey: 'mobile',
@@ -75,7 +62,7 @@ export const columns: ColumnDef<Showroom>[] = [
       <Column icon={<PhoneCall className='size-3' />} label='Mobile' />
     ),
     cell: ({ row }) => {
-      const { mobile }: { mobile: string } = row.original
+      const { mobile }: { mobile: string | null } = row.original
 
       return <>{mobile ? mobile : '-'}</>
     }
@@ -86,37 +73,27 @@ export const columns: ColumnDef<Showroom>[] = [
       <Column icon={<PhoneCall className='size-3' />} label='Mobile Two' />
     ),
     cell: ({ row }) => {
-      const { mobile_two }: { mobile_two: string } = row.original
+      const { mobile_two }: { mobile_two: string | null } = row.original
 
       return <>{mobile_two ? mobile_two : '-'}</>
     }
   },
-  {
-    accessorKey: 'mobile_three',
-    header: () => (
-      <Column icon={<PhoneCall className='size-3' />} label='Mobile Three' />
-    ),
-    cell: ({ row }) => {
-      const { mobile_three }: { mobile_three: string } = row.original
 
-      return <>{mobile_three ? mobile_three : '-'}</>
-    }
-  },
   {
     accessorKey: 'address',
     header: () => (
       <Column icon={<MapPinned className='size-3' />} label='Address' />
     ),
     cell: ({ row }) => {
-      const { address }: { address: string } = row.original
+      const { address }: { address: string | null } = row.original
 
       return <>{address ? address : '-'}</>
     }
   },
   {
-    accessorKey: 'prefix',
+    accessorKey: 'name_code',
     header: () => (
-      <Column icon={<LocateFixed className='size-3' />} label='Area' />
+      <Column icon={<LocateFixed className='size-3' />} label='Prefix' />
     )
   },
 
@@ -126,12 +103,14 @@ export const columns: ColumnDef<Showroom>[] = [
       <Column icon={<Lightbulb className='size-3' />} label='Actions' />
     ),
     cell: ({ row }) => {
-      const { id }: { id: string } = row.original
+      const { id }: { id: number } = row.original
 
       return (
         <>
           <div className='flex items-center justify-end gap-2'>
-            <EditShowroom />
+            <EditShowroom showroom={row.original} />
+
+            <DeleteShowroom id={id} />
           </div>
         </>
       )

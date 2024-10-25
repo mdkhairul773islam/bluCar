@@ -16,18 +16,28 @@ import EditTransaction from './EditTransaction'
 import { Badge } from '@/components/ui/badge'
 import { Button } from '@/components/ui/button'
 import Column from '@/components/shared/Column'
+import { formatDate } from 'date-fns'
+import Link from 'next/link'
 
 export type Transaction = {
-  id: string
-  date: string
-  name: string
-  trx_no: string
-  transaction_type: 'Receivable' | 'Payable'
+  id: number
+  transaction_at: Date
+  showroom_id: string
+  party_code: string
+  relation: string
+  credit: number
+  debit: number
+  commission: number
+  transaction_method: string
+  transaction_type: 'receive' | 'paid'
+  remark: string
   transaction_by: string
-  username: string
-  paid: number
-  remission: number
-  transation_method: string
+  paid_by: string
+  status: string
+  created_at: Date
+  updated_at: Date
+  name: string
+  showrooms: string
 }
 
 export const columns: ColumnDef<Transaction>[] = [
@@ -43,14 +53,19 @@ export const columns: ColumnDef<Transaction>[] = [
   },
   {
     accessorKey: 'date',
-    header: () => <Column icon={<Calendar className='size-3' />} label='Date' />
+    header: () => (
+      <Column icon={<Calendar className='size-3' />} label='Date' />
+    ),
+    cell: ({ row }) => {
+      return formatDate(row.original.transaction_at, 'PPP')
+    }
   },
   {
     accessorKey: 'name',
     header: () => <Column icon={<User className='size-3' />} label='Name' />
   },
   {
-    accessorKey: 'trx_no',
+    accessorKey: 'relation',
     header: () => (
       <Column
         icon={<FaMoneyBillTransfer className='size-3' />}
@@ -81,13 +96,17 @@ export const columns: ColumnDef<Transaction>[] = [
     header: () => <Column icon={<User className='size-3' />} label='Username' />
   },
   {
-    accessorKey: 'paid',
-    header: () => <Column icon={<Coins className='size-3' />} label='Paid' />
+    accessorKey: 'debit',
+    header: () => <Column icon={<Coins className='size-3' />} label='Debit' />
   },
   {
-    accessorKey: 'remission',
+    accessorKey: 'credit',
+    header: () => <Column icon={<Coins className='size-3' />} label='Credit' />
+  },
+  {
+    accessorKey: 'commission',
     header: () => (
-      <Column icon={<Coins className='size-3' />} label='Remission' />
+      <Column icon={<Coins className='size-3' />} label='Commission' />
     )
   },
   {
@@ -103,12 +122,12 @@ export const columns: ColumnDef<Transaction>[] = [
 
       return (
         <>
-          {transaction_type === 'Receivable' ? (
+          {transaction_type === 'receive' ? (
             <Badge className=' rounded-full bg-green-600 font-medium'>
               {transaction_type}
             </Badge>
           ) : (
-            <Badge className=' rounded-full bg-red-600 font-medium'>
+            <Badge className='rounded-full bg-red-600 font-medium'>
               {transaction_type}
             </Badge>
           )}
@@ -117,7 +136,7 @@ export const columns: ColumnDef<Transaction>[] = [
     }
   },
   {
-    accessorKey: 'transation_method',
+    accessorKey: 'transaction_method',
     header: () => (
       <Column
         icon={<PhoneCall className='size-3' />}
@@ -132,14 +151,16 @@ export const columns: ColumnDef<Transaction>[] = [
       <Column icon={<Lightbulb className='size-3' />} label='Actions' />
     ),
     cell: ({ row }) => {
-      const { id }: { id: string } = row.original
+      const { id } = row.original
 
       return (
         <>
           <div className='flex items-center justify-end gap-2'>
-            <Button size='icon' className='show-button'>
-              <Eye className='size-4' />
-            </Button>
+            <Link href={`/supplier/transaction/show/${id}`}>
+              <Button size='icon' className='show-button'>
+                <Eye className='size-4' />
+              </Button>
+            </Link>
 
             <EditTransaction />
 

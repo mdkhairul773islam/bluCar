@@ -1,4 +1,5 @@
-import { Button } from '@/components/ui/button'
+'use client'
+
 import {
   Sheet,
   SheetContent,
@@ -7,14 +8,23 @@ import {
   SheetTitle,
   SheetTrigger
 } from '@/components/ui/sheet'
+import React from 'react'
 import { Edit } from 'lucide-react'
+import { Showroom } from './columns'
+import { Button } from '@/components/ui/button'
 import EditShowroomForm from './EditShowroomForm'
 
-export default function EditShowroom() {
+export default function EditShowroom({ showroom }: { showroom: Showroom }) {
+  const [open, setOpen] = React.useState(false)
+
   return (
-    <Sheet>
+    <Sheet open={open} onOpenChange={setOpen}>
       <SheetTrigger asChild>
-        <Button size='icon' className='edit-button'>
+        <Button
+          size='icon'
+          className='edit-button'
+          onClick={() => setOpen(true)}
+        >
           <Edit className='size-4' />
         </Button>
       </SheetTrigger>
@@ -27,7 +37,7 @@ export default function EditShowroom() {
         </SheetHeader>
 
         {/* Edit showroom form */}
-        <EditShowroomForm />
+        <EditShowroomForm showroom={showroom} setOpen={setOpen} />
       </SheetContent>
     </Sheet>
   )

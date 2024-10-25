@@ -5,7 +5,6 @@ import { z } from 'zod'
 import { useForm } from 'react-hook-form'
 import { Input } from '@/components/ui/input'
 import { Button } from '@/components/ui/button'
-import { toast } from '@/components/ui/use-toast'
 import { zodResolver } from '@hookform/resolvers/zod'
 import {
   Form,
@@ -15,32 +14,35 @@ import {
   FormLabel,
   FormMessage
 } from '@/components/ui/form'
+import { useMutation, useQueryClient } from '@tanstack/react-query'
+import showroomService from '@/services/showroom-service'
+import toastify from '@/lib/toastify'
+import showroomSchema from './showroomSchema'
 
-const FormSchema = z.object({
-  name: z.string(),
-  manager: z.string(),
-  mobile: z.string(),
-  mobile_two: z.string(),
-  mobile_three: z.string(),
-  address: z.string(),
-  prefix: z.string()
-})
+const AddShowroomForm = ({ setOpen }: { setOpen: any }) => {
+  const queryClient = useQueryClient()
 
-const AddShowroomForm = () => {
-  const form = useForm<z.infer<typeof FormSchema>>({
-    resolver: zodResolver(FormSchema)
+  const form = useForm<z.infer<typeof showroomSchema>>({
+    resolver: zodResolver(showroomSchema)
   })
 
-  function onSubmit(data: z.infer<typeof FormSchema>) {
-    toast({
-      title: 'You submitted the following values:',
-      description: (
-        <pre className='mt-2 w-[340px] rounded-md bg-slate-950 p-4'>
-          <code className='text-white'>{JSON.stringify(data, null, 2)}</code>
-        </pre>
-      )
-    })
+  const mutation = useMutation({
+    mutationFn: showroomService.addShowroom,
+    onSuccess: () => {
+      // @ts-ignore
+      queryClient.invalidateQueries(['showrooms'])
+      toastify.success('Showroom added successfully')
+      setOpen(false)
+    },
+    onError: (error: any) => {
+      toastify.error(error.message)
+    }
+  })
+
+  function onSubmit(data: z.infer<typeof showroomSchema>) {
+    mutation.mutate(data)
   }
+
   return (
     <Form {...form}>
       <form onSubmit={form.handleSubmit(onSubmit)}>
@@ -54,6 +56,21 @@ const AddShowroomForm = () => {
                 <FormLabel>Name</FormLabel>
                 <FormControl>
                   <Input placeholder='Name' {...field} />
+                </FormControl>
+                <FormMessage />
+              </FormItem>
+            )}
+          />
+
+          {/* Location */}
+          <FormField
+            control={form.control}
+            name='location'
+            render={({ field }) => (
+              <FormItem>
+                <FormLabel>Location</FormLabel>
+                <FormControl>
+                  <Input placeholder='Location' {...field} />
                 </FormControl>
                 <FormMessage />
               </FormItem>
@@ -105,21 +122,6 @@ const AddShowroomForm = () => {
             )}
           />
 
-          {/* Mobile Three */}
-          <FormField
-            control={form.control}
-            name='mobile_three'
-            render={({ field }) => (
-              <FormItem>
-                <FormLabel>Mobile Three</FormLabel>
-                <FormControl>
-                  <Input type='number' placeholder='01*********' {...field} />
-                </FormControl>
-                <FormMessage />
-              </FormItem>
-            )}
-          />
-
           {/* Address */}
           <FormField
             control={form.control}
@@ -135,22 +137,12 @@ const AddShowroomForm = () => {
             )}
           />
 
-          {/* Prefix */}
-          <FormField
-            control={form.control}
-            name='prefix'
-            render={({ field }) => (
-              <FormItem>
-                <FormLabel>Prefix</FormLabel>
-                <FormControl>
-                  <Input placeholder='Preix' {...field} />
-                </FormControl>
-                <FormMessage />
-              </FormItem>
-            )}
-          />
-          <Button type='submit' className='bg-brand'>
-            Submit
+          <Button
+            disabled={mutation.isPending}
+            type='submit'
+            className='bg-brand'
+          >
+            {mutation.isPending ? 'Submitting...' : 'Submit'}
           </Button>
         </div>
       </form>

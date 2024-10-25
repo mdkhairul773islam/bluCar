@@ -67,3 +67,12 @@ A Complete HRM & CRM Management Software
 - `✅ Datewise Stock`
 
 - ~~Barcode~~
+
+## 🚀 Complete api integration
+
+- `✅ Brand`
+  - `allBrands, addBrand, updateBrand, deleteBrand`
+- `✅ Category`
+  - `allCategory, addCategory, updateCategory, deleteCategory`
+- `✅ Showroom`
+  - `allShowrooms, addShowroom, updateShowrooms, deleteShowrooms`

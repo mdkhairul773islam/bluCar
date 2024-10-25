@@ -8,6 +8,8 @@ import Header from '@/components/layouts/Header'
 import Sidebar from '@/components/layouts/Sidebar'
 import { Toaster } from '@/components/ui/toaster'
 import { ThemeProvider } from '@/Providers/ThemeProvider'
+import RQClientQuery from '@/Providers/RQClientQuery'
+import ToastContainer from '@/components/ui/toast-container'
 
 // NeutrifPro Font
 const NeutrifPro = localFont({
@@ -68,17 +70,22 @@ export default function RootLayout({
           enableSystem
           disableTransitionOnChange
         >
-          <div className='grid min-h-screen w-full'>
-            <Sidebar />
+          {/* Toast Container */}
+          <ToastContainer />
 
-            <div className='flex flex-col overflow-hidden lg:ml-[280px]'>
-              <Header />
+          <RQClientQuery>
+            <div className='grid min-h-screen w-full'>
+              <Sidebar />
 
-              <main className='flex flex-1 flex-col  p-4 lg:p-6'>
-                {children}
-              </main>
+              <div className='flex flex-col overflow-hidden lg:ml-[280px]'>
+                <Header />
+
+                <main className='flex flex-1 flex-col  p-4 lg:p-6'>
+                  {children}
+                </main>
+              </div>
             </div>
-          </div>
+          </RQClientQuery>
 
           <Toaster />
         </ThemeProvider>

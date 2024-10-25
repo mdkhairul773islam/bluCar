@@ -1,12 +1,5 @@
 'use client'
 
-import React from 'react'
-import { z } from 'zod'
-import { useForm } from 'react-hook-form'
-import { Input } from '@/components/ui/input'
-import { Button } from '@/components/ui/button'
-import { toast } from '@/components/ui/use-toast'
-import { zodResolver } from '@hookform/resolvers/zod'
 import {
   Form,
   FormControl,
@@ -15,39 +8,55 @@ import {
   FormLabel,
   FormMessage
 } from '@/components/ui/form'
+import { z } from 'zod'
+import React from 'react'
+import { Showroom } from './columns'
+import toastify from '@/lib/toastify'
+import { useForm } from 'react-hook-form'
+import { Input } from '@/components/ui/input'
+import showroomSchema from './showroomSchema'
+import { Button } from '@/components/ui/button'
+import { zodResolver } from '@hookform/resolvers/zod'
+import showroomService from '@/services/showroom-service'
+import { useMutation, useQueryClient } from '@tanstack/react-query'
 
-const FormSchema = z.object({
-  name: z.string(),
-  manager: z.string(),
-  mobile: z.string(),
-  mobile_two: z.string(),
-  mobile_three: z.string(),
-  address: z.string(),
-  prefix: z.string()
-})
+const EditShowroomForm = ({
+  setOpen,
+  showroom
+}: {
+  setOpen: any
+  showroom: Showroom
+}) => {
+  const queryClient = useQueryClient()
 
-const EditShowroomForm = () => {
-  const form = useForm<z.infer<typeof FormSchema>>({
-    resolver: zodResolver(FormSchema),
+  const form = useForm<z.infer<typeof showroomSchema>>({
+    resolver: zodResolver(showroomSchema),
     defaultValues: {
-      name: 'Showroom 01',
-      manager: 'John Doe',
-      mobile: '017********',
-      mobile_two: '017********',
-      mobile_three: '017********',
-      prefix: 'SM-1'
+      name: showroom?.name || '',
+      location: showroom?.location || '',
+      manager: showroom?.manager || '',
+      mobile: showroom?.mobile || '',
+      mobile_two: showroom?.mobile_two || '',
+      address: showroom?.address || ''
     }
   })
 
-  function onSubmit(data: z.infer<typeof FormSchema>) {
-    toast({
-      title: 'You submitted the following values:',
-      description: (
-        <pre className='mt-2 w-[340px] rounded-md bg-slate-950 p-4'>
-          <code className='text-white'>{JSON.stringify(data, null, 2)}</code>
-        </pre>
-      )
-    })
+  const mutation = useMutation({
+    mutationFn: data => showroomService.updateShowroom(showroom.id, data),
+    onSuccess: () => {
+      // @ts-ignore
+      queryClient.invalidateQueries(['showrooms'])
+      toastify.success('Showroom updated successfully')
+      setOpen(false)
+    },
+    onError: error => {
+      toastify.error('Failed to update showroom')
+    }
+  })
+
+  function onSubmit(data: z.infer<typeof showroomSchema>) {
+    // @ts-ignore
+    mutation.mutate(data)
   }
   return (
     <Form {...form}>
@@ -62,6 +71,21 @@ const EditShowroomForm = () => {
                 <FormLabel>Name</FormLabel>
                 <FormControl>
                   <Input placeholder='Name' {...field} />
+                </FormControl>
+                <FormMessage />
+              </FormItem>
+            )}
+          />
+
+          {/* Location */}
+          <FormField
+            control={form.control}
+            name='location'
+            render={({ field }) => (
+              <FormItem>
+                <FormLabel>Location</FormLabel>
+                <FormControl>
+                  <Input placeholder='Location' {...field} />
                 </FormControl>
                 <FormMessage />
               </FormItem>
@@ -113,21 +137,6 @@ const EditShowroomForm = () => {
             )}
           />
 
-          {/* Mobile Three */}
-          <FormField
-            control={form.control}
-            name='mobile_three'
-            render={({ field }) => (
-              <FormItem>
-                <FormLabel>Mobile Three</FormLabel>
-                <FormControl>
-                  <Input type='number' placeholder='01*********' {...field} />
-                </FormControl>
-                <FormMessage />
-              </FormItem>
-            )}
-          />
-
           {/* Address */}
           <FormField
             control={form.control}
@@ -143,22 +152,12 @@ const EditShowroomForm = () => {
             )}
           />
 
-          {/* Prefix */}
-          <FormField
-            control={form.control}
-            name='prefix'
-            render={({ field }) => (
-              <FormItem>
-                <FormLabel>Prefix</FormLabel>
-                <FormControl>
-                  <Input placeholder='Preix' {...field} />
-                </FormControl>
-                <FormMessage />
-              </FormItem>
-            )}
-          />
-          <Button type='submit' className='bg-brand'>
-            Save Changes
+          <Button
+            disabled={mutation.isPending}
+            type='submit'
+            className='bg-brand'
+          >
+            {mutation.isPending ? 'Submitting...' : 'Update'}
           </Button>
         </div>
       </form>

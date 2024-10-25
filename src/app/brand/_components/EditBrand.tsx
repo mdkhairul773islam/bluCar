@@ -1,5 +1,5 @@
-import { Button } from '@/components/ui/button'
-import EditBrandForm from './EditBrandForm'
+'use client'
+
 import {
   Dialog,
   DialogContent,
@@ -8,13 +8,23 @@ import {
   DialogTitle,
   DialogTrigger
 } from '@/components/ui/dialog'
+import React from 'react'
+import { Brand } from './columns'
 import { Edit } from 'lucide-react'
+import EditBrandForm from './EditBrandForm'
+import { Button } from '@/components/ui/button'
 
-export default function EditBrand() {
+export default function EditBrand({ brand }: { brand: Brand }) {
+  const [open, setOpen] = React.useState(false)
+
   return (
-    <Dialog>
+    <Dialog open={open} onOpenChange={setOpen}>
       <DialogTrigger asChild>
-        <Button size='icon' className='edit-button'>
+        <Button
+          size='icon'
+          className='edit-button'
+          onClick={() => setOpen(true)}
+        >
           <Edit className='size-4' />
         </Button>
       </DialogTrigger>
@@ -27,7 +37,7 @@ export default function EditBrand() {
         </DialogHeader>
 
         {/* Edit Brand form */}
-        <EditBrandForm />
+        <EditBrandForm brand={brand} setOpen={setOpen} />
       </DialogContent>
     </Dialog>
   )

@@ -1,5 +1,6 @@
-import { Button } from '@/components/ui/button'
-import AddCategoryForm from './AddCategoryForm'
+'use client'
+
+import React from 'react'
 import {
   Dialog,
   DialogContent,
@@ -9,26 +10,33 @@ import {
   DialogTrigger
 } from '@/components/ui/dialog'
 import { CirclePlus } from 'lucide-react'
+import AddCategoryForm from './AddCategoryForm'
+import { Button } from '@/components/ui/button'
 
 export default function AddCategory() {
+  const [open, setOpen] = React.useState(false)
+
   return (
-    <Dialog>
+    <Dialog open={open} onOpenChange={setOpen}>
       <DialogTrigger asChild>
-      <Button className='flex items-center gap-2 bg-brand'>
+        <Button
+          className='flex items-center gap-2 bg-brand'
+          onClick={() => setOpen(true)}
+        >
           <CirclePlus className='size-4' />
           Add New
         </Button>
       </DialogTrigger>
       <DialogContent className='sm:max-w-[425px]'>
         <DialogHeader>
-          <DialogTitle>Add Category</DialogTitle>
+          <DialogTitle>Add Brand</DialogTitle>
           <DialogDescription>
             Add information here. Click save when done.
           </DialogDescription>
         </DialogHeader>
 
-        {/* Add Category form */}
-        <AddCategoryForm />
+        {/* Add Brand form */}
+        <AddCategoryForm setOpen={setOpen} />
       </DialogContent>
     </Dialog>
   )

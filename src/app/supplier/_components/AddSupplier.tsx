@@ -1,4 +1,5 @@
-import { Button } from '@/components/ui/button'
+'use client'
+
 import {
   Sheet,
   SheetContent,
@@ -7,12 +8,16 @@ import {
   SheetTitle,
   SheetTrigger
 } from '@/components/ui/sheet'
-import AddSupplierForm from './AddSupplierForm'
+import { useState } from 'react'
 import { CirclePlus } from 'lucide-react'
+import AddSupplierForm from './AddSupplierForm'
+import { Button } from '@/components/ui/button'
 
 export default function AddSupplier() {
+  const [open, setOpen] = useState(false)
+
   return (
-    <Sheet>
+    <Sheet open={open} onOpenChange={setOpen}>
       <SheetTrigger asChild>
         <Button className='flex items-center gap-2 bg-brand'>
           <CirclePlus className='size-4' />
@@ -27,8 +32,7 @@ export default function AddSupplier() {
           </SheetDescription>
         </SheetHeader>
 
-        {/* Add Supplier form */}
-        <AddSupplierForm />
+        <AddSupplierForm setOpen={setOpen} />
       </SheetContent>
     </Sheet>
   )
