@@ -4,8 +4,6 @@ import React from 'react'
 import { Metadata } from 'next'
 import { cn } from '@/lib/utils'
 import localFont from 'next/font/local'
-import Header from '@/components/layouts/Header'
-import Sidebar from '@/components/layouts/Sidebar'
 import { Toaster } from '@/components/ui/toaster'
 import { ThemeProvider } from '@/Providers/ThemeProvider'
 import RQClientQuery from '@/Providers/RQClientQuery'
@@ -73,19 +71,7 @@ export default function RootLayout({
           {/* Toast Container */}
           <ToastContainer />
 
-          <RQClientQuery>
-            <div className='grid min-h-screen w-full'>
-              <Sidebar />
-
-              <div className='flex flex-col overflow-hidden lg:ml-[280px]'>
-                <Header />
-
-                <main className='flex flex-1 flex-col  p-4 lg:p-6'>
-                  {children}
-                </main>
-              </div>
-            </div>
-          </RQClientQuery>
+          <RQClientQuery>{children}</RQClientQuery>
 
           <Toaster />
         </ThemeProvider>

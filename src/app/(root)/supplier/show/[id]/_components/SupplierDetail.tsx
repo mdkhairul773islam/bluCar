@@ -11,8 +11,8 @@ import {
   TableRow
 } from '@/components/ui/table'
 import dateFormat from '@/lib/dateFormat'
-import { Supplier } from '@/app/supplier/_components/columns'
 import { Badge } from '@/components/ui/badge'
+import { Supplier } from '../../../_components/columns'
 
 const SupplierDetail = ({ supplierId }: { supplierId: string }) => {
   const { data, isLoading, error } = useQuery({

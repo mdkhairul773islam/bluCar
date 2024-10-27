@@ -13,7 +13,7 @@ import { CirclePlus } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 import { Supplier } from '../../_components/columns'
 import AddTransactionForm from './AddTransactionForm'
-import { Showroom } from '@/app/showroom/_components/columns'
+import { Showroom } from '@/app/(root)/showroom/_components/columns'
 
 export default function AddTransaction({
   suppliers,

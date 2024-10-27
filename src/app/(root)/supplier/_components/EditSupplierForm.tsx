@@ -1,11 +1,6 @@
 'use client'
 
 import {
-  Popover,
-  PopoverContent,
-  PopoverTrigger
-} from '@/components/ui/popover'
-import {
   Form,
   FormControl,
   FormField,
@@ -13,6 +8,26 @@ import {
   FormLabel,
   FormMessage
 } from '@/components/ui/form'
+import { z } from 'zod'
+import React from 'react'
+import { Supplier } from './columns'
+import toastify from '@/lib/toastify'
+import { useForm } from 'react-hook-form'
+import { Input } from '@/components/ui/input'
+import supplierSchema from './supplierSchema'
+import { Button } from '@/components/ui/button'
+import { zodResolver } from '@hookform/resolvers/zod'
+import supplierService from '@/services/supplier-service'
+import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query'
+import { RadioGroup, RadioGroupItem } from '@/components/ui/radio-group'
+import { Textarea } from '@/components/ui/textarea'
+import {
+  Popover,
+  PopoverContent,
+  PopoverTrigger
+} from '@/components/ui/popover'
+import { CalendarIcon } from 'lucide-react'
+import { Calendar } from '@/components/ui/calendar'
 import {
   Select,
   SelectContent,
@@ -20,29 +35,17 @@ import {
   SelectTrigger,
   SelectValue
 } from '@/components/ui/select'
-import React, { Dispatch, SetStateAction } from 'react'
-import { z } from 'zod'
-import { cn } from '@/lib/utils'
-import { format, parseISO } from 'date-fns'
-import toastify from '@/lib/toastify'
-import { useForm } from 'react-hook-form'
-import { CalendarIcon } from 'lucide-react'
-import supplierSchema from './supplierSchema'
-import { Input } from '@/components/ui/input'
-import { Button } from '@/components/ui/button'
-import { Textarea } from '@/components/ui/textarea'
-import { Calendar } from '@/components/ui/calendar'
-import { zodResolver } from '@hookform/resolvers/zod'
-import supplierService from '@/services/supplier-service'
 import showroomService from '@/services/showroom-service'
-import { Showroom } from '@/app/showroom/_components/columns'
-import { RadioGroup, RadioGroupItem } from '@/components/ui/radio-group'
-import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query'
+import { format, parseISO } from 'date-fns'
+import { cn } from '@/lib/utils'
+import { Showroom } from '../../showroom/_components/columns'
 
-const AddSupplierForm = ({
-  setOpen
+const EditSupplierForm = ({
+  setOpen,
+  supplier
 }: {
-  setOpen: Dispatch<SetStateAction<boolean>>
+  setOpen: any
+  supplier: Supplier
 }) => {
   const queryClient = useQueryClient()
 
@@ -56,24 +59,39 @@ const AddSupplierForm = ({
   })
 
   const form = useForm<z.infer<typeof supplierSchema>>({
-    resolver: zodResolver(supplierSchema)
+    resolver: zodResolver(supplierSchema),
+    defaultValues: {
+      address: supplier?.address,
+      contact_person: supplier?.contact_person,
+      // @ts-ignore
+      date: supplier?.date,
+      initial_balance: supplier?.initial_balance,
+      mobile: supplier?.mobile,
+      name: supplier?.name,
+      showroom_id: supplier?.showroom_id,
+      status: supplier?.status
+    }
   })
 
   const mutation = useMutation({
-    mutationFn: supplierService.addSupplier,
+    mutationFn: data => supplierService.updateSupplier(supplier.id, data),
     onSuccess: () => {
       // @ts-ignore
       queryClient.invalidateQueries(['suppliers'])
-      toastify.success('Supplier added successfully')
+      toastify.success('Supplier updated successfully')
       setOpen(false)
     },
-    onError: (error: any) => {
-      toastify.error(error.message)
+    onError: error => {
+      toastify.error('Failed to update supplier')
     }
   })
 
   function onSubmit(data: z.infer<typeof supplierSchema>) {
+    // @ts-ignore
     mutation.mutate(data)
+
+    console.log(supplier)
+    console.log(data)
   }
   return (
     <Form {...form}>
@@ -89,7 +107,10 @@ const AddSupplierForm = ({
                 <Select onValueChange={value => field.onChange(Number(value))}>
                   <FormControl>
                     <SelectTrigger>
-                      <SelectValue placeholder='Select showroom' />
+                      {/* <SelectValue placeholder='Select showroom' /> */}
+                      {showrooms?.find(
+                        (showroom: Showroom) => showroom.id === field.value
+                      )?.name || 'Select showroom'}
                     </SelectTrigger>
                   </FormControl>
                   <SelectContent>
@@ -277,4 +298,4 @@ const AddSupplierForm = ({
   )
 }
 
-export default AddSupplierForm
+export default EditSupplierForm

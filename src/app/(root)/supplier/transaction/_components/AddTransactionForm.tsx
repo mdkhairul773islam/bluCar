@@ -33,9 +33,9 @@ import { Calendar } from '@/components/ui/calendar'
 import transactionSchema from './transactionSchema'
 import { Supplier } from '../../_components/columns'
 import { zodResolver } from '@hookform/resolvers/zod'
-import { Showroom } from '@/app/showroom/_components/columns'
 import transactionService from '@/services/transaction-service'
 import { useMutation, useQueryClient } from '@tanstack/react-query'
+import { Showroom } from '@/app/(root)/showroom/_components/columns'
 import React, { Dispatch, SetStateAction, useEffect, useState } from 'react'
 
 const AddTransactionForm = ({
