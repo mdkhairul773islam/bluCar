@@ -2,129 +2,169 @@
 @tailwind components;
 @tailwind utilities;
 
-body {
-  @apply bg-[#F6F6F6];
-}
+@layer base {
+  :root {
+    --background: 0 0% 100%;
+    --foreground: 0 0% 3.9%;
 
-.inputForm {
-  @apply flex flex-col gap-5;
-}
+    --card: 0 0% 100%;
+    --card-foreground: 0 0% 3.9%;
 
-.inputGroup {
-  position: relative;
-}
+    --popover: 0 0% 100%;
+    --popover-foreground: 0 0% 3.9%;
 
-.inputLabel {
-  @apply inline-block text-sm text-dark-600 font-medium absolute left-2 top-0 -translate-y-1/2 bg-white px-1 z-[1] has-[~.inputField[readonly]]:before:bg-gray-100 has-[~.inputField[readonly]]:before:left-0 has-[~.inputField[readonly]]:before:right-0 has-[~.inputField[readonly]]:before:bottom-0 has-[~.inputField[readonly]]:before:h-1/2 has-[~.inputField[readonly]]:before:absolute has-[~.inputField[readonly]]:before:z-[-1];
-}
+    --primary: 0 0% 9%;
+    --primary-foreground: 0 0% 98%;
 
-.inputLabel.required {
-  @apply pr-3 after:absolute after:right-[2px] after:top-[0] after:content-['*'] after:text-red-600 after:text-sm after:font-bold;
-}
+    --secondary: 0 0% 96.1%;
+    --secondary-foreground: 0 0% 9%;
 
-.inputField {
-  @apply w-full rounded text-dark-800  border border-gray-300 focus:!shadow-none focus:border-primary focus:ring-0;
-}
+    --muted: 0 0% 96.1%;
+    --muted-foreground: 0 0% 45.1%;
 
-.inputField[readOnly] {
-  @apply bg-gray-100 border-gray-100;
-}
+    --accent: 0 0% 96.1%;
+    --accent-foreground: 0 0% 9%;
 
-.radioInput {
-  @apply hidden;
-}
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 0 0% 98%;
 
-.radioInput:checked ~ .radioLabel::before {
-  @apply visible opacity-100;
-}
+    --border: 0 0% 89.8%;
+    --input: 0 0% 89.8%;
+    --ring: 0 0% 3.9%;
 
-.radioLabel {
-  @apply relative cursor-pointer pl-6 after:absolute after:left-0 after:top-1/2 after:-translate-y-1/2 after:h-4 after:w-4 after:rounded-full after:border after:border-gray-600 before:absolute before:content-["✔"] before:left-0 before:top-1/2 before:-translate-y-1/2 before:bg-primary before:invisible before:opacity-0 before:flex before:items-center before:justify-center before:h-4 before:w-4 before:rounded-full before:text-xs before:text-white;
-}
+    --radius: 0.5rem;
+  }
 
-.inputBtn {
-  @apply inline-block px-3 py-2 rounded bg-primary text-white duration-300 hover:bg-dark-purple cursor-pointer;
-}
+  .dark {
+    --background: 0 0% 3.9%;
+    --foreground: 0 0% 98%;
 
-.actionBtn {
-  @apply h-7 w-7  rounded text-xs flex items-center justify-center cursor-pointer;
-}
+    --card: 0 0% 3.9%;
+    --card-foreground: 0 0% 98%;
 
-.actionBtnEdit {
-  @apply bg-emerald-600/20 text-emerald-600 hover:bg-emerald-600 hover:text-white;
-}
+    --popover: 0 0% 3.9%;
+    --popover-foreground: 0 0% 98%;
 
-.actionBtnDelete {
-  @apply bg-red-600/20 text-red-600 hover:bg-red-600 hover:text-white;
-}
+    --primary: 0 0% 98%;
+    --primary-foreground: 0 0% 9%;
 
-.actionBtnShow {
-  @apply bg-blue-500/20 text-blue-500 hover:bg-blue-500 hover:text-white;
-}
+    --secondary: 0 0% 14.9%;
+    --secondary-foreground: 0 0% 98%;
 
-.inputBtn.cancel {
-  @apply bg-red-700 hover:bg-dark-purple;
-}
+    --muted: 0 0% 14.9%;
+    --muted-foreground: 0 0% 63.9%;
 
-.table {
-  display: block;
-}
+    --accent: 0 0% 14.9%;
+    --accent-foreground: 0 0% 98%;
 
-.table table {
-  @apply w-full text-left text-sm text-gray-500;
-}
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 0 0% 98%;
 
-.table thead {
-  @apply text-xs uppercase text-gray-700;
-}
-
-.table table thead th {
-  @apply bg-gray-50 dark:bg-gray-700 py-3 px-2;
-}
-
-.table tbody {
-  @apply divide-y divide-dashed;
-}
-
-.table tbody tr {
-  @apply hover:bg-gray-50  bg-white;
-}
-
-.table tbody tr td {
-  @apply py-4 !px-2;
-}
-
-.primaryBtn {
-  @apply inline-flex items-center gap-2 px-3 py-2 whitespace-nowrap rounded bg-primary text-white duration-300 hover:bg-dark-purple cursor-pointer;
-}
-
-.sideBar::-webkit-scrollbar {
-  display: none;
-}
-
-@media (min-width: 1024px) {
-  .mainbody.active {
-    margin-left: 288px;
+    --border: 0 0% 14.9%;
+    --input: 0 0% 14.9%;
+    --ring: 0 0% 83.1%;
   }
 }
 
-/* Rich Text Editor Default Design Upgrade */
-.quill .ql-toolbar {
-  @apply !border !border-gray-300 !rounded-t;
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground;
+  }
 }
 
-.quill .ql-container {
-  @apply !border-gray-300 !rounded-b;
+@layer base {
+  table thead th:last-child .flex {
+    @apply justify-end;
+  }
 }
 
-.ql-snow.ql-toolbar button,
-.ql-snow .ql-toolbar button {
-  @apply !border !border-gray-300 !rounded-sm !mr-1 !bg-gray-200;
+.edit-button {
+  @apply border border-green-300 bg-green-600/20 text-green-600 hover:!bg-green-600 hover:text-white;
+}
+.delete-button {
+  @apply border border-red-300 bg-red-600/20 text-red-600 hover:!bg-red-600 hover:text-white;
+}
+.show-button {
+  @apply border border-sky-300 bg-sky-600/20 text-sky-600 hover:!bg-sky-600 hover:text-white;
 }
 
-.ql-snow.ql-toolbar .ql-active,
-.ql-snow .ql-toolbar .ql-active,
-.ql-snow.ql-toolbar button:hover,
-.ql-snow .ql-toolbar button:hover {
-  @apply !bg-primary/20 !text-white;
+.dashboardCard {
+  @apply relative overflow-hidden bg-gradient-to-br from-[#F5269D] to-[#9A35FF] after:invisible after:absolute after:left-0 after:top-1/2 after:h-[120%] after:w-10  after:-translate-y-1/2 after:rotate-12 after:bg-gradient-to-b after:from-white/80 after:to-transparent after:opacity-0 after:transition-all after:duration-700 hover:after:visible hover:after:left-[calc(100%_+_40px)] hover:after:opacity-100;
+}
+
+.dashboardCard:nth-of-type(2) {
+  @apply from-[#17CBFE] to-[#205BF5];
+}
+
+.dashboardCard:nth-of-type(3) {
+  @apply from-[#FBC733] to-[#F54339];
+}
+
+.dashboardCard:nth-of-type(4) {
+  @apply from-[#00CDAC] to-[#02AABD];
+}
+
+.dashboardCard:nth-of-type(5) {
+  @apply from-[#FF512F] to-[#DD2476];
+}
+
+.dashboardCard:nth-of-type(6) {
+  @apply from-[#38EF7D] to-[#11998E];
+}
+
+.dashboardCard:nth-of-type(7) {
+  @apply from-[#38AECD] to-[#012F3F];
+}
+
+.dashboardCard:nth-of-type(8) {
+  @apply from-[#07c8f9] to-[#0d41e1];
+}
+
+.dashboardCard:nth-of-type(9) {
+  @apply from-[#d4ea62] to-[#e9295c];
+}
+
+.dashboardCard:nth-of-type(10) {
+  @apply from-[#3cf2de] to-[#f7ea60];
+}
+
+.dashboardCard:nth-of-type(11) {
+  @apply from-[#00ee6e] to-[#0c75e6];
+}
+
+.dashboardCard .__icon {
+  @apply text-[#9A35FF];
+}
+.dashboardCard:nth-of-type(2) .__icon {
+  @apply text-[#205BF5];
+}
+.dashboardCard:nth-of-type(3) .__icon {
+  @apply text-[#F54339];
+}
+.dashboardCard:nth-of-type(4) .__icon {
+  @apply text-[#02AABD];
+}
+.dashboardCard:nth-of-type(5) .__icon {
+  @apply text-[#DD2476];
+}
+.dashboardCard:nth-of-type(6) .__icon {
+  @apply text-[#11998E];
+}
+.dashboardCard:nth-of-type(7) .__icon {
+  @apply text-[#012F3F];
+}
+.dashboardCard:nth-of-type(8) .__icon {
+  @apply text-[#0d41e1];
+}
+.dashboardCard:nth-of-type(9) .__icon {
+  @apply text-[#e9295c];
+}
+.dashboardCard:nth-of-type(10) .__icon {
+  @apply text-[#3cf2de];
+}
+.dashboardCard:nth-of-type(11) .__icon {
+  @apply text-[#0c75e6];
 }

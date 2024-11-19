@@ -1,61 +1,78 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# 🚗 BLUE MOTORS
 
-## Getting Started
+A Complete HRM & CRM Management Software
 
-First, run the development server:
+## 🛠️ Features
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+- `Next.js 14 App Directory`
+- `Radix UI Primitives`
+- `Tailwind CSS`
+- `Icons from` [`Lucide`](https://lucide.dev)
+- `Dark mode with next-themes`
+- `Tailwind CSS class sorting, merging and linting.`
+- `react-hot-toast`
+- `sweetalert2`
+- `react-use-keypress`
+- `tailwind css`
+- `@reduxjs/toolkit`
+- `@tailwindcss/aspect-ratio`
+- `@tailwindcss/forms`
+- `@tailwindcss/typography`
+- [`axios`]() `For Data Fetching`
+- [`@heroicons/react`](https://heroicons.com/) `Use For Icons`
+- [`@headlessui/react`](https://headlessui.com/) `Use For UI Components`
+- [`react-hook-form`](https://www.react-hook-form.com/) `Use for form handling`
+- [`@hookform/resolvers yup`](https://www.react-hook-form.com/get-started/#SchemaValidation)
+  `Use for Schema Validation`
+- [`@hookform/error-message`](https://react-hook-form.com/docs/useformstate/errormessage#main)
+  `An error message component to handle errors`
 
-## Deploy on Personal Github
+## ⚡ Inpiration of Sidebar
 
-```
-git remote set-url origin https://github.com/mhhasanmehedi/blue-car.git
+- [`https://github.com/gaofubin/t3-app-template/tree/main`](https://github.com/gaofubin/t3-app-template/tree/main)
 
-```
+## 🚀 Modules
 
-## Deploy on Khairul's Github
+- `✅ Reference`
+- `✅ Category`
+- `✅ Brand`
+- `✅ Showroom`
+- `✅ Orders`
+- `✅ Supplier`
+- `✅ Zone`
+- `✅ Stock`
+- `✅ Damage Product`
+- `✅ Income`
+- `✅ Cost`
+- `✅ Banking`
+- `✅ Ledger`
+- `✅ Customer Commitment`
+- `✅ Fixed Asset`
+- `✅ Settings`
+- `✅ Dashboard`
+- `✅ Due List`
+- `✅ Blank Invoice`
+- `✅ Employee`
+- `✅ Product`
+- `✅ Chalan`
+- `✅ Md Transaction`
+- `✅ Mobile SMS`
+- `✅ Purchase`
+- `✅ Stock Transfer`
+- `✅ Party [InProgress -Party Invoice -Add Transaction and Edit Transaction Form]`
+- `✅ Set Privilege`
+- `✅ Sale`
+- `✅ Services`
+- `✅ Report`
+- `✅ Datewise Stock`
 
-```
-git remote set-url origin https://github.com/mdkhairul773islam/bluCar.git
+- ~~Barcode~~
 
-```
+## 🚀 Complete api integration
 
-## Technologies
-
--- React Table
-
--- Mockaroo JOSN Data
-
--- Tailwind css
-
--- Redux
-
--- React icons
-
-## Completed Module
-
--- Dashboard
-
--- Product
-
--- Reference
-
--- Showroom
-
--- Orders
-
--- Zone
-
--- Income
-
--- Cost
-
--- Md Transaction
+- `✅ Brand`
+  - `allBrands, addBrand, updateBrand, deleteBrand`
+- `✅ Category`
+  - `allCategory, addCategory, updateCategory, deleteCategory`
+- `✅ Showroom`
+  - `allShowrooms, addShowroom, updateShowrooms, deleteShowrooms`
