@@ -4,7 +4,7 @@ import { ScrollArea, ScrollBar } from '@/components/ui/scroll-area'
 
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
-import React from 'react'
+import type { ReactNode } from 'react';
 
 const NavigationTabs = ({
   links
@@ -13,7 +13,7 @@ const NavigationTabs = ({
     label: string
     labelBadge?: string
     href: string
-    icon?: React.ReactNode
+    icon?: ReactNode
   }[]
 }) => {
   const pathname = usePathname()

@@ -15,7 +15,6 @@ import {
   TableHeader,
   TableRow
 } from '@/components/ui/table'
-import React from 'react'
 
 interface BasicTableProps<TData, TValue> {
   columns: ColumnDef<TData, TValue>[]

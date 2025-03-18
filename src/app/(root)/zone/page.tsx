@@ -1,4 +1,3 @@
-import React from 'react'
 import { Metadata } from 'next'
 import { Button } from '@/components/ui/button'
 import PanelHeader from '@/components/shared/PanelHeader'

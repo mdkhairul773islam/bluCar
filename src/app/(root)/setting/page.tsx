@@ -1,4 +1,3 @@
-import React from 'react'
 import { Metadata } from 'next'
 import Setting from './_components/Setting'
 

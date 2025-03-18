@@ -1,6 +1,6 @@
 import './globals.css'
 
-import React from 'react'
+import type { ReactNode } from 'react';
 import { Metadata } from 'next'
 import { cn } from '@/lib/utils'
 import localFont from 'next/font/local'
@@ -51,7 +51,7 @@ export const metadata: Metadata = {
 export default function RootLayout({
   children
 }: {
-  children: React.ReactNode
+  children: ReactNode
 }) {
   return (
     <html lang='en' suppressHydrationWarning>

@@ -9,7 +9,6 @@ import {
   FormMessage
 } from '@/components/ui/form'
 import { z } from 'zod'
-import React from 'react'
 import toastify from '@/lib/toastify'
 import brandSchema from './brandSchema'
 import { useForm } from 'react-hook-form'

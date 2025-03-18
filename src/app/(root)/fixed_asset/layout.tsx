@@ -1,7 +1,7 @@
-import React from 'react'
+import type { ReactNode } from 'react';
 import NavigationTabs from '@/components/shared/NavigationTabs'
 
-const FixedAssetLayout = ({ children }: { children: React.ReactNode }) => {
+const FixedAssetLayout = ({ children }: { children: ReactNode }) => {
   return (
     <div className='flex flex-col gap-4'>
       <NavigationTabs

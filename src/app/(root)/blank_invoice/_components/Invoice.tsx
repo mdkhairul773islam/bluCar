@@ -1,5 +1,3 @@
-import React from 'react'
-
 const Invoice = () => {
   return (
     <div className='flex h-96 w-full flex-col justify-between'>

@@ -1,4 +1,3 @@
-import React from 'react'
 import { Metadata } from 'next'
 import AddIncome from '../_components/AddIncome'
 import { Income, columns } from './_components/columns'

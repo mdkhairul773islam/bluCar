@@ -1,4 +1,3 @@
-import React from 'react'
 import { Metadata } from 'next'
 import AddShowroom from './_components/AddShowroom'
 import ActiveMenu from '@/components/shared/ActiveMenu'

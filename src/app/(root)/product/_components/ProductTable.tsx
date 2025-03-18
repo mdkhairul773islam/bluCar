@@ -1,6 +1,5 @@
 'use client'
 
-import React from 'react'
 import { columns } from './columns'
 import { useQuery } from '@tanstack/react-query'
 import productService from '@/services/product-service'

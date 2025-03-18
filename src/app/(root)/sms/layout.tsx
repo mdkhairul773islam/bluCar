@@ -1,7 +1,7 @@
-import React from 'react'
+import type { ReactNode } from 'react';
 import NavigationTabs from '@/components/shared/NavigationTabs'
 
-const SMSLayout = ({ children }: { children: React.ReactNode }) => {
+const SMSLayout = ({ children }: { children: ReactNode }) => {
   return (
     <div className='flex flex-col gap-4'>
       <NavigationTabs

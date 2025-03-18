@@ -1,4 +1,3 @@
-import React from 'react'
 import { Metadata } from 'next'
 import AddFixedAsset from '../_components/AddFixedAsset'
 import { FixedAsset, columns } from './_components/columns'

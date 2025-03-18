@@ -8,14 +8,14 @@ import {
   DialogTitle,
   DialogTrigger
 } from '@/components/ui/dialog'
-import React from 'react'
+import { useState } from 'react';
 import { Edit } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 import EditCategoryForm from './EditCategoryForm'
 import { Category } from './columns'
 
 export default function EditCategory({ category }: { category: Category }) {
-  const [open, setOpen] = React.useState(false)
+  const [open, setOpen] = useState(false)
 
   return (
     <Dialog open={open} onOpenChange={setOpen}>

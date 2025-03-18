@@ -1,6 +1,6 @@
 'use client'
 
-import React from 'react'
+import { useState } from 'react';
 import {
   Dialog,
   DialogContent,
@@ -14,7 +14,7 @@ import AddCategoryForm from './AddCategoryForm'
 import { Button } from '@/components/ui/button'
 
 export default function AddCategory() {
-  const [open, setOpen] = React.useState(false)
+  const [open, setOpen] = useState(false)
 
   return (
     <Dialog open={open} onOpenChange={setOpen}>

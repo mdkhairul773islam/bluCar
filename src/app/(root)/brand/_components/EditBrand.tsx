@@ -8,14 +8,14 @@ import {
   DialogTitle,
   DialogTrigger
 } from '@/components/ui/dialog'
-import React from 'react'
+import { useState } from 'react';
 import { Brand } from './columns'
 import { Edit } from 'lucide-react'
 import EditBrandForm from './EditBrandForm'
 import { Button } from '@/components/ui/button'
 
 export default function EditBrand({ brand }: { brand: Brand }) {
-  const [open, setOpen] = React.useState(false)
+  const [open, setOpen] = useState(false)
 
   return (
     <Dialog open={open} onOpenChange={setOpen}>

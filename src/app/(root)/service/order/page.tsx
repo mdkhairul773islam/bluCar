@@ -1,4 +1,3 @@
-import React from 'react'
 import { Metadata } from 'next'
 import AddOrder from './_components/AddOrder'
 import { Order, columns } from './_components/columns'

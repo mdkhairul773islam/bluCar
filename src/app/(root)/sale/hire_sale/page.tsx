@@ -1,4 +1,3 @@
-import React from 'react'
 import { Metadata } from 'next'
 import { HireSale, columns } from './_components/columns'
 import ActiveMenu from '@/components/shared/ActiveMenu'

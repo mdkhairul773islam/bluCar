@@ -1,4 +1,3 @@
-import React from 'react'
 import Link from 'next/link'
 import { ListTodo } from 'lucide-react'
 import { Button } from '@/components/ui/button'
@@ -8,13 +7,12 @@ import PanelHeader from '@/components/shared/PanelHeader'
 import VoucherDetails from './_components/VoucherDetails'
 
 export async function generateMetadata(
-  {
-    params
-  }: {
-    params: { purchase_id: string }
+  props: {
+    params: Promise<{ purchase_id: string }>
   },
   parent: ResolvingMetadata
 ): Promise<Metadata> {
+  const params = await props.params;
   // read route params
   const purchase_id = params.purchase_id
 
@@ -23,11 +21,13 @@ export async function generateMetadata(
   }
 }
 
-const PurchaseVoucherPage = ({
-  params
-}: {
-  params: { purchase_id: string }
-}) => {
+const PurchaseVoucherPage = async (
+  {
+    params
+  }: {
+    params: { purchase_id: string }
+  }
+) => {
   return (
     <>
       <ActiveMenu menu='purchase' />

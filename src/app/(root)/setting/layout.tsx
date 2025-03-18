@@ -1,9 +1,9 @@
 import ActiveMenu from '@/components/shared/ActiveMenu'
 import PanelHeader from '@/components/shared/PanelHeader'
 import Link from 'next/link'
-import React from 'react'
+import type { ReactNode } from 'react';
 
-const layout = ({ children }: { children: React.ReactNode }) => {
+const layout = ({ children }: { children: ReactNode }) => {
   return (
     <>
       <ActiveMenu menu='setting' />

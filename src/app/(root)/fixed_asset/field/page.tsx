@@ -1,4 +1,3 @@
-import React from 'react'
 import { Metadata } from 'next'
 import AddField from './_components/AddField'
 import { Field, columns } from './_components/columns'

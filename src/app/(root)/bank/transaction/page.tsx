@@ -1,4 +1,3 @@
-import React from 'react'
 import { Metadata } from 'next'
 import AddTransaction from './_components/AddTransaction'
 import { Transaction, columns } from './_components/columns'

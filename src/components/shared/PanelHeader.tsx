@@ -1,11 +1,11 @@
-import React from 'react'
+import type { ReactNode } from 'react';
 
 const PanelHeader = ({
   title,
   children
 }: {
   title: string
-  children?: React.ReactNode
+  children?: ReactNode
 }) => {
   return (
     <div className='mb-5 flex items-center justify-between md:mb-8 '>

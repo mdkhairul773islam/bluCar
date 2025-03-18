@@ -1,4 +1,3 @@
-import React from 'react'
 import { Metadata } from 'next'
 import PanelHeader from '@/components/shared/PanelHeader'
 import AddAdvancePayment from './_components/AddAdvancePayment'

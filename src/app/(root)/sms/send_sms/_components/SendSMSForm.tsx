@@ -1,4 +1,3 @@
-import React from 'react'
 import { SMS, columns } from './columns'
 import { Label } from '@/components/ui/label'
 import { BasicTable } from '@/components/shared/BasicTable'

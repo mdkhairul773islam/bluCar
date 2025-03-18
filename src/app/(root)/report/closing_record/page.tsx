@@ -1,4 +1,3 @@
-import React from 'react'
 import { Metadata } from 'next'
 import { Download } from 'lucide-react'
 import { Button } from '@/components/ui/button'

@@ -31,7 +31,7 @@ import {
   PopoverContent,
   PopoverTrigger
 } from '@/components/ui/popover'
-import React from 'react'
+import { useState } from 'react';
 import {
   SelectContent,
   Select,
@@ -41,7 +41,7 @@ import {
 } from '@/components/ui/select'
 
 const AddAttendanceTableForm = () => {
-  const [date, setDate] = React.useState<Date>()
+  const [date, setDate] = useState<Date>()
 
   return (
     <form className='flex flex-col gap-3'>

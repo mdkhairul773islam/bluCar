@@ -1,4 +1,3 @@
-import React from 'react'
 import { Metadata } from 'next'
 import AddProduct from './_components/AddProduct'
 import ProductTable from './_components/ProductTable'

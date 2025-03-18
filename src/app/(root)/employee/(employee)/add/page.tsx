@@ -1,6 +1,5 @@
 import PanelHeader from '@/components/shared/PanelHeader'
 import { Metadata } from 'next'
-import React from 'react'
 import CreateEmployeeForm from './_components/CreateEmployeeForm'
 import ActiveMenu from '@/components/shared/ActiveMenu'
 import Link from 'next/link'

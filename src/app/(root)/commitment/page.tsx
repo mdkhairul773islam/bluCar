@@ -1,4 +1,3 @@
-import React from 'react'
 import { Metadata } from 'next'
 import AddCommitment from './_components/AddCommitment'
 import { Commitment, columns } from './_components/columns'

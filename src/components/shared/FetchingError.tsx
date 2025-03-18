@@ -1,6 +1,5 @@
 'use client'
 
-import React from 'react'
 import Link from 'next/link'
 import { Card } from '../ui/card'
 import { Button } from '../ui/button'

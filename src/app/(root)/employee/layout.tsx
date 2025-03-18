@@ -1,7 +1,7 @@
 import NavigationTabs from '@/components/shared/NavigationTabs'
-import React from 'react'
+import type { ReactNode } from 'react';
 
-const EmployeeLayout = ({ children }: { children: React.ReactNode }) => {
+const EmployeeLayout = ({ children }: { children: ReactNode }) => {
   return (
     <div className='flex flex-col gap-4'>
       <NavigationTabs

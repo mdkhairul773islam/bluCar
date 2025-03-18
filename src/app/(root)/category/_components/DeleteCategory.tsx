@@ -11,7 +11,7 @@ import {
 } from '@/components/ui/alert-dialog'
 import toastify from '@/lib/toastify'
 import { Trash } from 'lucide-react'
-import React, { useState } from 'react'
+import { useState } from 'react';
 import { Button } from '@/components/ui/button'
 import categoryService from '@/services/category-service'
 import { useMutation, useQueryClient } from '@tanstack/react-query'

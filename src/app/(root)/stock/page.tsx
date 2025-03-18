@@ -1,4 +1,3 @@
-import React from 'react'
 import { Metadata } from 'next'
 import StockTable, { Stock } from './_components/StockTable'
 import ActiveMenu from '@/components/shared/ActiveMenu'

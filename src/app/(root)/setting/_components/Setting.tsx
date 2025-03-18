@@ -1,5 +1,4 @@
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs'
-import React from 'react'
 import AddHeaderSetting from './AddHeaderSetting'
 import AddSocialAccount from './AddSocialAccount'
 import AddBannerFavicon from './AddBannerFavicon'

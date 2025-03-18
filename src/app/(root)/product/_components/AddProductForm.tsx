@@ -15,7 +15,6 @@ import {
   SelectTrigger,
   SelectValue
 } from '@/components/ui/select'
-import React from 'react'
 import { z } from 'zod'
 import { useForm } from 'react-hook-form'
 import { Input } from '@/components/ui/input'

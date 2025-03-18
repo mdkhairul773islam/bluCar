@@ -1,4 +1,3 @@
-import React from 'react'
 import { Metadata } from 'next'
 import AddExpenditure from '../_components/AddExpenditure'
 import { Expenditure, columns } from './_components/columns'

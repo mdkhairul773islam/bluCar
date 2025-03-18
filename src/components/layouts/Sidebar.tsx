@@ -1,4 +1,3 @@
-import React from 'react'
 import Link from 'next/link'
 import MainNav from './MainNav'
 import { Car } from 'lucide-react'

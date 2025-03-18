@@ -1,4 +1,3 @@
-import React from 'react'
 import { Metadata } from 'next'
 import AddBank from './_components/AddBank'
 import { Bank, columns } from './_components/columns'

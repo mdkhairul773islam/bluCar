@@ -1,4 +1,3 @@
-import React from 'react'
 import { Metadata } from 'next'
 import AddSupplier from './_components/AddSupplier'
 import SupplierTable from './_components/SupplierTable'

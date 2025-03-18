@@ -1,4 +1,3 @@
-import React from 'react'
 import { Metadata } from 'next'
 import AddCategory from './_components/AddCategory'
 import ActiveMenu from '@/components/shared/ActiveMenu'

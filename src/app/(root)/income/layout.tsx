@@ -1,7 +1,7 @@
-import React from 'react'
+import type { ReactNode } from 'react';
 import NavigationTabs from '@/components/shared/NavigationTabs'
 
-const IncomeLayout = ({ children }: { children: React.ReactNode }) => {
+const IncomeLayout = ({ children }: { children: ReactNode }) => {
   return (
     <div className='flex flex-col gap-4'>
       <NavigationTabs

@@ -8,14 +8,14 @@ import {
   SheetTitle,
   SheetTrigger
 } from '@/components/ui/sheet'
-import React from 'react'
+import { useState } from 'react';
 import { Edit } from 'lucide-react'
 import { Product } from './columns'
 import EditProductForm from './EditProductForm'
 import { Button } from '@/components/ui/button'
 
 export default function EditProduct({ product }: { product: Product }) {
-  const [open, setOpen] = React.useState(false)
+  const [open, setOpen] = useState(false)
 
   return (
     <Sheet open={open} onOpenChange={setOpen}>

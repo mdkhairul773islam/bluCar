@@ -1,4 +1,3 @@
-import React from 'react'
 import MainNav from './MainNav'
 import { Menu } from 'lucide-react'
 import { Button } from '../ui/button'

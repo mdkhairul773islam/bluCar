@@ -1,5 +1,3 @@
-import React from 'react'
-
 const ReportSummery = () => {
   return (
     <div className='grid grid-cols-2 overflow-hidden rounded'>

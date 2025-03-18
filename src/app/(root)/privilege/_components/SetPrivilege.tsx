@@ -1,7 +1,6 @@
 import { Label } from '@/components/ui/label'
 import { ScrollArea, ScrollBar } from '@/components/ui/scroll-area'
 import { Switch } from '@/components/ui/switch'
-import React from 'react'
 
 const SetPrivilege = () => {
   return (

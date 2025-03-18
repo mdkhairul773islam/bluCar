@@ -1,8 +1,8 @@
 import Header from '@/components/layouts/Header'
 import Sidebar from '@/components/layouts/Sidebar'
-import React from 'react'
+import type { ReactNode } from 'react';
 
-const AdminLayout = ({ children }: { children: React.ReactNode }) => {
+const AdminLayout = ({ children }: { children: ReactNode }) => {
   return (
     <div className='grid min-h-screen w-full'>
       <Sidebar />

@@ -1,4 +1,3 @@
-import React from 'react'
 import { Metadata } from 'next'
 import AddBrand from './_components/AddBrand'
 import BrandTable from './_components/BrandTable'

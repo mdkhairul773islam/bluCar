@@ -7,7 +7,8 @@ export const metadata: Metadata = {
   title: 'Show Transaction'
 }
 
-const TransactionShowPage = async ({ params }: { params: { id: string } }) => {
+const TransactionShowPage = async (props: { params: Promise<{ id: string }> }) => {
+  const params = await props.params;
   return (
     <>
       <ActiveMenu menu='supplier' />
