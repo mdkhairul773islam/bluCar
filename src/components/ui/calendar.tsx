@@ -1,20 +1,19 @@
 'use client'
 
 import { ChevronLeftIcon, ChevronRightIcon } from '@radix-ui/react-icons'
-import * as React from 'react'
 import { DayPicker } from 'react-day-picker'
 
 import { buttonVariants } from '@/components/ui/button'
 import { cn } from '@/lib/utils'
 
-export type CalendarProps = React.ComponentProps<typeof DayPicker>
+export type TCalendarProps = React.ComponentProps<typeof DayPicker>
 
 function Calendar({
   className,
   classNames,
   showOutsideDays = true,
   ...props
-}: CalendarProps) {
+}: TCalendarProps) {
   return (
     <DayPicker
       showOutsideDays={showOutsideDays}
@@ -67,6 +66,5 @@ function Calendar({
     />
   )
 }
-Calendar.displayName = 'Calendar'
 
 export { Calendar }
