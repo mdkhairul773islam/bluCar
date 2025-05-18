@@ -5,12 +5,14 @@ import { Metadata, ResolvingMetadata } from 'next'
 import Link from 'next/link'
 import ProfileView from './_components/ProfileView'
 
+type TShowProfilePageProps = {
+  params?: {
+    id?: string
+  }
+}
+
 export async function generateMetadata(
-  {
-    params
-  }: {
-    params: { id: string | undefined }
-  },
+  { params }: TShowProfilePageProps,
   parent: ResolvingMetadata
 ): Promise<Metadata> {
   const id = params?.id
@@ -20,11 +22,7 @@ export async function generateMetadata(
   }
 }
 
-const ShowProfilePage = ({
-  params
-}: {
-  params: { id: string | undefined }
-}) => {
+const ShowProfilePage = ({ params }: TShowProfilePageProps) => {
   return (
     <>
       {/* Panel Header */}
