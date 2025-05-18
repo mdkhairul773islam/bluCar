@@ -8,6 +8,8 @@ const PDFDownloadLink = dynamic(
   { ssr: false }
 )
 
+import PanelHeader from '@/components/shared/PanelHeader'
+import { Button } from '@/components/ui/button'
 import {
   Table,
   TableBody,
@@ -16,17 +18,16 @@ import {
   TableHeader,
   TableRow
 } from '@/components/ui/table'
-import dateFormat from '@/lib/dateFormat'
-import { Badge } from '@/components/ui/badge'
-import { useQuery } from '@tanstack/react-query'
-import { Transaction } from '../../../_components/columns'
 import transactionService from '@/services/transaction-service'
-import PanelHeader from '@/components/shared/PanelHeader'
-import { Button } from '@/components/ui/button'
+import { useQuery } from '@tanstack/react-query'
 import { Printer } from 'lucide-react'
 import PDFView from './pdf-view'
 
-const TransactionDetail = ({ transactionId }: { transactionId: string }) => {
+const TransactionDetail = ({
+  transactionId
+}: {
+  transactionId: string | undefined
+}) => {
   const { data, isLoading, error } = useQuery({
     queryKey: ['transaction', transactionId],
     queryFn: () => transactionService.getByTransactionId(transactionId)
@@ -42,7 +43,7 @@ const TransactionDetail = ({ transactionId }: { transactionId: string }) => {
       <PanelHeader title='Transaction Details'>
         <PDFDownloadLink document={<PDFView />} fileName='voucer.pdf'>
           {({ blob, url, loading, error }) => (
-            <Button className='gap-2 bg-brand'>
+            <Button className='bg-brand gap-2'>
               <Printer className='size-4' />
 
               {loading ? 'Loading..' : 'Print'}

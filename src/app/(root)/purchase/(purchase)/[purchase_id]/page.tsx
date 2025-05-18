@@ -1,17 +1,16 @@
-import React from 'react'
-import Link from 'next/link'
-import { ListTodo } from 'lucide-react'
-import { Button } from '@/components/ui/button'
-import { Metadata, ResolvingMetadata } from 'next'
 import ActiveMenu from '@/components/shared/ActiveMenu'
 import PanelHeader from '@/components/shared/PanelHeader'
+import { Button } from '@/components/ui/button'
+import { ListTodo } from 'lucide-react'
+import { Metadata, ResolvingMetadata } from 'next'
+import Link from 'next/link'
 import VoucherDetails from './_components/VoucherDetails'
 
 export async function generateMetadata(
   {
     params
   }: {
-    params: { purchase_id: string }
+    params: { purchase_id: string | undefined }
   },
   parent: ResolvingMetadata
 ): Promise<Metadata> {
@@ -26,7 +25,7 @@ export async function generateMetadata(
 const PurchaseVoucherPage = ({
   params
 }: {
-  params: { purchase_id: string }
+  params: { purchase_id: string | undefined }
 }) => {
   return (
     <>
@@ -35,7 +34,7 @@ const PurchaseVoucherPage = ({
       {/* Panel Header */}
       <PanelHeader title='Voucher Details'>
         <Link href='/purchase'>
-          <Button className='flex items-center gap-2 bg-brand'>
+          <Button className='bg-brand flex items-center gap-2'>
             <ListTodo className='size-4' />
             All Purchase
           </Button>

@@ -1,33 +1,36 @@
-import React from 'react'
-import { Metadata, ResolvingMetadata } from 'next'
-import ProfileView from './_components/ProfileView'
 import PanelHeader from '@/components/shared/PanelHeader'
-import Link from 'next/link'
 import { Button } from '@/components/ui/button'
 import { Users } from 'lucide-react'
+import { Metadata, ResolvingMetadata } from 'next'
+import Link from 'next/link'
+import ProfileView from './_components/ProfileView'
 
 export async function generateMetadata(
   {
     params
   }: {
-    params: { id: string }
+    params: { id: string | undefined }
   },
   parent: ResolvingMetadata
 ): Promise<Metadata> {
-  const id = params.id
+  const id = params?.id
 
   return {
     title: `Profile of ${id}`
   }
 }
 
-const ShowProfilePage = ({ params }: { params: { id: string } }) => {
+const ShowProfilePage = ({
+  params
+}: {
+  params: { id: string | undefined }
+}) => {
   return (
     <>
       {/* Panel Header */}
-      <PanelHeader title={`Profile of ${params.id}`}>
+      <PanelHeader title={`Profile of ${params?.id}`}>
         <Link href='/profile/create'>
-          <Button className='flex items-center gap-2 bg-brand'>
+          <Button className='bg-brand flex items-center gap-2'>
             <Users className='size-4' />
             All Profile
           </Button>

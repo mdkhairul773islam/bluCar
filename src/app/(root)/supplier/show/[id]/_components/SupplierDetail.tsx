@@ -1,7 +1,6 @@
 'use client'
 
-import { useQuery } from '@tanstack/react-query'
-import supplierService from '@/services/supplier-service'
+import { Badge } from '@/components/ui/badge'
 import {
   Table,
   TableBody,
@@ -11,10 +10,11 @@ import {
   TableRow
 } from '@/components/ui/table'
 import dateFormat from '@/lib/dateFormat'
-import { Badge } from '@/components/ui/badge'
+import supplierService from '@/services/supplier-service'
+import { useQuery } from '@tanstack/react-query'
 import { Supplier } from '../../../_components/columns'
 
-const SupplierDetail = ({ supplierId }: { supplierId: string }) => {
+const SupplierDetail = ({ supplierId }: { supplierId: string | undefined }) => {
   const { data, isLoading, error } = useQuery({
     queryKey: ['supplier', supplierId],
     queryFn: () => supplierService.getBySupplierId(supplierId)
@@ -32,7 +32,7 @@ const SupplierDetail = ({ supplierId }: { supplierId: string }) => {
             <TableRow>
               <TableHead
                 colSpan={4}
-                className='border bg-brand text-center text-white'
+                className='bg-brand border text-center text-white'
               >
                 Supplier Details
               </TableHead>
