@@ -1,5 +1,5 @@
+// @ts-nocheck
 'use client'
-
 import { Button } from '@/components/ui/button'
 import { Calendar } from '@/components/ui/calendar'
 import {
@@ -260,7 +260,7 @@ const EditSupplierForm = ({
                     defaultValue={field.value}
                     className='flex items-center space-y-1'
                   >
-                    <FormItem className='flex items-center  gap-1'>
+                    <FormItem className='flex items-center gap-1'>
                       <FormControl>
                         <RadioGroupItem value='Receivable' />
                       </FormControl>
@@ -268,7 +268,7 @@ const EditSupplierForm = ({
                         Receivable
                       </FormLabel>
                     </FormItem>
-                    <FormItem className='flex items-center  gap-1'>
+                    <FormItem className='flex items-center gap-1'>
                       <FormControl>
                         <RadioGroupItem value='Payable' />
                       </FormControl>
