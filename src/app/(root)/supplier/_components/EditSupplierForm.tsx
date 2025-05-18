@@ -1,5 +1,7 @@
 'use client'
 
+import { Button } from '@/components/ui/button'
+import { Calendar } from '@/components/ui/calendar'
 import {
   Form,
   FormControl,
@@ -8,37 +10,33 @@ import {
   FormLabel,
   FormMessage
 } from '@/components/ui/form'
-import { z } from 'zod'
-import React from 'react'
-import { Supplier } from './columns'
-import toastify from '@/lib/toastify'
-import { useForm } from 'react-hook-form'
 import { Input } from '@/components/ui/input'
-import supplierSchema from './supplierSchema'
-import { Button } from '@/components/ui/button'
-import { zodResolver } from '@hookform/resolvers/zod'
-import supplierService from '@/services/supplier-service'
-import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query'
-import { RadioGroup, RadioGroupItem } from '@/components/ui/radio-group'
-import { Textarea } from '@/components/ui/textarea'
 import {
   Popover,
   PopoverContent,
   PopoverTrigger
 } from '@/components/ui/popover'
-import { CalendarIcon } from 'lucide-react'
-import { Calendar } from '@/components/ui/calendar'
+import { RadioGroup, RadioGroupItem } from '@/components/ui/radio-group'
 import {
   Select,
   SelectContent,
   SelectItem,
-  SelectTrigger,
-  SelectValue
+  SelectTrigger
 } from '@/components/ui/select'
-import showroomService from '@/services/showroom-service'
-import { format, parseISO } from 'date-fns'
+import { Textarea } from '@/components/ui/textarea'
+import toastify from '@/lib/toastify'
 import { cn } from '@/lib/utils'
+import showroomService from '@/services/showroom-service'
+import supplierService from '@/services/supplier-service'
+import { zodResolver } from '@hookform/resolvers/zod'
+import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query'
+import { format, parseISO } from 'date-fns'
+import { CalendarIcon } from 'lucide-react'
+import { useForm } from 'react-hook-form'
+import { z } from 'zod'
 import { Showroom } from '../../showroom/_components/columns'
+import { Supplier } from './columns'
+import supplierSchema from './supplierSchema'
 
 const EditSupplierForm = ({
   setOpen,
@@ -137,7 +135,7 @@ const EditSupplierForm = ({
                   <PopoverTrigger asChild>
                     <FormControl>
                       <Button
-                        variant={'outline-solid'}
+                        variant={'outline'}
                         className={cn(
                           'w-full pl-3 text-left font-normal',
                           !field.value && 'text-muted-foreground'

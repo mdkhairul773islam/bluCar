@@ -1,7 +1,6 @@
 'use client'
 
-import React from 'react'
-import { format } from 'date-fns'
+import { Button } from '@/components/ui/button'
 import {
   Form,
   FormControl,
@@ -10,12 +9,18 @@ import {
   FormLabel,
   FormMessage
 } from '@/components/ui/form'
+import { Input } from '@/components/ui/input'
 import { zodResolver } from '@hookform/resolvers/zod'
+import { format } from 'date-fns'
 import { useForm } from 'react-hook-form'
 import { z } from 'zod'
-import { Input } from '@/components/ui/input'
-import { Button } from '@/components/ui/button'
 
+import { Calendar } from '@/components/ui/calendar'
+import {
+  Popover,
+  PopoverContent,
+  PopoverTrigger
+} from '@/components/ui/popover'
 import {
   Select,
   SelectContent,
@@ -23,19 +28,10 @@ import {
   SelectTrigger,
   SelectValue
 } from '@/components/ui/select'
-import {
-  Popover,
-  PopoverContent,
-  PopoverTrigger
-} from '@/components/ui/popover'
-import { cn } from '@/lib/utils'
-import { CalendarIcon } from 'lucide-react'
-import { Calendar } from '@/components/ui/calendar'
 import { Textarea } from '@/components/ui/textarea'
 import { useToast } from '@/components/ui/use-toast'
-import { Checkbox } from '@/components/ui/checkbox'
-import { Label } from '@/components/ui/label'
-import { RadioGroup, RadioGroupItem } from '@/components/ui/radio-group'
+import { cn } from '@/lib/utils'
+import { CalendarIcon } from 'lucide-react'
 
 const formSchema = z.object({
   code: z.string(),
@@ -161,7 +157,7 @@ const CreatePartyForm = () => {
                       <PopoverTrigger asChild>
                         <FormControl>
                           <Button
-                            variant={'outline-solid'}
+                            variant={'outline'}
                             className={cn(
                               'pl-3 text-left font-normal',
                               !field.value && 'text-muted-foreground'
@@ -506,7 +502,7 @@ const CreatePartyForm = () => {
               )}
             />
 
-            <div className='rounded bg-muted p-2 text-base font-medium md:col-span-2'>
+            <div className='bg-muted rounded p-2 text-base font-medium md:col-span-2'>
               Guarantor Information
             </div>
 

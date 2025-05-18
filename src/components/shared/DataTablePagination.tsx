@@ -1,8 +1,8 @@
 'use client'
 
-import React, { useState } from 'react'
 import { Button } from '@/components/ui/button'
 import { ArrowLeft, ArrowRight } from 'lucide-react'
+import { useState } from 'react'
 
 export default function DataTablePagination({ table }: { table: any }) {
   const [box, setBox] = useState(1)
@@ -10,7 +10,7 @@ export default function DataTablePagination({ table }: { table: any }) {
   return (
     <div className='my-4 flex items-center justify-between gap-4 '>
       <Button
-        className='flex items-center gap-2 bg-brand text-sm disabled:cursor-not-allowed '
+        className='bg-brand flex items-center gap-2 text-sm disabled:cursor-not-allowed '
         onClick={() => table.previousPage()}
         disabled={!table.getCanPreviousPage()}
       >
@@ -23,14 +23,14 @@ export default function DataTablePagination({ table }: { table: any }) {
             key={index}
             onClick={() => setBox(index)}
             className={`${box === index && 'bg-brand'} rounded-full text-sm`}
-            variant={box !== index ? 'outline-solid' : 'default'}
+            variant={box !== index ? "outline" : 'default'}
           >
             {index}
           </Button>
         ))}
       </div> */}
       <Button
-        className='flex items-center gap-2 bg-brand text-sm disabled:cursor-not-allowed '
+        className='bg-brand flex items-center gap-2 text-sm disabled:cursor-not-allowed '
         onClick={() => table.nextPage()}
         disabled={!table.getCanNextPage()}
       >

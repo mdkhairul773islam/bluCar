@@ -2,7 +2,6 @@
 
 import Column from '@/components/shared/Column'
 import { Button } from '@/components/ui/button'
-import { Input } from '@/components/ui/input'
 import {
   Table,
   TableBody,
@@ -11,34 +10,33 @@ import {
   TableHeader,
   TableRow
 } from '@/components/ui/table'
+import { format } from 'date-fns'
 import {
   Award,
+  Calendar as CalendarIcon,
   Clock,
   Code,
   Hash,
   Lightbulb,
   Phone,
-  Trash,
   User
 } from 'lucide-react'
-import { format } from 'date-fns'
-import { Calendar as CalendarIcon } from 'lucide-react'
 
-import { cn } from '@/lib/utils'
 import { Calendar } from '@/components/ui/calendar'
 import {
   Popover,
   PopoverContent,
   PopoverTrigger
 } from '@/components/ui/popover'
-import React from 'react'
 import {
-  SelectContent,
   Select,
+  SelectContent,
   SelectItem,
   SelectTrigger,
   SelectValue
 } from '@/components/ui/select'
+import { cn } from '@/lib/utils'
+import React from 'react'
 
 const AddAttendanceTableForm = () => {
   const [date, setDate] = React.useState<Date>()
@@ -46,7 +44,7 @@ const AddAttendanceTableForm = () => {
   return (
     <form className='flex flex-col gap-3'>
       <Table>
-        <TableHeader className='bg-gray-100 dark:bg-muted'>
+        <TableHeader className='dark:bg-muted bg-gray-100'>
           <TableRow>
             <TableHead className='w-10'>
               <Column icon={<Hash className='size-3' />} label='SL' />
@@ -85,7 +83,7 @@ const AddAttendanceTableForm = () => {
               <Popover>
                 <PopoverTrigger asChild>
                   <Button
-                    variant={'outline-solid'}
+                    variant={'outline'}
                     className={cn(
                       'w-[280px] justify-start text-left font-normal',
                       !date && 'text-muted-foreground'
@@ -109,7 +107,7 @@ const AddAttendanceTableForm = () => {
               <Popover>
                 <PopoverTrigger asChild>
                   <Button
-                    variant={'outline-solid'}
+                    variant={'outline'}
                     className={cn(
                       'w-full justify-start text-left font-normal',
                       !date && 'text-muted-foreground'

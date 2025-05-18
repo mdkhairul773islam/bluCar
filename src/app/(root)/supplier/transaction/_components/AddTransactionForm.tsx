@@ -1,12 +1,8 @@
 'use client'
 
-import {
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SelectValue
-} from '@/components/ui/select'
+import { Showroom } from '@/app/(root)/showroom/_components/columns'
+import { Button } from '@/components/ui/button'
+import { Calendar } from '@/components/ui/calendar'
 import {
   Form,
   FormControl,
@@ -15,28 +11,32 @@ import {
   FormLabel,
   FormMessage
 } from '@/components/ui/form'
+import { Input } from '@/components/ui/input'
+import { Label } from '@/components/ui/label'
 import {
   Popover,
   PopoverContent,
   PopoverTrigger
 } from '@/components/ui/popover'
-import { z } from 'zod'
-import { cn } from '@/lib/utils'
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue
+} from '@/components/ui/select'
 import toastify from '@/lib/toastify'
-import { useForm } from 'react-hook-form'
-import { CalendarIcon } from 'lucide-react'
-import { format, parseISO } from 'date-fns'
-import { Input } from '@/components/ui/input'
-import { Label } from '@/components/ui/label'
-import { Button } from '@/components/ui/button'
-import { Calendar } from '@/components/ui/calendar'
-import transactionSchema from './transactionSchema'
-import { Supplier } from '../../_components/columns'
-import { zodResolver } from '@hookform/resolvers/zod'
+import { cn } from '@/lib/utils'
 import transactionService from '@/services/transaction-service'
+import { zodResolver } from '@hookform/resolvers/zod'
 import { useMutation, useQueryClient } from '@tanstack/react-query'
-import { Showroom } from '@/app/(root)/showroom/_components/columns'
-import React, { Dispatch, SetStateAction, useEffect, useState } from 'react'
+import { format } from 'date-fns'
+import { CalendarIcon } from 'lucide-react'
+import { Dispatch, SetStateAction, useEffect, useState } from 'react'
+import { useForm } from 'react-hook-form'
+import { z } from 'zod'
+import { Supplier } from '../../_components/columns'
+import transactionSchema from './transactionSchema'
 
 const AddTransactionForm = ({
   suppliers,
@@ -113,7 +113,7 @@ const AddTransactionForm = ({
                   <PopoverTrigger asChild>
                     <FormControl>
                       <Button
-                        variant={'outline-solid'}
+                        variant={'outline'}
                         className={cn(
                           'w-full pl-3 text-left font-normal',
                           !field.value && 'text-muted-foreground'

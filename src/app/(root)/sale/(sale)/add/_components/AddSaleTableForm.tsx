@@ -3,7 +3,6 @@
 import Column from '@/components/shared/Column'
 import { Button } from '@/components/ui/button'
 import { Calendar } from '@/components/ui/calendar'
-import { FormControl } from '@/components/ui/form'
 import { Input } from '@/components/ui/input'
 import { Label } from '@/components/ui/label'
 import {
@@ -12,8 +11,8 @@ import {
   PopoverTrigger
 } from '@/components/ui/popover'
 import {
-  SelectContent,
   Select,
+  SelectContent,
   SelectItem,
   SelectTrigger,
   SelectValue
@@ -49,7 +48,7 @@ const AddSaleTableForm = () => {
   return (
     <form className='flex flex-col gap-4'>
       <Table>
-        <TableHeader className='bg-gray-100 dark:bg-muted'>
+        <TableHeader className='dark:bg-muted bg-gray-100'>
           <TableRow>
             <TableHead className='w-10'>
               <Column icon={<Hash className='size-3' />} label='SL' />
@@ -129,7 +128,7 @@ const AddSaleTableForm = () => {
         </TableBody>
       </Table>
 
-      <div className='h-px bg-border'></div>
+      <div className='bg-border h-px'></div>
 
       <div className='grid gap-4 md:grid-cols-2'>
         <div className='flex flex-col gap-3'>
@@ -339,7 +338,7 @@ const AddSaleTableForm = () => {
             <Popover>
               <PopoverTrigger asChild>
                 <Button
-                  variant={'outline-solid'}
+                  variant={'outline'}
                   className={cn(
                     'w-full justify-start text-left font-normal',
                     !date && 'text-muted-foreground'

@@ -74,7 +74,6 @@ const AddAccountForm = () => {
                   <PopoverTrigger asChild>
                     <FormControl>
                       <Button
-                        // variant={'outline-solid'}
                         variant={'outline'}
                         className={cn(
                           'w-full pl-3 text-left font-normal',

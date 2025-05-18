@@ -1,11 +1,7 @@
 'use client'
 
-import React from 'react'
-import { z } from 'zod'
-import { useForm } from 'react-hook-form'
 import { Button } from '@/components/ui/button'
-import { toast } from '@/components/ui/use-toast'
-import { zodResolver } from '@hookform/resolvers/zod'
+import { Calendar } from '@/components/ui/calendar'
 import {
   Form,
   FormControl,
@@ -15,21 +11,24 @@ import {
   FormMessage
 } from '@/components/ui/form'
 import {
+  Popover,
+  PopoverContent,
+  PopoverTrigger
+} from '@/components/ui/popover'
+import {
   Select,
   SelectContent,
   SelectItem,
   SelectTrigger,
   SelectValue
 } from '@/components/ui/select'
-import { Calendar } from '@/components/ui/calendar'
-import { CalendarIcon } from 'lucide-react'
-import {
-  Popover,
-  PopoverContent,
-  PopoverTrigger
-} from '@/components/ui/popover'
+import { toast } from '@/components/ui/use-toast'
 import { cn } from '@/lib/utils'
+import { zodResolver } from '@hookform/resolvers/zod'
 import { format } from 'date-fns'
+import { CalendarIcon } from 'lucide-react'
+import { useForm } from 'react-hook-form'
+import { z } from 'zod'
 
 const FormSchema = z.object({
   date: z.date({
@@ -76,7 +75,7 @@ const SearchStock = () => {
                   <PopoverTrigger asChild>
                     <FormControl>
                       <Button
-                        variant={'outline-solid'}
+                        variant={'outline'}
                         className={cn(
                           'w-full pl-3 text-left font-normal',
                           !field.value && 'text-muted-foreground'
