@@ -55,7 +55,7 @@ const MainNav = () => {
                   {item.title}
                 </div>
               </AccordionTrigger>
-              <AccordionContent className='relative ml-4 pb-0 after:absolute after:left-0 after:top-0 after:h-[calc(100%_-_13px)] after:w-0.5 after:bg-border'>
+              <AccordionContent className='relative ml-4 pb-0 after:absolute after:left-0 after:top-0 after:h-[calc(100%-13px)] after:w-0.5 after:bg-border'>
                 {item.children?.map(child => (
                   <Link
                     key={child.title}

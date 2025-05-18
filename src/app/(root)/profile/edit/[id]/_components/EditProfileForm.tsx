@@ -76,7 +76,7 @@ const EditProfileForm = () => {
         <form onSubmit={form.handleSubmit(onSubmit)} className='space-y-5'>
           <div className='grid items-start gap-5 md:grid-cols-[300px_1fr]'>
             <div className='grid gap-1 '>
-              <div className='relative aspect-[4/4] overflow-hidden rounded-md'>
+              <div className='relative aspect-4/4 overflow-hidden rounded-md'>
                 <Image
                   src='/images/profile.png'
                   className='size-full'

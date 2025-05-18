@@ -137,7 +137,7 @@ const EditSupplierForm = ({
                   <PopoverTrigger asChild>
                     <FormControl>
                       <Button
-                        variant={'outline'}
+                        variant={'outline-solid'}
                         className={cn(
                           'w-full pl-3 text-left font-normal',
                           !field.value && 'text-muted-foreground'
@@ -266,7 +266,7 @@ const EditSupplierForm = ({
                       <FormControl>
                         <RadioGroupItem value='Receivable' />
                       </FormControl>
-                      <FormLabel className='!mt-0 cursor-pointer font-medium'>
+                      <FormLabel className='mt-0! cursor-pointer font-medium'>
                         Receivable
                       </FormLabel>
                     </FormItem>
@@ -274,7 +274,7 @@ const EditSupplierForm = ({
                       <FormControl>
                         <RadioGroupItem value='Payable' />
                       </FormControl>
-                      <FormLabel className='!mt-0 cursor-pointer font-medium'>
+                      <FormLabel className='mt-0! cursor-pointer font-medium'>
                         Payable
                       </FormLabel>
                     </FormItem>

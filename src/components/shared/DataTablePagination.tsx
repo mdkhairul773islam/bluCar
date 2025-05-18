@@ -23,7 +23,7 @@ export default function DataTablePagination({ table }: { table: any }) {
             key={index}
             onClick={() => setBox(index)}
             className={`${box === index && 'bg-brand'} rounded-full text-sm`}
-            variant={box !== index ? 'outline' : 'default'}
+            variant={box !== index ? 'outline-solid' : 'default'}
           >
             {index}
           </Button>

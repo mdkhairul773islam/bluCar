@@ -76,7 +76,7 @@ const EditCostForm = () => {
                   <PopoverTrigger asChild>
                     <FormControl>
                       <Button
-                        variant={'outline'}
+                        variant={'outline-solid'}
                         className={cn(
                           'w-full pl-3 text-left font-normal',
                           !field.value && 'text-muted-foreground'

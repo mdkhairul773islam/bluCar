@@ -7,7 +7,7 @@ export const metadata: Metadata = {
 
 const loading = () => {
   return (
-    <div className='flex h-[calc(100vh_-_100px)] w-full items-center justify-center gap-2 text-2xl font-medium'>
+    <div className='flex h-[calc(100vh-100px)] w-full items-center justify-center gap-2 text-2xl font-medium'>
       <span className='animate-spin-slow'>⏳</span>
       Loading...
     </div>

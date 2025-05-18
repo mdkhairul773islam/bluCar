@@ -44,7 +44,7 @@ const AddBannerFavicon = () => {
                   />
                   <div
                     onClick={() => setBanner(null)}
-                    className='absolute right-0 top-0 flex !size-5 -translate-y-1/4 translate-x-1/4 cursor-pointer items-center  justify-center rounded-full border bg-muted hover:text-red-600'
+                    className='absolute right-0 top-0 flex size-5! -translate-y-1/4 translate-x-1/4 cursor-pointer items-center  justify-center rounded-full border bg-muted hover:text-red-600'
                   >
                     <Trash className='size-2' />
                   </div>
@@ -71,7 +71,7 @@ const AddBannerFavicon = () => {
 
                   <div
                     onClick={() => setFavicon(null)}
-                    className='absolute right-0 top-0 flex !size-5 -translate-y-1/4 translate-x-1/4 cursor-pointer items-center  justify-center rounded-full border bg-muted hover:text-red-600'
+                    className='absolute right-0 top-0 flex size-5! -translate-y-1/4 translate-x-1/4 cursor-pointer items-center  justify-center rounded-full border bg-muted hover:text-red-600'
                   >
                     <Trash className='size-2' />
                   </div>
