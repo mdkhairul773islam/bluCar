@@ -6,16 +6,18 @@ export const metadata: Metadata = {
   title: 'Show Transaction'
 }
 
-const TransactionShowPage = async ({
-  params
-}: {
-  params: { id: string | undefined }
-}) => {
+type TPageParams = Promise<{
+  id: string | undefined
+}>
+
+const TransactionShowPage = async ({ params }: { params: TPageParams }) => {
+  const paramsRes = await params
+
   return (
     <>
       <ActiveMenu menu='supplier' />
 
-      <SupplierDetail transactionId={params?.id} />
+      <SupplierDetail transactionId={paramsRes?.id} />
     </>
   )
 }

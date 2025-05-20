@@ -7,11 +7,13 @@ export const metadata: Metadata = {
   title: 'Show Supplier'
 }
 
-const SupplierShowPage = async ({
-  params
-}: {
-  params: { id: string | undefined }
-}) => {
+type TPageParams = Promise<{
+  id: string | undefined
+}>
+
+const SupplierShowPage = async ({ params }: { params: TPageParams }) => {
+  const paramsRes = await params
+
   return (
     <>
       <ActiveMenu menu='supplier' />
@@ -19,7 +21,7 @@ const SupplierShowPage = async ({
       {/* Panel Header */}
       <PanelHeader title='Supplier Details' />
 
-      <SupplierDetail supplierId={params?.id} />
+      <SupplierDetail supplierId={paramsRes?.id} />
     </>
   )
 }

@@ -5,28 +5,32 @@ import { Metadata, ResolvingMetadata } from 'next'
 import Link from 'next/link'
 import ProfileView from './_components/ProfileView'
 
+type TPageParams = Promise<{
+  id: string | undefined
+}>
+
 type TShowProfilePageProps = {
-  params?: {
-    id?: string
-  }
+  params: TPageParams
 }
 
 export async function generateMetadata(
   { params }: TShowProfilePageProps,
   parent: ResolvingMetadata
 ): Promise<Metadata> {
-  const id = params?.id
+  const { id } = (await params) || {}
 
   return {
     title: `Profile of ${id}`
   }
 }
 
-const ShowProfilePage = ({ params }: TShowProfilePageProps) => {
+const ShowProfilePage = async ({ params }: TShowProfilePageProps) => {
+  const { id } = (await params) || {}
+
   return (
     <>
       {/* Panel Header */}
-      <PanelHeader title={`Profile of ${params?.id}`}>
+      <PanelHeader title={`Profile of ${id}`}>
         <Link href='/profile/create'>
           <Button className='bg-brand flex items-center gap-2'>
             <Users className='size-4' />
